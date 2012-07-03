@@ -1,0 +1,136 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/coach.html' as coach %}
+
+{% block meta_page_title %}Beheer Studenten | {% endblock meta_page_title %}
+{% block pagescript %}
+{{ js_css_packages.css_package("studentlists") }}
+<style type="text/css" media="screen">
+#empty-class ol li.click-register div.coach-email {
+    top: 97px;
+    left: 110px;
+}
+#empty-class ol li.enter-email div.coach-email {
+    top: 98px;
+    left: 115px;
+}
+</style>
+{% endblock pagescript %}
+
+{% block pagesubmenu %}
+<span class="breadcrumbs_nav">
+    <a href="/coaches" id="manage-coaches">Beheer Coaches</a>
+    <a href="/students" id="manage-students" class="selected">Beheer Leerlingen</a>
+    <a href="/class_profile" id="class-stats">Statistieken van klas</a>
+</span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+<article id="students">
+
+<div id="sidebar">
+    <ul class="student-list-links">
+        <li id="student-list-allstudents" data-list_id="allstudents"><a href="/students" class="bullet bullet-active">Alle leerlingen</a></li>
+        <li id="student-list-requests" data-list_id="requests"><a href="/students?list_id=requests" class="bullet" title="Leerlingen die hier staan hebben nog niet gereageerd op je aanbod om ze te coachen">Aanvragen</a></li>
+    </ul>
+    <ul id="custom-lists" class="student-list-links">
+        {% for list in student_lists %}
+        <li data-list_id="{{list.key}}"><a href="students?list_id={{list.key}}" class="bullet">{{list.name|escape}}</a></li>
+        {% endfor %}
+    </ul>
+    <div id="newlist-div" style="display: none;"><div>Naam nieuwe lijst:</div>
+    <input type="textbox" id="newlist-box" />
+    <a id="newlist-ok" class="simple-button action-gradient" href="#">OK</a>
+    <a id="newlist-cancel" class="simple-button action-gradient" href="#">Cancel</a>
+    </div>
+    <a id="newlist-button" class="simple-button action-gradient" href="#">Maak nieuwe lijst</a>
+</div>
+
+<div id="students-container">
+
+    <div class="students-header">
+        <span class="float-right">
+
+            <a class="delete-button" id="delete-list" href="#"><img src="images/circled_cross.png" title="Verwijder deze lijst (de leerlingen staan dan nog steeds onder 'Alle leerlingen')"/></a>
+        </span>
+        <h2 class="visited-no-recolor"><a href="/class_profile?student_list=allstudents" title="Bekijk de statistieken pagina van deze groep leerlingen">Alle leerlingen</a></h2>
+        <span id='nstudents'>0 leerlingen</span>
+    </div>
+
+    <div id="textbox-container">
+        <input type="text" id="request-student" class="blur-on-esc" size="80" placeholder="Type het e-mail adres van een leerling om je als coach aan te bieden"/>
+        <input type="text" id="add-to-list" class="blur-on-esc" size="80" placeholder="Type de naam van een leerling om hem/haar toe te voegen aan een lijst" style="display: none"/>
+    </div>
+
+    <div class="alert error" id="addstudent-error">
+        <span class="float-right close-button">(<a href="#">close</a>)</span>
+        Geen leerling gevonden met dat ID. De leerling moet eerst minimaal &eacute;&eacute;n keer inloggen. Check ook of het leerling ID correct is. Hier zijn voorbeelden van leerling ID's:<br>
+        <ul>
+            <li>student@gmail.com</li>
+            <li>http://facebookid.khanacademy.org/123456789</li>
+        </ul>
+    </div>
+    <div class="alert note" id="notaccepted-note">
+        <span class="float-right close-button">(<a href="#">close</a>)</span>
+        Onderstaande leerlingen hebben nog niet gereageerd op je voorstel ze te coachen. Om dat te doen, laat ze "Coach toevoegen" onderaan het scherm klikken, en vervolgens kiezen voor de knop "Accepteer coach".
+    </div>
+
+    <div id="actual-students">
+        {% for student in students %}
+        <div class="student-row" data-student_id="{{student.key}}">
+            <span class="float-right">
+                <div class="css-menu lists-css-menu">
+                    <ul>
+                        <li>Lijsten bewerken
+                            <ul>
+                                <li class="list-option-newlist">+ Nieuwe lijst maken...</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <a class="delete-button" href="#" title="Verwijder deze leerling uit deze lijst"><img src="images/circled_cross.png"/></a>
+            </span>
+            <div>
+                <span class="student-name visited-no-recolor"><a href="/profile?student_email={{ student.email|escape }}" title="Bekijk profielpagina van deze leerling">{{ student.nickname|escape }}</a></span>
+                <span class="student-email">{{ student.email|escape }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="requested-students">
+        {% for email in coach_requests %}
+        <div class="student-row" data-email="{{email}}">
+            <span class="float-right">
+                <a class="delete-button" href="#" title="Verwijder aanvraag om deze leerling te coachen"><img src="images/circled_cross.png"/></a>
+            </span>
+            <div><span class="student-name">{{ email|escape }}</span></div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {{ coach.empty_class_instructions(True) }}
+
+    <div id="tmpl" style="display:none">
+        <div class="student-row">
+            <span class="float-right">
+                <a class="delete-button" href="#" title="Verwijder aanvraag om deze leerling te coachen"><img src="images/circled_cross.png"/></a>
+            </span>
+            <div><span class="student-name"></span></div>
+        </div>
+    </div>
+</div>
+</article>
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+{{ js_css_packages.js_package("studentlists") }}
+<script type="text/javascript" charset="utf-8">
+$(function() {
+    StudentLists.Data.students = {{students_json}};
+    StudentLists.Data.student_lists = {{student_lists_json}};
+    StudentLists.Data.coach_requests = {{coach_requests_json}};
+    StudentLists.init();
+});
+</script>
+{% endblock bottompagescript %}

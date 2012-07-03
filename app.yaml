@@ -1,0 +1,171 @@
+application: newkhan-perceptum
+version: 811
+runtime: python
+api_version: 1
+default_expiration: "365d"
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*_test.py
+- ^(.*/)?sample_data/.*
+- ^(.*/)?khan-exercises/test/.*
+- ^(.*/)?presskit/.*
+- ^(.*/)?deploy/.*
+
+handlers:
+- url: /videos
+  static_dir: offline/Khan Academy/videos
+
+- url: /flvplayer
+  static_dir: flvplayer
+
+- url: /stylesheets
+  static_dir: stylesheets
+
+- url: /favicon.ico
+  static_files: images/favicon.ico
+  mime_type: image/x-icon
+  upload: images/favicon.ico
+
+- url: /google663128d2a1a65b87.html
+  static_files: google663128d2a1a65b87.html
+  upload: google663128d2a1a65b87.html
+
+- url: /images/favicon.ico
+  static_files: images/favicon.ico
+  mime_type: image/x-icon
+  upload: images/favicon.ico
+
+- url: /images
+  static_dir: images
+
+- url: /javascript
+  static_dir: javascript
+
+# Begin GTV integration
+- url: /gtv/css
+  static_dir: gtv/css
+
+- url: /gtv/images
+  static_dir: gtv/images
+
+- url: /gtv/js
+  static_dir: gtv/js
+
+- url: /gtv/fullscreen.html
+  static_files: gtv/fullscreen.html
+  upload: gtv/fullscreen.html
+
+- url: /gtv.*
+  script: gtv/main.py
+# End GTV integration
+
+# Begin khan-exercises integration
+- url: /khan-exercises/khan-exercise.js
+  static_files: khan-exercises/khan-exercise.js
+  upload: khan-exercises/khan-exercise.js
+
+- url: /khan-exercises/utils
+  static_dir: khan-exercises/utils
+
+- url: /khan-exercises/css
+  static_dir: khan-exercises/css
+
+- url: /khan-exercises/images
+  static_dir: khan-exercises/images
+
+- url: /khan-exercises/(hashed.+\.js)
+  static_files: khan-exercises/\1
+  upload: khan-exercises/(hashed.+\.js)
+# End khan-exercises integration
+
+- url: /downloads/(.*)
+  static_files: downloads/\1
+  upload: downloads/(.*)
+
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+
+- url: /_ah/queue/deferred_problemlog
+  script: $PYTHON_LIB/google/appengine/ext/deferred/handler.py
+  login: admin
+
+- url: /_ah/queue/deferred_videolog
+  script: $PYTHON_LIB/google/appengine/ext/deferred/handler.py
+  login: admin
+
+- url: /_ah/queue/deferred_log_summary
+  script: $PYTHON_LIB/google/appengine/ext/deferred/handler.py
+  login: admin
+
+- url: /admin/.*
+  script: main.py
+  login: admin
+
+- url: /mapreduce(/.*)?
+  script: mapreduce/main.py
+  login: admin
+
+- url: /api/.*
+  script: api/main.py
+
+- url: /gae_mini_profiler/static
+  static_dir: gae_mini_profiler/static
+  expiration: "300s"
+
+- url: /gae_mini_profiler/.*
+  script: gae_mini_profiler/main.py
+
+- url: /gae_bingo/static
+  static_dir: gae_bingo/static
+  expiration: "300s"
+
+- url: /gae_bingo/tests/.*
+  script: gae_bingo/tests/main.py
+
+- url: /gae_bingo/.*
+  script: gae_bingo/main.py
+
+- url: /gandalf/static
+  static_dir: gandalf/static
+  expiration: "300s"
+
+- url: /gandalf/tests/.*
+  script: gandalf/tests/main.py
+
+- url: /gandalf?.*
+  script: gandalf/main.py
+
+- url: /backends/.*
+  script: backends/videoprogress.py
+  login: admin
+
+- url: .*
+  script: main.py
+
+builtins:
+- appstats: on
+- datastore_admin: on
+- deferred: on
+- remote_api: on
+
+inbound_services:
+- warmup
+
+admin_console:
+  pages:
+    - name: AppStats
+      url: /_ah/stats
+    - name: Mapreduce
+      url: /mapreduce
+    - name: YouTube Sync
+      url: /admin/youtubesync

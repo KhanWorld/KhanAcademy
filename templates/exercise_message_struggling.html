@@ -1,0 +1,183 @@
+<div class="exercise_message">
+    <a href="#" class="close-button" title="Close this notification">x</a>
+    <h2 class="pulls">Having trouble?</h2>
+
+    {% if coaches.__len__() == 0 %}
+    <span class="suggestion" id="someone-sug" style="display: none" data-weight="1">
+        Why don't you ask someone for help?
+    </span>
+    {% else %}
+    <span class="suggestion" id="coach-sug" style="display: none" data-weight="3">
+        Why don't you ask
+        {% if coaches.__len__() == 1 %}
+            your <a href="coaches">coach</a>
+        {% else %}
+            one of your <a href="coaches">coaches</a>
+        {% endif %}
+        for help?
+    </span>
+    {% endif %}
+</div>
+
+<!-- poor man's templating - maybe change this to jQuery.tmpl -->
+<div id="video-sug-templates" style="display: none">
+    <span class="suggestion" id="unstarted-video-sug" data-weight="4">
+        Why don't you watch <span></span>.
+        You haven't seen it yet, and it might be helpful!
+    </span>
+
+    <span class="suggestion" id="started-video-sug" data-weight="3">
+        Why don't you finish watching <span></span>.
+        You haven't seen the entire video yet - maybe it will help.
+    </span>
+
+    <span class="suggestion" id="complete-video-sug" data-weight="2">
+        Why don't you watch <span></span> again.
+        Perhaps you've forgotten something important!
+    </span>
+</div>
+
+<script type="text/javascript">
+(function() {
+
+// Show a random suggestion, which is one of:
+//   - watch a video you haven't seen before
+//   - finish watching a video you've started
+//   - rewatch a video
+//   - talk to a coach
+//   - talk to anyone
+// Not yet implemented suggestions:
+//   - do a prereq exercise
+//   - review an already completed prereq exercise
+
+var randomElement = function(array, weights) {
+    var sum = array.length;
+    var cum;
+    if (weights !== undefined) {
+        cum = weights.slice();
+        for(var i=1; i<cum.length; i++) {
+            cum[i] = cum[i-1] + cum[i];
+        }
+        sum = cum[cum.length-1];
+    }
+    var r = Math.floor(Math.random()*sum);
+    if (weights !== undefined) {
+        var i;
+        for(i=0; i<cum.length; i++) {
+            if (r < cum[i]) break;
+        }
+        r = i;
+    }
+    return array[r];
+};
+
+$('.exercise_message .close-button').click(function(ev) {
+    ev.preventDefault();
+	gae_bingo.bingo('struggling_message_dismissed');
+    $('#exercise-message-container').slideUp();
+});
+
+// enum thing for watched status of all videos
+var videoState = ['unstarted', 'started', 'complete'];
+
+var getCssVideo = function() {
+    var videoStates = {};
+
+    // get the user video css
+    var css = $.grep(document.styleSheets, function(el,i) {
+        return /user_video_css/.test(el.href);
+    })[0];
+
+    if (css) {
+        // IE uses rules, Firefox uses cssRules.
+        var rules = css.rules || css.cssRules;
+        $.each(rules, function(i, rule) {
+            var href = rule.style.backgroundImage.toString();
+            var state = 0;
+
+            if( href.match(videoState[1]) ) {
+                state = 1;
+            }
+            else if ( href.match(videoState[2]) ) {
+                state = 2;
+            }
+
+            var ids = rule.selectorText.match(/\d+/g);
+            $.each(ids, function(i, id) {
+                videoStates[id] = state;
+            });
+        });
+    }
+
+    return videoStates;
+};
+
+var setupSuggestedVideos = function() {
+    var allVideos = userExercise.exercise_model.related_videos;
+    if (allVideos.length == 0) {
+        return;
+    }
+
+    // get watched, unwatched state of all related videos
+    var videoStates = getCssVideo();
+    var videos = $.map(allVideos, function(v) {
+        return {
+            video: v,
+            state: videoStates[v.id] || 0
+        };
+    }).sort(function(a,b) {return a.state - b.state});
+
+    var bestState = videos[0].state;
+
+    // we want all videos of the best state
+    var suggestions = [];
+    for(var i = 0; i<videos.length; i++) {
+        if (videos[i].state != bestState) {
+            break;
+        }
+        suggestions.push(videos[i].video);
+    }
+
+    var suggestion = randomElement(suggestions);
+
+    // prepare suggested video element
+    var jel = $('#' + videoState[bestState] + '-video-sug').clone();
+
+    // weight by number of videos remaining
+    var weight = parseInt(jel.attr('data-weight')) * suggestions.length;
+    jel.attr('data-weight', weight);
+
+    // make it link to the correct video
+    var exid = userExercise.exercise_model.name;
+    jel.removeAttr('id').find('span').html( buildLink(suggestion, exid) ).end().hide();
+
+    $('.exercise_message').append(jel);
+	$('#video-suggest-link').click(function(e) {
+		gae_bingo.bingo('struggling_videos_clicked_post_struggling');
+	});
+};
+
+var buildLink = function(video, exid) {
+    var exid_param = exid ? "?exid=" + exid : "";
+    return $('<a id="video-suggest-link"></a>')
+        .attr('href', video.relative_url + exid_param)
+        .addClass("related-video")
+        .data('video', video)
+        .text(video.title);
+};
+
+var showSuggestion = function() {
+    setupSuggestedVideos();
+    // pick a random suggestion by weight, display it
+    var els = $( '.exercise_message .suggestion' );
+    var weights = els.map( function( i,el ) {
+        return parseInt( $(el).attr('data-weight') || 1 );
+    });
+    var r = randomElement( els, weights );
+    $(r).show();
+};
+
+showSuggestion();
+
+})();
+</script>

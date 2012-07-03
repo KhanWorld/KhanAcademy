@@ -1,0 +1,137 @@
+{% extends "about/about_template.html" %}
+
+{% import 'macros/youtube.html' as youtube %}
+
+{% block aboutcontent %}
+
+<div class="col1 forty-sixty" style="text-align: center; padding-top: 18px; min-width:160px; max-width:160px; margin-right: 2%;">
+    <img id="about-vertical-logo" src="/images/khan-logo-vertical-transparent.png" height=250 width=178 />
+</div>
+<div class="col2 forty-sixty" style="max-width:81%; text-align: justify;">
+<h2 class="main-headline" style="white-space: pre;">A free world-class education for anyone anywhere.</h2>
+    <p>
+        The Khan Academy is an organization on a mission. We're a not-for-profit with the goal of changing education for the better by providing a free
+world-class education to anyone anywhere.
+    </p>
+    <p>
+        All of the site's resources are available to anyone. It doesn't matter if you are a student, teacher, 
+home-schooler, principal, adult returning to the classroom after 20 years, or a friendly alien just trying to get a leg up in earthly biology. The Khan Academy's
+materials and resources are available to you completely free of charge.
+    </p>
+</div>
+<div class="clear"></div>
+<hr style="margin-bottom: 36px;">
+<div class="col1 sixty-forty">
+    {{ youtube.player_embed("hw5k98GV7po", "99%", 400) }}
+</div>
+
+<div class="col2 sixty-forty" >
+    <h2>How it works for students</h2>
+    <p>Students can make use of our extensive video library, practice exercises, and assessments from any computer with access to the web.</p>
+    <ol>
+        <li>{{ youtube.jump_link("Complete custom self-paced learning tool", 0) }}</li>
+        <li>{{ youtube.jump_link("A dynamic system for getting help", 130) }}</li>
+        <li>{{ youtube.jump_link("A custom profile, points, and badges to measure progress", 208) }} </li>
+    </ol><br/>
+    <h2>Coaches, parents, and teachers</h2>
+    <p>Coaches, parents, and teachers have unprecedented visibility into what their students are learning and doing on the Khan Academy.</p>
+    <ol>
+        {% if gandalf_production_test %}
+        <li>{{ youtube.jump_link("Detailed data about specific students", 341) }}</li>
+        {% else %}
+        <li>{{ youtube.jump_link("Ability to see any student in detail", 341) }}</li>
+        {% endif %}
+        <li>{{ youtube.jump_link("A real-time class report for all students", 490) }}</li>
+        <li>{{ youtube.jump_link("Better intelligence for doing targeted interventions", 535) }}</li>
+    </ol>
+</div>
+<div class="clear" style="margin-bottom:36px;"></div>
+<hr class="margin-bottom: 18px;">
+<div id="screenshot-tour">
+    <div class="col1 sixty-forty right">
+        <h2>Over {{ approx_vid_count|escape }} videos</h2>
+        <p class="justify">
+            Our <a href="/#browse">library of videos</a> covers <strong>K-12 math</strong>, science topics such as <strong>biology, chemistry, and physics</strong>, and even reaches into the humanities with playlists on <strong>finance and history</strong>. Each video is a digestible chunk, approximately 10 minutes long, and especially purposed for viewing on the computer.<br/><br/>
+            <em>"I teach the way that I wish I was taught. The lectures are coming from me, an actual human being who is fascinated by the world around him."</em><br/>
+            &mdash;Sal
+        </p>
+    </div>
+    <div class="col2 sixty-forty screenshot">
+        <img class="rounded-background" src="/images/screenshot-tour/video.png" style="width:400px;" />
+    </div>
+    <div class="clear"></div>
+    <br/><hr class="thin"/><br/>
+
+    <div class="col1 forty-sixty screenshot">
+        <img class="rounded-background" src="/images/screenshot-tour/problems.png" style="width:400px;" />
+    </div>
+    <div class="col2 forty-sixty left">
+        <h2>A world of exercises, with help along the way</h2>
+        <p class="justify">
+        <a href="/exercisedashboard">Practice math at your own pace</a> with our adaptive assessment exercises. You can <strong>start at 1+1 and work your way into calculus</strong> or jump right into whatever topic needs some brushing up.<br/><br/>
+        Each problem is randomly generated, so you never run out of practice material. <strong>If you need a hint, every single problem can be broken down, step-by-step, with one click.</strong> If you need more help, you can always watch a related video.
+        </p>
+    </div>
+    <div class="clear"></div>
+    <br/><hr class="thin"/><br/>
+
+    <div class="col1 sixty-forty right">
+        <h2>Your stats, instantly</h2>
+        <p class="justify">
+        Every time you work on a problem or watch a video, the Khan Academy remembers what you've learned and where you're spending your time. We keep all of this data private but expose powerful statistics to each user and their coaches. You get <strong>at-a-glance information about everything you've been learning</strong> and whether or not you've been hitting your goals.<br/><br/>
+        You can drill all the way down from a bird's-eye view of your profile into each and every exercise problem that you've ever worked on. You'll see <strong>real, hard data about your increasing mastery</strong> of math. 
+        </p>
+    </div>
+    <div class="col2 sixty-forty screenshot">
+        <img class="rounded-background" src="/images/screenshot-tour/stats-small.png" style="width:400px;" />
+    </div>
+    <div class="clear"></div>
+    <br/><hr class="thin"/><br/>
+
+    <div class="col1 forty-sixty screenshot">
+        <img class="rounded-background" src="/images/screenshot-tour/map-small.png" style="width:400px;" />
+    </div>
+    <div class="col2 forty-sixty left">
+        <h2>A map of knowledge</h2>
+        <p class="justify">
+            <img class="rounded-background" src="/images/screenshot-tour/challenges-small.png" style="float:right;margin-left:20px;"/>
+            <a href="/exercisedashboard">The knowledge map</a> shows all of our exercise concepts. You can <strong>zoom in and out and pan around</strong> all the different exercises, just like on a normal map. You can start working anywhere on the map, and the Khan Academy will suggest the best exercises for you to work on. We'll even remind you when you need a review.<br/><br/>
+            <strong>As you zoom out of the knowledge map, you'll find our challenges</strong>, which combine the concepts from multiple smaller exercises. Zooming all the way out of the map and completing all of our challenges is a sign of math mastery.<br/><br/>
+            We're constantly adding new exercises to be discovered.
+        </p>
+    </div>
+    <div class="clear"></div>
+    <br/><hr class="thin"/><br/>
+
+    <div class="col1 sixty-forty right">
+        <h2>Your classroom data...finally</h2>
+        <p class="justify">
+        Teachers and coaches can access all of their students' data. You can <strong>get a summary of class performance as a whole or dive into a particular student's profile</strong> to figure out exactly which topics are problematic. <a href="/class_profile">The class profile</a> lets coaches glance at their dashboard and quickly figure out how to best spend their time teaching.<br/><br/>
+        We've put a lot of energy into making sure that the Khan Academy empowers teachers by giving them access to the data they should've had for years. You'll <strong>know instantly if a student is struggling in multiplying fractions</strong>...or if she hit a streak and is now far ahead of the class. 
+        </p>
+    </div>
+    <div class="col2 sixty-forty screenshot">
+        <img class="rounded-background" src="/images/screenshot-tour/class-small.png" style="width:400px;" />
+    </div>
+    <div class="clear"></div>
+    <br/><hr class="thin"/><br/>
+
+    <div class="col1 forty-sixty screenshot">
+        <img class="rounded-background" src="/images/screenshot-tour/badges-small.png" style="width:400px;" />
+    </div>
+    <div class="col2 forty-sixty left">
+        <h2>Badges worth bragging about</h2>
+        <p class="justify">
+            <img class="rounded-background" src="/images/screenshot-tour/badges-3.png" style="width:228px;float:right;margin-left:20px;"/>
+            We're full of game mechanics. As soon as you login, you'll start earning badges and points for learning. The more you challenge yourself, the more bragging rights you'll get.<br/><br/>
+            We've heard of students spending hour after hour watching physics videos and 5th graders relentlessly tackling college-level math to earn Khan Academy badges. Some of the smaller badges are very easy, but <a href="/badges/view">the most legendary badges</a> might require years of work.
+        </p>
+    </div>
+    <div class="clear"></div>
+    <br/><br/>
+
+</div>
+
+<script>VideoControls.initJumpLinks();</script>
+
+{% endblock aboutcontent %}

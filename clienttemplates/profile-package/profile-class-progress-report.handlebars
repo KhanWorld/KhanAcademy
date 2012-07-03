@@ -1,0 +1,69 @@
+<table id="module-progress" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <th id="firstTd" class="tableHeader">Student Progress</th>
+        <td>
+            <div id="divHeader" class="sizeOnResize" style="overflow:hidden;width:450px; line-height: 15px;">
+                <table cellspacing="0" cellpadding="0" border="1" style="width: 100%">
+                  <tr>
+                    {{#each exercise_names}}
+                        <th class="student-exercises-col" data-id="{{ idx }}"><div class="tableHeader">{{ display_name }}</div></th>
+                    {{/each}}
+                    <th style="background: transparent; border-color: transparent; max-width:5px; min-width: 5px; width: 5px">&nbsp;</th>
+                  </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top;">
+          <div id="firstcol" style="overflow:hidden;">
+            <table cellspacing="0" cellpadding="0" border="0" >
+                {{#each exercise_list}}
+                <tr class="student-email-row" data-id="{{ idx }}">
+                    <td class="tableFirstCol student-email" style="vertical-align: none;">
+                        <a style="color:#006699;" href="/profile?student_email={{ email }}#/api/v1/user/exercises?email={{ email }}">
+                            <nobr>{{ nickname }}</nobr>
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+                <tr class="student-email-row" data-id="-1" style="display: none">
+                    <td class="tableFirstCol student-email hidden-students" style="vertical-align: none;">
+                      Hidden students
+                    </td>
+                </tr>
+                <td class="tableFirstCol student-email" style="background: transparent; border-color: transparent; max-width:5px; min-width: 5px; width: 5px">&nbsp;</td>
+            </table>
+          </div>
+        </td>
+
+        <td valign="top">
+            <div id="table_div" class="sizeOnResize fancy-scrollbar" style="overflow:scroll;width:450px;position:relative;" onscroll="ProgressReport.onScroll();" >
+                <table style="width:100%;" cellspacing="0" cellpadding="0" border="0">
+                    {{#each exercise_list}}
+                    <tr class="student-exercises-row" data-id="{{ idx }}">
+                      {{#each exercises}}
+                        <td class="student-module-status exercise-color {{ status_css }} {{#if notTransparent}}action-gradient seethrough{{/if}}" data-id="{{ idx }}">
+                          {{#if status}}
+                          <div class="hover-content" style="display: none;">
+                            <b>{{ ../../nickname }}</b><br/>
+                            <b>{{ exercise_display }}</b><br/>
+                            <em><nobr>Status: {{ status }}</nobr></em><br/>
+                            <em>Progress: {{ progress }}%</em><br/>
+                            {{#if last_done_ago}}<em>Last worked on: {{ last_done_ago }}</em></br/>{{/if}}
+                            <em>Problems attempted: {{ total_done }}</em>
+                          </div>
+                          {{/if}}
+                        </td>
+                      {{/each}}
+                    </tr>
+                    {{/each}}
+                    <tr class="student-exercises-row" data-id="-1">
+                      <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+    </tr>
+</table>

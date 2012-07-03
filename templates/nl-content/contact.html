@@ -1,0 +1,95 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/analytics.html' as analytics %}
+{% import 'macros/coach.html' as coach %}
+
+{% block meta_page_title %}About | {% endblock meta_page_title %}
+{% block pagescript %}
+    <style>
+        #credits dt {
+            font-weight: bold;
+            float: left;
+            margin-right: 1ex;
+        }
+        #credits dd:before {
+            content: "- ";
+        }
+    </style>
+	<style>
+    #faq {
+        padding-top: 18px;
+    }
+    #faq-nav {
+        background: #eee;
+        padding: 9px;
+        max-width: 31%;
+        min-width: 31%;
+        margin-right: 3%;
+        margin-bottom: 90px;
+    }
+    #faq-nav ul {
+        list-style: outside decimal;
+        margin-left: 18px;
+    }
+    #faq-nav li {
+        margin-bottom: 5px;
+    }
+    #faq-nav li a {
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+    }
+    #faq-nav li a:hover {
+        text-decoration: underline;
+    }
+	</style>
+	<script type="text/javascript" src="/javascript/homepage-package/waypoints.min.js?{{App.version}}"></script>
+{% endblock pagescript %}
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/nl-content/about.html" id="the-site">De Site</a>
+        <!-- class="selected"> Selected -->
+        <a href="/nl-content/gettingstarted.html" id="getting-started">Aan de slag!</a>
+        <a href="/nl-content/faq.html" id="faq">FAQ</a>
+        <a href="http://blog.khanacademie.nl/" id="blog">Blog</a>
+		<a href="/nl-content/contact.html" id="faq" class="selected">Contact</a>
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+<article id="about-us">
+{% block aboutcontent %}
+
+<div id="about-us" style="font-size: 14px;">
+</br>
+    <div class="col1">
+        <h2>Contact</h2>
+        <h4>Kunnen wij iets voor jou doen of wil je ons helpen?</h4>
+		<p>Laat het ons weten.</p>
+        <div class="general-contact" style="padding-top: 0;">
+            <p><a href="mailto:info@khanacademie.nl" class="contact-email">info@khanacademie.nl</a></p>   
+        </div>
+		<div class="clear"></div>
+		<h4>Heb je een probleem met een opgave?</h4>
+		<p style="font-size: 14px;">Ga dan terug naar de <a href="http://www.khanacademie.nl/exercisedashboard">opgave</a> en klik op <em>Probleem melden</em> onder aan de pagina.</br>
+		Wij zullen dan zo snel mogelijk de melding verwerken en het probleem oplossen.</p>
+        <div class="clear"></div>
+		<h4>Wil je een pilot draaien op je school?</h4>
+		<p style="font-size: 14px;">Vul dan het formulier hiernaast in en klik op <em>insturen</em>.</br>
+		Wij zullen de aanvraag zo snel mogelijk verwerken en contact opnemen met de contactpersoon.</p>
+	</div>
+	<div id="googleformiframe" class="col2">
+		<iframe src="https://docs.google.com/a/perceptum.nl/spreadsheet/embeddedform?formkey=dFZYRWdsSnJYakF4a1dyYm92UUh3dmc6MQ" width="500" height="1027" frameborder="0" marginheight="0" marginwidth="0">Bezig met laden...</iframe>
+	</div>
+	<div class="clear"></div>
+	<div class="clear"></div>
+	<div class="clear"></div>
+	<div style="text-align:center;"><p>De Nederlandse Khan Academie zou niet bestaan zonder de hulp, tijd, energie en expertise van de vele vrijwilligers<!--<a href="/contribute/credits">vrijwilligers</a>-->.</p></div>
+
+    <p>&nbsp;</p>
+</div>
+{% endblock aboutcontent %}
+</article>
+{% endblock pagecontent %}
+{% block bottompagescript %}
+{{ super() }}
+{% endblock bottompagescript %}

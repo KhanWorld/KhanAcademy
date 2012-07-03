@@ -1,0 +1,42 @@
+<footer id="footer" class="short">
+    <div id="leaves">
+        <div class="inner">
+        <div id="copyright" title="Version: {{ App.version|escape }}">
+            <small>
+                &copy;2012
+                {# see http://www.google.com/support/webmasters/bin/answer.py?answer=1408986 #}
+                {% if author_profile -%}
+                <small>
+                <a style="padding:0;margin:0;text-decoration:none" href="{{author_profile}}?rel=author">+Khan</a>
+                </small>
+                {% else %}
+                Khan
+                {%- endif %}
+                Academy&#0153;
+            </small>
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/nl/" id="creative-commons-link"></a>
+        </div>
+        <span class="footer-links">
+            <a href="https://www.google.com/moderator/#15/e=1d97ce&t=1d97ce.40" id="report">Probleem melden</a>
+            <span class="sep">|</span>
+            <a href="/nl-content/contact.html">Contact</a><!--a href="/jobs">Jobs</a>
+            <span class="sep">|</span>
+            <a href="/about/tos" title="Terms of Service">ToS</a> <a href="/about/privacy-policy" title="Privacy Policy">Privacy Policy</a>
+            <span class="sep">|</span>
+            <a href="/downloads">Downloads</a--> <a href="/coaches">Voeg een Coach toe</a>
+            {% if is_mobile_capable %}
+                <span class="sep">|</span>
+                <a href="/mobilesite">Mobiele Site</a>
+            {% endif %}
+            <span class="sep">|</span>
+            <span class="small-social-links">
+                <!--a class="google-analytics-link-track youtube" onclick="_gaq.push(['_trackEvent', 'Click', 'Youtube-Subscribe-Header']);" href="http://www.youtube.com/PerceptumNL" title="Youtube"></a-->
+                <a class="google-analytics-link-track twitter" onclick="_gaq.push(['_trackEvent', 'Click', 'Twitter-Follow-Header']);" href="http://twitter.com/KhanAcademie" title="Twitter"></a>
+                <a class="google-analytics-link-track facebook" onclick="_gaq.push(['_trackEvent', 'Click', 'Facebook-Join-Header']);" href="http://www.facebook.com/pages/Khanacademie-NL/123650984422563?sk=wall" title="Facebook"></a>
+                <a class="google-analytics-link-track linkedin" onclick="_gaq.push(['_trackEvent', 'Click', 'Linkedin-Header']);" href="http://www.linkedin.com/groups/Khan-Academy-Nederland-4223536?goback=%2Egdr_1327929205876_1%2Egna_4223536" title="Linkedin"></a>
+                <a class="google-analytics-link-track googleplus" onclick="_gaq.push(['_trackEvent', 'Click', 'Googleplus-Header']);" href="https://plus.google.com/100213809438509670719/posts" title="Google+"></a>
+            </span>
+        </span>
+        </div>
+    </div>
+</footer>

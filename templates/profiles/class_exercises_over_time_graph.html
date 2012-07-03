@@ -1,0 +1,212 @@
+{% extends 'profiles/class_graph.html' %}
+
+{% block graph_content %}
+
+{% if not dict_student_exercises %}
+    <div class="graph-notification">Your students don't have any proficient exercises...yet. Point them to <a href="/exercisedashboard">the exercise dashboard</a>.</div>
+{% endif %}
+
+<script>
+
+    var chart;
+
+    var ClassExerciseProgressChart = {
+
+        init: function() {
+            if (window.fBoundClassExerciseProgressChart) return;
+
+            $("a.show-students-highlight").click(function( e ) {
+                e.preventDefault();
+                ClassExerciseProgressChart.showStudents();
+            });
+
+            $("a.show-exercises-highlight").click(function( e ) {
+                e.preventDefault();
+                ClassExerciseProgressChart.showExercises();
+            });
+
+            $("a.highlight-student-series").live("click", function(e) {
+                ClassExerciseProgressChart.highlightStudentSeries(this);
+                e.preventDefault();
+            });
+
+            $("a.highlight-exercise-points").click(function() {
+                ClassExerciseProgressChart.highlightExercisePoints(this);
+                return false;
+            });
+
+            $("a.graph-link-header").click(function() {
+                ClassExerciseProgressChart.deselectSublinks();
+                ClassExerciseProgressChart.showNone();
+            });
+
+            window.fBoundClassExerciseProgressChart = true;
+        },
+
+        showStudents: function() {
+            $(".highlight-section").removeClass("selected");
+            $(".show-students-highlight").addClass("selected");
+            $("#students-highlight").slideDown();
+            $("#exercises-highlight").slideUp();
+        },
+
+        showExercises: function() {
+            $(".highlight-section").removeClass("selected");
+            $(".show-exercises-highlight").addClass("selected");
+            $("#exercises-highlight").slideDown();
+            $("#students-highlight").slideUp();
+        },
+
+        showNone: function() {
+            $(".highlight-section").removeClass("selected");
+            $("#exercises-highlight, #students-highlight").slideUp();
+        },
+
+        deselectSublinks: function() {
+            $("a.highlight-student-series, a.highlight-exercise-points").removeClass("selected");
+        },
+
+        highlightStudentSeries: function(el) {
+            var jel = $(el);
+            this.deselectSublinks();
+            Profile.highlightSeries(chart, ClassExerciseProgressChart.getSeriesByEmail(chart, jel.attr("data-email")));
+            jel.addClass("selected");
+        },
+
+        highlightExercisePoints: function(el) {
+            var jel = $(el);
+            this.deselectSublinks();
+            var sExerciseName = jel.attr("data-exercise");
+            Profile.highlightPoints(chart, function(point){ return point.name == sExerciseName; });
+            jel.addClass("selected");
+        },
+
+        getSeriesByEmail: function (chart, sEmail) {
+            if (!chart) return null;
+
+            for (var ix = 0; ix < chart.series.length; ix++) {
+                if (chart.series[ix].options.email == sEmail) return chart.series[ix];
+            }
+
+            return null;
+        }
+    }
+
+			$(document).ready(function() {
+
+                ClassExerciseProgressChart.init();
+
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'highchart',
+						defaultSeriesType: 'scatter'
+					},
+                    credits: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        scatter: {
+                            cursor: 'pointer',
+                            dashStyle: 'Solid',
+                            lineWidth: 1
+                        },
+                        series: {
+                            lineWidth: 1,
+                            events: {
+                                legendItemClick: function() { return false; }
+                            }, 
+                            marker: {
+                                symbol: 'circle',
+                                radius: 4
+                            },
+                            point: {
+                                events: {
+                                    click: function() {
+                                        Profile.collapseAccordion();
+                                        console.log(this)
+                                        Profile.loadGraph('/profile/graph/exerciseproblems?student_email=' + this.series.options.email + '&exercise_name=' + this.name);
+                                    }
+                                }
+                            }
+                        }
+                    },
+					title: {
+                        text: "",
+						x: -20 //center
+					},
+					subtitle: {
+                        text: '',
+						x: -20
+					},
+					xAxis: {
+						title: {
+                            text: 'Days working on the site'
+						},
+                        min: 0,
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					yAxis: {
+                        min: 1,
+						title: {
+							text: 'Modules Completed'
+						},
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					tooltip: {
+						formatter: function() {
+                            return '<b>' + this.point.nickname + '</b><br/><br/><b>' + this.point.display_name + '</b><br/>' + this.point.dt;
+						}
+					},
+                    legend: {
+                        enabled: false,
+                        layout: 'horizontal',
+                        align: 'left',
+                        verticalAlign: 'bottom',
+                        floating: true,
+                        backgroundColor: 'white',
+                        shadow: true,
+                        x: 60,
+                        y: 18,
+                        itemHoverStyle: {
+                            cursor: 'default',
+                            color: '#3E576F'
+                        }
+                    },
+                    series: [
+                            {% for key in dict_student_exercises %}
+                            {
+                                animation: false,
+                                name: '{{ key|escapejs }}',
+                                email: '{{ dict_student_exercises[key]["email"]|escapejs }}',
+                                data:[
+                                {% for exercise_data in dict_student_exercises[key]["exercises"] %}
+                                { 
+                                    dt: '{{ exercise_data.proficient_date|escapejs }}', 
+                                    name: '{{ exercise_data.exid|escapejs }}', 
+                                    display_name: '{{ exercise_data.display_name()|escapejs }}', 
+                                    nickname: '{{ exercise_data.nickname|escapejs }}',
+                                    x: {{ exercise_data.days_until_proficient }}, 
+                                    y: {{ loop.index }}
+                                }{% if not loop.last %},{% endif %}
+                                {% endfor %}
+                            ]}{% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        ]
+				});
+			});
+
+</script>
+
+<div id="highchart-container" class="{% if not dict_student_exercises %}empty-chart{% endif %}">
+    <div id="highchart"></div>
+</div>
+
+{% endblock graph_content %}

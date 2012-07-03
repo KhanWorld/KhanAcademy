@@ -1,0 +1,6 @@
+{% extends "reportissue_template.html" %}
+{% block pagetitle %}Request a video{% endblock pagetitle %}
+{% block have_an_issue %}Got an idea for a new video?{% endblock have_an_issue %}
+{% block submitted_the_issue %}requested the video{% endblock submitted_the_issue %} 
+{% block list_of_issues_link %}<a href="http://code.google.com/p/khanacademy/issues/list?can=2&q=Status:Accepted,Started%20Type:New-Video&sort=-stars&colspec=Summary">list of requested videos</a>{% endblock list_of_issues_link %}
+{% block new_issue_link %}<a href="http://code.google.com/p/khanacademy/issues/entry?template=Video%20request%20from%20user&labels=Referer-{{referer|urlencode}},Type-New-Video,Component-Videos">new video request form</a>{% endblock new_issue_link %}

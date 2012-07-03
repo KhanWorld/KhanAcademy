@@ -1,0 +1,91 @@
+{% extends "page_template.html" %}
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/admin94040">Dev Panel</a>
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+    
+    <style>
+        .exercise-properties td { padding-right: 9px; }
+        #footer { z-index:0 ; }
+    </style>
+
+    <div id="devpanel" style="padding: 9px 23px;">
+        <div>
+            <form type="GET" action="">
+            Current Email:<input type="text" name="curremail" />
+            New Email:<input type="text" name="newemail" />    
+            <input type="submit" value="Submit" />
+            </form>
+            <table>
+                
+                <tr>
+                    <td style="border:none;"></td>
+                    <td style="border:none;">Current User</td>
+                    <td style="border:none;">New User</td>
+                </tr>
+                
+                
+                <tr>
+                    <td style="border:none;"></td>
+                    <td>{{curremail}}</td>
+                    <td>{{newemail}}</td>
+                </tr>
+                
+                {% for prop in properties %}
+                <tr>
+                    <td>{{prop}}</td>
+                    <td>{% if currdata %}{{currdata|mygetattr(prop)}}{% else %}No User!{% endif %}</td>
+                    <td>{% if newdata %}{{newdata|mygetattr(prop)}}{% else %}No User!{% endif %}</td>
+                  
+                </tr>
+                {% endfor %}
+                    
+                
+            </table>
+            <form id="changeemail" name="changeemail" type="GET"/>
+            <input type="hidden" name="swap" value="swap" />
+            <input type="hidden" name="curremail" value="{{curremail}}" />
+            <input type="hidden" name="newemail" value="{{newemail}}" />
+            <input style="margin-top:30px;"type="submit" value="Change {{curremail}} to {{newemail}}" />
+            </form>
+            
+            <div id="dialog" title="WARNING! ACHTUNG!">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span> You are about to change {{curremail}} permanently to {{newemail}}:</p>
+            <p id="dialog-email"></p>
+            Are you sure you want to change {{curremail}} to {{newemail}}? The user will be unable to login using {{curremail}} and if an account exists for {{newemail}} it will be deleted.
+            
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <script>
+    $(function(){
+        $('#dialog').dialog({
+                autoOpen: false,
+                width: 400,
+                modal: true,
+                resizable: false,
+                buttons: {
+                    "Yes, I'm Sure": function() {
+                        document.changeemail.submit();
+                    },
+                    "Cancel": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $('form#changeemail').submit(function(e){
+                e.preventDefault();
+
+                $('#dialog').dialog('open');
+            });
+    });
+    </script>
+
+{% endblock pagecontent %}

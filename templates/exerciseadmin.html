@@ -1,0 +1,111 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/exercises.html' as exercise_macros %}
+
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        Exercises
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagescript %}
+<style>
+    /* Temporary styles to fit new dashboard into old template, will be removed when new template is dropped in. */
+    #page_sub_nav {display: none;}
+
+    #container.unregistered .energy-points-badge {
+        visibility: hidden;
+    }
+</style>
+<script type="text/javascript">
+  	function submitForm(value)
+  	{
+  		document.forms['addexercise'].submit();
+  	}
+
+	// Hide rows that a user is proficient in for the given table.
+	function hideProficient(tableId, checkboxId)
+	{
+		// Get the table we are working with.
+		table = document.getElementById(tableId);
+		// Get the checkbox to look at for on/off status.
+		checkbox = document.getElementById(checkboxId);
+		if (checkbox.checked)
+		{
+            $(".proficientTrue").css('display', 'none');
+		}
+		// If the checkbox is not checked then show this row.
+		else
+		{
+            $(".proficientTrue").css('display', 'table-row');
+		}
+	}
+
+    var adminKnowledgeMap = null;
+	
+    $(function() {
+        adminKnowledgeMap = new KnowledgeMap({
+            'mapCoords': [{{ map_coords.0 }}, {{ map_coords.1 }}, {{ map_coords.2 }}],
+            'admin': true,
+            'container': 'container'
+        });
+    });
+
+    var graph_dict_data = {{ graph_dict_data }};
+</script>
+{%- raw -%}
+    <script id="exercise-admin-tmpl" type="text/html">
+      <div class="exercise-edit" data-bind="fastFilter: $parent.fastFilter">
+        <a data-bind="click: clickHandler, attr: {title: display_name}, style: {color: (live?'#069':'red'), 'text-decoration': (live?'':'line-through')}, text: display_name"></a>
+      </div>
+    </script>
+{%- endraw -%}
+{% endblock pagescript %}
+{% block pagecontent %}
+<div id="background">
+  <div id="container" class="dashboard{% if not logged_in %} unregistered{% endif %}">
+    <div class="dashboard-header">
+        <div class="dashboard-nav">
+   
+                <form id="addexercise" action="/updateexercise" method="post">
+                    <input type="hidden" name="v_position" value="0" /><input type="hidden" name="h_position" value="0" />
+  
+                        <nobr>
+                            <label for="name">
+                                Name (file name without .html)
+                            </label>
+                            <input id="name" type="text" name="name" size="40" />
+                            <span style="padding-left: 20px;">
+                                <input id="summative" name="summative" type="checkbox" value="1" />
+                                <label style="display:inline;" for="summative">Summative</label>
+                            </span>
+                            <span style="padding-left: 20px;">
+                                <input type="submit" value="Add Exercise" />
+                            </span>
+                        </nobr>
+                </form>
+     
+        </div>
+        <div class="dashboard-title"><img src="/images/dashboard-icon-active.png" class="dashboard-icon" width=22 height=22 /> Exercises <a href="#" class="collapse-drawer toggle-drawer"><img src="/images/expand-left.png" width="25" height="25"/></a></div>
+            <a href="#" class="expand-drawer toggle-drawer"><img src="/images/expand-right.png" width="25" height="25" /></a>
+        </div>
+    <div class="dashboard-drawer drawer-hoverable">
+    <div class="dashboard-drawer-inner fancy-scrollbar"><div>
+
+       <div class="dashboard-filter">
+          <input type="text" class="dashboard-filter-text ui-corner-all simple-input" placeholder="Start typing the name of an exercise to find it" /><input type="button" value="Clear" class="dashboard-filter-clear simple-button action-gradient ui-corner-right strict" style="display: none;"></input>
+       </div>
+       <div class="exercise-list">
+        <span class="exercise-sublist dashboard-all-exercises">
+         <div class="exercise-content all-exercises-content"></div>
+        </span>
+        <span class="exercise-no-results" style="display: none;">No exercises match your query.</span>
+       </div>
+    </div></div>
+    </div>
+
+    <div class="dashboard-map">
+        {{ exercise_macros.knowledgemap(true) }}
+    </div>
+</div>
+</div>{% endblock pagecontent %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+        <title>Khan Academy</title>
+        {{ js_css_packages.css_package("shared") }}
+        {{ js_css_packages.js_package("shared") }}
+        <style>body {background:white;}</style>
+    </head>
+    <body>
+        {% block toppagecontent %}
+        {% endblock toppagecontent %}
+        <div style="text-align:center;padding:30px;">
+            <div style="width:800px;margin-left:auto;margin-right:auto;">
+                {% block pagecontent %}
+                {% endblock pagecontent %}
+            </div>
+        </div>
+    </body>
+
+    {% block bottompagescript %}
+    {% endblock bottompagescript %}
+
+</html>
+
+

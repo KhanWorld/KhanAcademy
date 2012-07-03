@@ -1,0 +1,72 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/analytics.html' as analytics %}
+{% import 'macros/coach.html' as coach %}
+
+{% block meta_page_title %}About | {% endblock meta_page_title %}
+{% block pagescript %}
+    <style>
+        #credits dt {
+            font-weight: bold;
+            float: left;
+            margin-right: 1ex;
+        }
+        #credits dd:before {
+            content: "- ";
+        }
+    </style>
+	<style>
+    #faq {
+        padding-top: 18px;
+    }
+    #faq-nav {
+        background: #eee;
+        padding: 9px;
+        max-width: 31%;
+        min-width: 31%;
+        margin-right: 3%;
+        margin-bottom: 90px;
+    }
+    #faq-nav ul {
+        list-style: outside decimal;
+        margin-left: 18px;
+    }
+    #faq-nav li {
+        margin-bottom: 5px;
+    }
+    #faq-nav li a {
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+    }
+    #faq-nav li a:hover {
+        text-decoration: underline;
+    }
+	</style>
+	<script type="text/javascript" src="/javascript/homepage-package/waypoints.min.js?{{App.version}}"></script>
+{% endblock pagescript %}
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/nl-content/about.html" id="the-site">De Site</a>
+        <!-- class="selected"> Selected -->
+        <a href="/nl-content/gettingstarted.html" id="getting-started">Aan de slag!</a>
+        <a href="/nl-content/faq.html" id="faq">FAQ</a>
+        <a href="http://blog.khanacademie.nl/" id="blog">Blog</a>
+		<a href="/nl-content/contact.html" id="faq">Contact</a>
+		<a href="/nl-content/community.html" id="faq" class="selected">Community</a>		
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+<article id="about-us">
+{% block aboutcontent %}
+
+<div id="about-us" style="font-size: 14px;">
+<iframe style="height:1000px; width:100%;" src="http://community.khanacademy.nl"></iframe>
+    <p>&nbsp;</p>
+</div>
+{% endblock aboutcontent %}
+</article>
+{% endblock pagecontent %}
+{% block bottompagescript %}
+{{ super() }}
+{% endblock bottompagescript %}

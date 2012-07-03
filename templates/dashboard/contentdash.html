@@ -1,0 +1,194 @@
+{% extends "page_template_mini.html" %}
+
+{% block pagecontent %}
+<style type="text/css">
+.analytics-data {
+  margin: 0 auto;
+}
+
+.analytics-data th {
+  font-weight: bold;
+}
+
+.analytics-data th,
+.analytics-data td {
+  padding: 0.2em 0.5em;
+  text-align: left;
+  border: 1px solid black;
+}
+
+.analytics-title {
+  font-weight: bold;
+  font-size: 150%;
+}
+.analytics-subtitle {
+  font-size: 120%;
+}
+
+.analytics-data-block {
+  display: inline-block;
+  margin: 2em 4em;
+}
+
+</style>
+
+<!-- invisible image needed for Gdata API -->
+<img src="/images/download-icon-small.png" style="display:none">
+<div id="analytics-container">
+<div id="bad-searches" class="analytics-data-block">
+</div>
+<div id="top-searches" class="analytics-data-block">
+</div>
+</div>
+{% endblock pagecontent %}
+
+
+{% block bottompagescript %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+(function() {
+
+/**
+ * Formats a JS Date object to Gdata-acceptable date format (RFC822)
+ * without the time values. (e.g. "2011-07-01").
+ */
+function formatDate( d ) {
+	var month = d.getMonth() + 1;
+	if ( month < 10 ) {
+		month = "0" + month;
+	}
+	var day = d.getDate();
+	if ( day < 10 ) {
+		day = "0" + day;
+	}
+	return [ d.getFullYear(), month, day ].join( "-" );
+}
+
+var BASE_FEED_URI = "https://www.google.com/analytics/feeds/data";
+var SCOPE = "https://www.google.com/analytics/feeds";
+
+var ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+var END_DATE = new Date(); // today
+var START_DATE = new Date( END_DATE - ONE_WEEK_MS ); // last week
+
+/**
+ * Program entry - called when Gdata libraries finish loading.
+ */
+function init() {
+	// Test if the user is not authenticated.
+	if ( !google.accounts.user.checkLogin( SCOPE ) ) {
+		$("#analytics-container").html(
+			"Not authorized to fetch Google Analytics data yet.<br>" +
+			"<input id=\"login\" type=\"button\" value=\"Login\">"
+		);
+		$("#analytics-container > #login").click(function(e) {
+			google.accounts.user.login( SCOPE );
+		});
+		return;
+	}
+	loadBadSearchesData();
+	$( "#analytics-container > #bad-searches" ).html( "Loading problematic searches..." );
+}
+
+function loadBadSearchesData() {
+	var problemSearchFilters = [
+		// pagePath contains "/search?page_search_query="
+		"ga:pagePath=@/search?page_search_query=",
+
+		// exitRate is at least 50%
+		"ga:exitRate>50"
+	].join(";");
+
+	loadSearchData( problemSearchFilters, onBadSearchesLoaded );
+}
+
+function loadTopSearches() {
+	$( "#analytics-container > #top-searches" ).html( "Loading top searches..." );
+	loadSearchData( "ga:pagePath=@/search?page_search_query=", onTopSearchesLoaded );
+}
+
+function loadSearchData( filters, callback ) {
+	var service = new google.gdata.analytics.AnalyticsService( "contentdash" );
+	var paramMap = {
+		"ids": "ga:13634188", // KA's analytics campaign ID
+		"dimensions": "ga:pagePath",
+		"metrics": "ga:pageviews,ga:exitRate",
+		"filters": filters,
+		"sort": "-ga:pageviews", // descending by page views
+		"start-date": formatDate( START_DATE ),
+		"end-date": formatDate( END_DATE ),
+		"max-results": 25
+	};
+	var params = $.map(paramMap, function( val, key ) {
+		return key + "=" + encodeURIComponent( paramMap[key] );
+	});
+	service.getDataFeed(
+			BASE_FEED_URI + "?" + params.join( "&" ),
+			callback, handleError);
+};
+
+function onBadSearchesLoaded( result ) {
+	onSearchesLoaded(
+			result,
+			$( "#analytics-container > #bad-searches" ),
+			"Top searches with exit rate &gt; 50%");
+	loadTopSearches();
+}
+
+function onTopSearchesLoaded( result ) {
+	onSearchesLoaded(
+			result,
+			$( "#analytics-container > #top-searches" ),
+			"Top searches overall");
+}
+
+function onSearchesLoaded( result, container, title ) {
+	// An array of Analytics feed entries.
+	var entries = result.feed.getEntries();
+
+	function extractSearchQuery( path ) {
+		return decodeURIComponent( path.substr( path.indexOf( "=" ) + 1 ) );
+	}
+	function formatRate( rate ) {
+		rate = String( rate );
+		return rate.substr( 0, Math.min( 5, rate.length ) ) + "%";
+	}
+
+	var html = [
+		"<div class=\"analytics-title\">", title, "</div>",
+		"<div class=\"analytics-subtitle\">",
+		START_DATE.toDateString(), " - ", END_DATE.toDateString(),
+		"</div>",
+		"<table class=\"analytics-data\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">",
+		"<tr><th>Search query</th><th>Page views</th><th>Exit rate (%)</th></tr>",
+	];
+	for ( var i = 0, entry; entry = entries[i]; i++ ) {
+		html.push(
+				"<tr><td>", extractSearchQuery( entry.getValueOf( "ga:pagePath" ) ),
+				"</td><td>", entry.getValueOf( "ga:pageviews" ),
+				"</td><td> ", formatRate( entry.getValueOf( "ga:exitRate" ) ),
+				"</td></tr>");
+	}
+	container.html( html.join( "" ) );
+}
+
+function handleError(e) {
+	// TODO: handle properly.
+	var error = "There was an error!\n";
+	if (e.cause) {
+		error += e.cause.status;
+	} else {
+		error.message;
+	}
+	alert(error);
+}
+
+google.load( "gdata", "2.x", { packages: [ "analytics" ]});
+google.setOnLoadCallback( init );
+
+})();
+
+</script>
+{% endblock bottompagescript %}
+

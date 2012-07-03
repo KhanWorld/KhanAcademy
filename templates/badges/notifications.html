@@ -1,0 +1,18 @@
+<div id="badge-notification-container" class="badge-award-container" style="display:none;">
+{% block badge_notification_block %}
+    {% if user_badges %}
+        <h3 class="ui-corner-top">New badge{{ user_badges|length|pluralize }} <span style="font-weight:normal; float: right; font-size: 12px;">(<a href="#" onclick="Badges.hide();return false;">close</a>)</span></h3>
+        {% for user_badge in user_badges %}
+            {% if user_badge.badge %}
+			<div class="badge-container" style="margin-bottom:5px;">
+                {{ badges.badge_block(user_badge.badge) }}
+                {{ social.share_badge_button(user_badge.badge.description, user_badge.badge.icon_src, user_badge.badge.extended_description(), user_badge.target_context_name, "Badge-Notification-Share") }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+</div>
+
+{% if user_badges %}
+    <script>$(function(){Badges.show();});</script>
+{% endif %}

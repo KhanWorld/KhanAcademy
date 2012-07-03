@@ -1,0 +1,32 @@
+{% macro empty_class_instructions(class_is_empty=True) -%}
+
+    {% set coach_email = UserData.current().email if UserData.current() else "Niet ingelogd. Log in om je Coach ID te zien." %}
+
+    <div id="empty-class">
+        {% if class_is_empty %}
+        <h1>Je hebt nog geen leerlingen.</h1>
+        {% endif %}
+        <h3>Elk van jouw leerlingen moet inloggen en de volgende stappen volgen:</h3>
+        <ol>
+            <li>
+                <p>Eerst klikken ze op de link <a href="/coaches">Add a Coach</a> onderaan de pagina.</p>
+                <a href="/coaches"><img src="/images/add-a-coach.png" class="vertical-shadow rounded-background" /></a>
+            </li>
+            <li class="enter-email">
+                <p>Vervolgens voeren ze jouw Coach ID in het tekstveld in:</p>
+                <div class="coach-email">{{ coach_email|escape }}</div>
+                <a href="/coaches"><img src="/images/enter-coach-email.png?{{App.version}}" class="vertical-shadow rounded-background"/></a>
+                <p>
+                    Jouw Coach ID is <strong>{{ coach_email|escape }}</strong>.
+                </p>
+            </li>
+            <li class="click-register">
+                <p>Tenslotte klikken ze op de <em>Register Coach</em> knop. Die ziet er zo uit:</p>
+                <div class="coach-email">{{ coach_email|escape }}</div>
+                <a href="/coaches"><img src="/images/click-register.png?{{App.version}}" class="vertical-shadow rounded-background"/></a>
+            </li>
+        </ol>
+        <p>Zodra leerlingen jou tot coach hebben gemaakt, heb je toegang tot allerlei interessante informatie over hun voortgang en prestaties.</p>
+        <p>Je kunt de informatie raadplegen via het <a href="/class_profile">Class Report</a>.</p>
+    </div>
+{%- endmacro %}

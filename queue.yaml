@@ -1,0 +1,35 @@
+total_storage_limit: 999M
+queue:
+- name: badge-statistics-queue
+  rate: 5/s
+
+- name: exercise-statistics-mapreduce-queue
+  rate: 5/s
+
+- name: backfill-mapreduce-queue
+  rate: 5/s
+
+- name: youtube-sync-queue
+  rate: 5/s
+
+- name: voting-queue
+  rate: 5/s
+
+- name: problem-log-queue
+  rate: 80/s
+
+- name: video-log-queue
+  rate: 60/s
+
+- name: log-summary-queue
+  rate: 60/s
+
+- name: fast-background-queue
+  rate: 10/s
+
+- name: slow-background-queue
+  rate: 10/s
+
+- name: fancy-exercise-stats-queue
+  rate: 1/s
+

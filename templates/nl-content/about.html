@@ -1,0 +1,200 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/analytics.html' as analytics %}
+{% import 'macros/coach.html' as coach %}
+{% import 'macros/youtube.html' as youtube %}
+{% block meta_page_title %}About | {% endblock meta_page_title %}
+{% block pagescript %}
+    <style>
+        #credits dt {
+            font-weight: bold;
+            float: left;
+            margin-right: 1ex;
+        }
+        #credits dd:before {
+            content: "- ";
+        }
+    </style>
+	<style>
+    #faq {
+        padding-top: 18px;
+    }
+    #faq-nav {
+        background: #eee;
+        padding: 9px;
+        max-width: 31%;
+        min-width: 31%;
+        margin-right: 3%;
+        margin-bottom: 90px;
+    }
+    #faq-nav ul {
+        list-style: outside decimal;
+        margin-left: 18px;
+    }
+    #faq-nav li {
+        margin-bottom: 5px;
+    }
+    #faq-nav li a {
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+    }
+    #faq-nav li a:hover {
+        text-decoration: underline;
+    }
+	</style>
+	<script type="text/javascript" src="/javascript/homepage-package/waypoints.min.js?{{App.version}}"></script>
+{% endblock pagescript %}
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/nl-content/about.html" id="the-site" class="selected">De Site</a>
+        <!-- class="selected"> Selected -->
+        <a href="/nl-content/gettingstarted.html" id="getting-started">Aan de slag!</a>
+        <a href="/nl-content/faq.html" id="faq">FAQ</a>
+        <a href="http://blog.khanacademie.nl/" id="blog">Blog</a>
+		<a href="/nl-content/contact.html" id="faq">Contact</a>
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+<article id="about-us">
+{% block aboutcontent %}
+			<div class="col1 forty-sixty" style="text-align: center; padding-top: 18px; min-width:160px; max-width:160px; margin-right: 2%;">
+				<img id="about-vertical-logo" src="/images/khan-logo-vertical-transparent.png"  height=250 width=178 />
+			</div>
+			<div class="col2 forty-sixty" style="max-width:81%; text-align: justify;">
+				<h2 class="main-headline" style="white-space: pre;">Gratis onderwijs voor iedereen.</h2>
+					<p>
+						De Khan Academie is een organisatie zonder winstoogmerk en met een bijzondere missie. 
+						Het doel van de Khan Academie is het onderwijs wereldwijd te verbeteren door het verstrekken van gratis onderwijs aan iedereen, overal. 
+					</p>
+					<p>
+						Al het materiaal op de site is voor iedereen beschikbaar of je nu student bent, of leraar of thuisstudent, of schoolleider  of een tweedekanser die na twintig jaar weer naar school wil, of een vriendelijk buitenaards wezen dat op deze manier voet aan de grond probeert te krijgen op aarde. 
+						Al het materiaal van de Khan Academie en alle hulpmiddelen die wij hebben zijn kosteloos beschikbaar voor iedereen.
+					</p>
+			</div>
+		<div class="clear"></div>
+			<hr style="margin-bottom: 36px;">
+			
+			
+			<div class="col1 sixty-forty">
+				{{ youtube.player_embed("tC80BNOKJtk", "99%", 400) }}
+			</div>
+
+			<div class="col2 sixty-forty" >
+				<h2>Hoe werkt Khan voor studenten?</h2>
+				<p>Studenten kunnen op elke computer, op tablet en i-phone gebruik maken van onze uitgebreide collectie video's, oefeningen en persoonlijke rapportages. Wel is een aansluiting op het Internet vereist.</p>
+				<ol>
+					<li>{{ youtube.jump_link("Een leerinstrument volledig op maat.", 0) }}</li>
+					<li>{{ youtube.jump_link("Een dynamische hulpsysteem.", 130) }}</li>
+					<li>{{ youtube.jump_link("Een persoonlijk profiel, punten en badges om het leerrendement (leertempo en leerresultaat) bij te houden.", 208) }} </li>
+				</ol><br/>
+				<h2>Hoe werkt Khan voor studiebegeleiders, ouders en leerkrachten?</h2>
+				<p>Bij de Khan Academie hebben studiebegeleiders, ouders en leerkrachten meer dan ooit zicht op wat hun studenten leren en wat zij doen.</p>
+				<ol>
+					{% if gandalf_production_test %}
+					<li>{{ youtube.jump_link("Een gedetailleerd overzicht van de vorderingen van elke student.", 341) }}</li>
+					{% else %}
+					<li>{{ youtube.jump_link("Een gedetailleerd overzicht van de vorderingen van elke student.", 341) }}</li>
+					{% endif %}
+					<li>{{ youtube.jump_link("Actuele rapportage over alle studenten.", 490) }}</li>
+					<li>{{ youtube.jump_link("Meer informatie om gericht tot interventie te kunnen overgaan.", 535) }}</li>
+				</ol>
+			</div>
+			
+			
+			<div class="clear" style="margin-bottom:36px;"></div>
+			<hr class="margin-bottom: 18px;">
+			<div id="screenshot-tour">
+				<div class="col1 sixty-forty right">
+					<h2>Meer dan {{ approx_vid_count|escape }} video's</h2>
+					<p class="justify">
+					Onze <a href="/#browse">collectie video's</a> omvat <strong>rekenen en wiskunde</strong>, maar ook video's over onderwerpen waarvoor de opgaven nog in ontwikkeling zijn zoals <strong>nederlands</strong>. Elke video is een hapklare brok van ongeveer tien minuten en speciaal ontwikkeld voor gebruik op een computer.
+						<br/><br/>
+						In de woorden van Salman Khan: </br><em>"Ik geef les zoals ik zelf les had willen krijgen. De lessen komen van mij en ik ben een levensecht mens die is gefascineerd door de wereld om hem heen."</em><br/>
+					</p>
+				</div>
+				<div class="col2 sixty-forty screenshot">
+					<img class="rounded-background" src="/images/screenshot-tour/video.png" style="width:400px;" />
+				</div>
+				<div class="clear"></div>
+				<br/><hr class="thin"/><br/>
+
+				<div class="col1 forty-sixty screenshot">
+					<img class="rounded-background" src="/images/screenshot-tour/problems.png" style="width:400px;" />
+				</div>
+				<div class="col2 forty-sixty left">
+					<h2>Een enorme hoeveelheid oefeningen, met ondersteuning op elk gewenst moment</h2>
+					<p class="justify">
+					<a href="/exercisedashboard">Oefen wiskunde in je eigen tempo</a> met oefeningen die op je eigen leerstijl zijn afgestemd.
+					Je kunt <strong>beginnen met 1 plus 1 en van daaruit verder gaan met rekenen</strong> of aan de slag gaan met elk ander onderwerp waarvan de kennis is weggezakt.<br/><br/>
+					Er is geen vaste volgorde in oefeningen of sommen. Ze worden willekeurig aangeleverd zodat ze steeds weer nieuw zijn en je nooit zonder oefenmateriaal zit. <strong>Als je een aanwijzing nodig hebt, kan een probleem met een eenvoudige klik op de "hint" knop worden opgedeeld in stukjes.</strong> Als je meer hulp nodig hebt, kun je altijd naar een andere video kijken die met het onderwerp te maken heeft.
+					</p>
+				</div>
+				<div class="clear"></div>
+				<br/><hr class="thin"/><br/>
+
+				<div class="col1 sixty-forty right">
+					<h2>Actuele volgsystemen</h2>
+					<p class="justify">
+					De Khan Academy houdt precies bij wat je doet en wat je vorderingen zijn, op elk moment dat je achter je computer zit. Al deze gegevens zijn persoonlijk en worden als zodanig behandeld, maar er zijn heldere overzichten beschikbaar voor elke gebruiker en zijn begeleider. Zodra je erom vraagt, krijg je <strong>ogenblikkelijk informatie over alles wat je hebt geleerd</strong> en de resultaten die je hebt behaald.</br></br>
+					Je kunt alle informatie krijgen die je maar wilt over het totaal van je activiteiten tot en met elke oefening die je ooit hebt gemaakt. Je vindt <strong>harde gegevens over de toename in je kennis</strong> van bijvoorbeeld wiskunde.
+					</p>
+				</div>
+				<div class="col2 sixty-forty screenshot">
+					<img class="rounded-background" src="/images/screenshot-tour/stats-small.png" style="width:400px;" />
+				</div>
+				<div class="clear"></div>
+				<br/><hr class="thin"/><br/>
+
+				<div class="col1 forty-sixty screenshot">
+					<img class="rounded-background" src="/images/screenshot-tour/map-small.png" style="width:400px;" />
+				</div>
+				<div class="col2 forty-sixty left">
+					<h2>De kenniskaart</h2>
+					<p class="justify">
+						<img class="rounded-background" src="/images/screenshot-tour/challenges-small.png" style="float:right;margin-left:20px;"/>
+						<a href="/exercisedashboard">De kenniskaart</a> toont je al onze oefeningen. Je kunt <strong>in- en uitzoomen en rondneuzen</strong> in al die verschillende oefeningen, net als bij een gewone kaart. Je kunt op elke plek beginnen met je oefeningen. De Khan Academie geeft suggesties over de oefeningen die het meest geschikt voor je zijn. We geven je ook een seintje als we je adviseren om te gaan herhalen.</br></br>
+						<strong>Als je de kenniskaart kenniskaart helemaal uitzoomt</strong>, vind je onze uitdagingen waarbij een aantal kleinere oefeningen met elkaar in verband worden gebracht. Als je alle uitdagende oefeningen hebt gemaakt beheers je de wiskunde.
+						<br/><br/>
+						We zorgen ervoor dat er steeds nieuwe oefeningen bij komen.
+					</p>
+				</div>
+				<div class="clear"></div>
+				<br/><hr class="thin"/><br/>
+
+				<div class="col1 sixty-forty right">
+					<h2>Het klassenoverzicht</h2>
+					<p class="justify">
+					Leerkrachten en studiebegeleiders hebben toegang tot alle gegevens van hun studenten. Je krijgt <strong>een overzicht van wat de klas in zijn geheel presteert, maar ook van de prestaties van de individuele student</strong>, waarbij wordt aangegeven welke onderwerpen door de student als moeilijk worden ervaren. <a href="/class_profile">Het profiel van de klas</a> geeft de studiebegeleider de gelegenheid zich te concentreren op de zaken die door hemzelf ter hand moeten worden genomen.
+					<br/><br/>
+					We hebben heel veel energie in dit leerlingvolgsysteem gestopt om er zeker van te zijn dat wij leerkrachten helpen door hen toegang te geven tot gegevens die ze eigenlijk al jaren eerder hadden moeten hebben. Met ons leerlingvolgsysteem kun je <strong>in een oogopslag zien of een student problemen heeft met het vermenigvuldigen van breuken</strong>, of dat zij het licht heeft gezien en nu mijlen voor ligt op de klas.
+					</p>
+				</div>
+				<div class="col2 sixty-forty screenshot">
+					<img class="rounded-background" src="/images/screenshot-tour/class-small.png" style="width:400px;" />
+				</div>
+				<div class="clear"></div>
+				<br/><hr class="thin"/><br/>
+
+				<div class="col1 forty-sixty screenshot">
+					<img class="rounded-background" src="/images/screenshot-tour/badges-small.png" style="width:400px;" />
+				</div>
+				<div class="col2 forty-sixty left">
+					<h2>Badges waar je trots op kunt zijn</h2>
+					<p class="justify">
+						<img class="rounded-background" src="/images/screenshot-tour/badges-3.png" style="width:228px;float:right;margin-left:20px;"/>
+						We hebben volop game-elementen. Zodra je inlogt, ga je badges en punten verdienen met je activiteiten. Hoe meer je jezelf uitdaagt, des te meer heb je om trots op te zijn.<br/><br/>
+						<!--We hebben gehoord dat er studenten zijn die urenlang naar natuurkunde-video's zitten te kijken en vwo leerlingen die eindeloos bezig zijn met wiskunde-opgaven op universitair niveau om badges te verdienen.--> Een aantal van de kleinere badges zijn gemakkelijk te verdienen, maar <a href="/badges/view">de meest bijzondere badges</a> vergen jarenlange studie.
+					</p>
+				</div>
+				<div class="clear"></div>
+				<br/><br/>
+
+			</div>
+{% endblock aboutcontent %}
+</article>
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {{ analytics.crazyegg_tracker(False) }}
+{% endblock bottompagescript %}

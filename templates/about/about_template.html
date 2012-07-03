@@ -1,0 +1,37 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/analytics.html' as analytics %}
+
+{% block meta_page_title %}About | {% endblock meta_page_title %}
+{% block pagescript %}
+    <style>
+        #credits dt {
+            font-weight: bold;
+            float: left;
+            margin-right: 1ex;
+        }
+        #credits dd:before {
+            content: "- ";
+        }
+    </style>
+{% endblock pagescript %}
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/about" id="the-site" {% if "the-site" == selected_id %}class="selected"{% endif %}>The Site</a>
+        <a href="/about/the-team" id="the-team" {% if "the-team" == selected_id %}class="selected"{% endif %}>The Team</a>
+        <a href="/about/getting-started" id="getting-started" {% if "getting-started" == selected_id %}class="selected"{% endif %}>Getting Started</a>
+        <a href="/about/faq" id="faq" {% if "faq" == selected_id %}class="selected"{% endif %}>FAQ</a>
+        <a href="/about/blog" id="blog" {% if "blog" == selected_id %}class="selected"{% endif %}>Blog</a>
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+<article id="about-us">
+{% block aboutcontent %}
+{% endblock aboutcontent %}
+</article>
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {{ analytics.crazyegg_tracker(False) }}
+{% endblock bottompagescript %}

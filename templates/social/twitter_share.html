@@ -1,0 +1,3 @@
+{% if text %}
+<a href="http://twitter.com/share?url={{url|urlencode|escape}}&text={{text|urlencode|escape}}&related=KhanNL:{{tagline|urlencode|escape}}&via=KhanAcademie" class="twitterShare" {% if event_description %}onclick="_gaq.push(['_trackEvent', 'Click', '{{event_description}}-Twitter']);"{% endif %}> </a>
+{% endif %}

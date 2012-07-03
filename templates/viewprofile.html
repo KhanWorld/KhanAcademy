@@ -1,0 +1,161 @@
+{% extends "profile_template.html" %}
+
+{% import 'macros/user.html' as user_macros %}
+{% import 'macros/profiles.html' as profile_macros %}
+
+    {% block meta_page_title %}User Profile | {% endblock meta_page_title %}
+    {% block profile_name %}
+    <span id="user-info" class="has-details">
+        <img src="/images/darth.png" />
+
+        {% if logged_in %}
+            <span id="name">{{ student_nickname|escape }}{{ user_macros.simple_student_info(user_data_student) }}</span>
+        {% else %}
+            <span id="phantom-login"><a href="{{ login_url|escape }}">Log in to save your progress</a></span>
+        {% endif %}
+
+    </span>
+    {% endblock profile_name %}
+
+    {% block high_level_stats %}
+        <span id="videos-watched">
+            <span class="profile-header-icon"><img src="/images/video-camera-icon-shadow.png" /></span>
+            <span class="count">
+                {{ count_videos_completed }} / {{ count_videos }}<br />
+                <span class="label">Videos Completed</span>
+            </span>
+    </span>
+    <span id="exercises-completed" >
+        <span class="profile-header-icon"><img src="/images/generic-exercise-icon-shadow.png" /></span>
+        <span class="count">
+            {{ count_exercises_proficient }} / {{ count_exercises }}<br />
+            <span class="label">Proficient Exercises</span>
+        </span>
+    </span>
+    <span id="energy-points">
+        <span title="{{student_points}} energy points" class="energy-points-badge">{{ student_points|thousands_separated }}</span><br />
+        <span class="label">Total Energy Points</span>
+    </span>
+{% endblock high_level_stats %}
+
+{% block graph_accordion %}
+    <ul id="nav-accordion">
+        <li>
+            {{ profile_macros.graph_link(user_data_student, "Activity", "activity", selected_graph_type) }}
+            <p class="accordion-content">
+                Shows how much work you're doing each day.
+                {{ profile_macros.graph_date_picker(user_data_student, "activity") }}
+            </p>
+        </li>
+        <li>
+            {{ profile_macros.graph_link(user_data_student, "Focus", "focus", selected_graph_type) }}
+            <p class="accordion-content">
+                Shows how well you've focused on exercises and video playlists.
+                {{ profile_macros.graph_date_picker(user_data_student, "focus") }}
+            </p>
+        </li>
+        <li>
+			{{ profile_macros.api_link(user_data_student, "Exercise Progress", "exercises", selected_graph_type) }}
+            <p class="accordion-content">
+                Shows you which exercises you've worked on and completed.
+                <span class="graph-options">
+                    <span class="progress-legend exercise-color started">Started</span>
+                    <span class="progress-legend exercise-color proficient">Proficient</span>
+                    <span class="progress-legend exercise-color review light">Review</span>
+                    <span class="progress-legend exercise-color struggling">Struggling</span>
+                </span>
+            </p>
+        </li>
+        <li>
+            {{ profile_macros.graph_link(user_data_student, "Exercise Progress Over Time", "exercisesovertime", selected_graph_type) }}
+            <p class="accordion-content">Shows how many exercises you've completed over time. </p>
+        </li>
+        <li class='goals-accordion-content'>
+            {{ profile_macros.api_link(user_data_student, "Goals", "goals", selected_graph_type, true) }}
+            <p class="accordion-content">
+                Shows progress on your current goals.
+                <span class="graph-picker">
+                    <a href="javascript:Profile.showGoalType('current')" id="goal-show-current-link" class="graph-sub-link 0">Current</a>
+                    <span style="display: none">| <a href="javascript:Profile.showGoalType('completed')" id="goal-show-completed-link" class="graph-sub-link 0">Completed</a></span>
+                    <span style="display: none">| <a href="javascript:Profile.showGoalType('abandoned')" id="goal-show-abandoned-link" class="graph-sub-link 0">Abandoned</a></span>
+                </span>
+                <a class="new-goal simple-button action-gradient disabled" href="javascript:void(0);">Create a new goal</a>
+            </p>
+        </li>
+    </ul>
+{% endblock graph_accordion %}
+
+{% block profile_extended_sections %}
+    <div id="achievements" class="{% if view != "mobile" %}standard-view{% else %}mobile-view{% endif %}">
+        <h2><a name="achievements">Achievements</a></h2>
+        <div id="achievement-list">
+            <ul>
+                <li id="category-5" class="master {% if user_badges_master %}owned{% endif %}">
+                    <img src="/images/badges/master-challenge-blue.png" />
+                    <div class="label">Challenge{% if view != "mobile" %} Patches{% endif %}{% if user_badges_master %} x {{user_badges_master|length}}{% endif %}</div>
+                </li>
+                <li id="category-4" class="platinum {% if user_badges_diamond %}owned{% endif %}">
+                    <img src="/images/badges/eclipse-medium.png" />
+                    <div class="label">Black Hole{% if view != "mobile" %} Badges{% endif %}{% if user_badges_diamond %} x {{user_badges_diamond|length}}{% endif %}</div>
+                </li>
+                <li id="category-3" class="diamond {% if user_badges_platinum %}owned{% endif %}">
+                    <img src="/images/badges/sun-medium.png" />
+                    <div class="label">Sun{% if view != "mobile" %} Badges{% endif %}{% if user_badges_platinum %} x {{user_badges_platinum|length}}{% endif %}</div>
+                </li>
+                <li id="category-2" class="gold {% if user_badges_gold %}owned{% endif %}">
+                    <img src="/images/badges/earth-medium.png" />
+                    <div class="label">Earth{% if view != "mobile" %} Badges{% endif %}{% if user_badges_gold %} x {{user_badges_gold|length}}{% endif %}</div>
+                </li>
+                <li id="category-1" class="silver {% if user_badges_silver %}owned{% endif %}">
+                    <img src="/images/badges/moon-medium.png" />
+                    <div class="label">Moon{% if view != "mobile" %} Badges{% endif %}{% if user_badges_silver %} x {{user_badges_silver|length}}{% endif %}</div>
+                </li>
+                <li id="category-0" class="bronze {% if user_badges_bronze %}owned{% endif %}">
+                    <img src="/images/badges/meteorite-medium.png" />
+                    <div class="label">Meteorite{% if view != "mobile" %} Badges{% endif %}{% if user_badges_bronze %} x {{user_badges_bronze|length}}{% endif %}</div>
+                </li>
+            </ul>
+            <div class="clear"></div>
+            <div id="badge-container" class="inset-container" style="display: none;">
+            {% if badge_collections %}
+                {% for badge_collection in badge_collections %}
+                {% for badge in badge_collection %}
+                    {% if loop.first %}
+                        <div id="category-{{badge.badge_category}}" style="display: none;">
+                            <div class="badge-description-container">
+                                <div class="badge-description-content">
+                                    {{ badge.category_description() }}
+                                </div>
+                            </div>
+                        {% if user_badges[badge.badge_category] %}
+                        <div id="user-owned">
+                        <h2 style="display: block; margin-left: 10px;">Badges Earned</h2>
+                            {% for user_badge in user_badges[badge.badge_category] %}
+                                {{ badges.badge_block(user_badge.badge, user_badge) }}
+                            {% endfor %}
+                            <div class="clear"></div>
+                        </div>
+                        {% endif %}
+                        <div id="all-badges">
+                        <h2 style="display: block; margin-left: 10px;">Possible Badges</h2>
+                    {% endif %}
+                        {{ badges.badge_block(badge, None, show_badge_frequencies) }}
+                    {% if loop.last %}
+                        </div>
+                        <div class="clear"></div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    {{ profiles.profile_recent_activity(user_data_student, view) }}
+{% endblock profile_extended_sections %}
+
+{% block pagescript %}
+<script>
+var USER_EMAIL = '{{ user_data.email|escapejs }}';
+</script>
+{% endblock pagescript %}

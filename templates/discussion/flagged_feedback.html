@@ -1,0 +1,105 @@
+{% extends "page_template.html" %}
+
+{% block pagescript %}
+<style>
+#feedback {
+    padding: 0px 23px;
+}
+#feedback th {
+    text-align: left;
+    font-weight: bold;
+}
+#feedback td, #feedback th {
+    padding: 9px;
+}
+#feedback tr.even_row td {
+    background-color:#FFFFFF;
+}
+
+#feedback tr.odd_row td {
+    background-color:#EFEFEF;
+}
+
+</style>
+
+<script>
+    $(function() {
+        $(".mod_action_col form").submit(function() {
+            var jel = $(this);
+
+            $.post(jel.attr("action"));
+
+            var jCols = $(".mod_action_col", jel.parents("tr").first());
+            jCols.html("<em><nobr>" + jel.attr("data-desc") +"</nobr></em>");
+
+            return false;
+        });
+    });
+</script>
+{% endblock pagescript %}
+
+{% block pagetitle %}Flagged Feedback{% endblock pagetitle %}
+
+{% block pagecontent %}
+
+<article id="feedback">
+<p>
+    Showing top <strong>{{feedbacks|length}}</strong> of <strong>{{ feedback_count|escape }}</strong> posts in need of moderator attention.
+</p>
+
+{% if feedbacks %}
+    <table style="width:100%">
+        <tr>
+            <th>&nbsp;</th>
+            <th>Type</th>
+            <th>Video</th>
+            <th>Content</th>
+            <th>Flags</th>
+            <th>Flagged By</th>
+        </tr>
+    {% for feedback in feedbacks %}
+        {% if loop.index % 2 == 0 %}
+        <tr class="even_row">
+        {% else %}
+        <tr class="odd_row">
+        {% endif %}
+            <td style="text-align:left;width:1%;" class="mod_action_col">
+                <nobr>
+                <form method="POST" action="/discussion/clearflags?entity_key={{feedback.key()|escape}}" data-desc="Cleared flags">
+                    <input type="submit" class="simple-button action-gradient" value="Clear flags"/>
+                </form>
+                <form method="POST" action="/discussion/deleteentity?entity_key={{feedback.key()|escape}}" data-desc="Deleted">
+                    <input type="submit" class="simple-button action-gradient" value="Delete post"/>
+                </form>
+                </nobr>
+            </td>
+            <td style="text-align:left;width:1%;" class="mod_action_col">
+                <nobr>
+                {{feedback.types.0|capitalize|escape}}
+                {% if feedback.types.0 == feedback_type_comment %}
+                    <form method="POST" action="/discussion/changeentitytype?clear_flags=1&entity_key={{feedback.key()|escape}}&target_type={{feedback_type_question}}" data-desc="Changed to question">
+                        <input type="submit" class="simple-button action-gradient" value="Change to Question"/>
+                    </form>
+                {% else %}
+                    <form method="POST" action="/discussion/changeentitytype?clear_flags=1&entity_key={{feedback.key()|escape}}&target_type={{feedback_type_comment}}" data-desc="Changed to comment">
+                        <input type="submit" class="simple-button action-gradient" value="Change to Comment"/>
+                    </form>
+                {% endif %}
+                </nobr>
+            </td>
+            <td class="center"><a href="/video/{{feedback.video.readable_id|escape}}">{{ feedback.video().title|escape }}</a></td>
+            <td>{{ feedback.content|escape|linebreaksbr }}</td>
+            <td>{% for flag in feedback.flags %}{{ flag|escape }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+            <td>{% for email in feedback.flagged_by %}{{ email|escape }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+
+{% if has_more %}
+    <br/><a href="/discussion/flaggedfeedback">Reload this page</a> to see the next set of posts waiting for moderator attention.
+{% endif %}
+
+</article>
+{% endblock pagecontent %}
+

@@ -1,0 +1,178 @@
+{% extends "about/about_template.html" %}
+
+{% import 'macros/coach.html' as coach %}
+
+{% block pagescript %}
+<style>
+    #faq {
+        padding-top: 18px;
+    }
+    #faq-nav {
+        background: #eee;
+        padding: 9px;
+        max-width: 31%;
+        min-width: 31%;
+        margin-right: 3%;
+        margin-bottom: 90px;
+    }
+    #faq-nav ul {
+        list-style: outside decimal;
+        margin-left: 18px;
+    }
+    #faq-nav li {
+        margin-bottom: 5px;
+    }
+    #faq-nav li a {
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+    }
+    #faq-nav li a:hover {
+        text-decoration: underline;
+    }
+</style>
+<script type="text/javascript" src="/javascript/homepage-package/waypoints.min.js?{{App.version}}"></script>
+{% endblock %}
+{% block aboutcontent %}
+
+<div id="faq">
+    
+    <div id="faq-nav-wrapper">
+        <div id="faq-nav" class="col1 forty-sixty vertical-shadow visited-no-recolor">
+            <h2 class="pulls">Getting started</h2>
+            <p id="wp1" style="margin-top: 9px;">
+                <em>How to start getting the most out of the Khan Academy</em>
+            </p>
+            <ul style="font-size: 13px;">
+                <li><a href="#students">How do I start using the site?</a></li>
+                <li><a href="#teachers">I'm a teacher, coach, or parent, how do I start using the site with my student(s)?</a></li>
+                <li><a href="#schools">I'm a school administrator considering a pilot in my school, where do I begin?</a></li>
+            </ul>
+        </div>
+        <div id="nav-placeholder" class="col1 forty-sixty" style="height: 1px; padding: 0 9px; max-width: 31%; min-width: 31%; margin-right: 3%;">
+            &nbsp;
+        </div>
+    </div>
+    <div class="col2 forty-sixty" style="text-align: justify; padding-top: 9px;">
+    
+    <a name="students"><h2>How do I start using the site?</h2></a>
+    <a href="/about" style="float: right; margin: 0 0 20px 20px; min-width: 320px;">
+        <img src="/images/exercise-dashboard-medium.png" height="250" width="320" class="rounded-background">
+    </a>
+    <p>
+        Anybody can use the entire Khan Academy for free. Use your Google or Facebook account to <a href="/login">sign in and get 
+        started right now</a>. Signing in gives you the ability to track your own progress and earn points and badges.
+    </p>
+    <p>
+        If you don't have an account with either of those sites, you can sign up for a 
+        <a href="https://www.google.com/accounts/NewAccount">Google</a> or <a href="http://www.facebook.com/r.php">Facebook</a> account to get started.
+    </p>
+    <p>
+    <a name="under-13">If you are under the age of 13:</a>
+    </p>
+    <p style="margin-left:23px;">
+        You are going to need to ask your parents to create an account for you first, sorry!
+    </p>
+    <div class="clear"></div>
+    <a name="teachers"><h2>I'm a teacher, coach, or parent, how do I start using the site with my student(s)?</h2></a>
+    <p>
+        First things first: you need an account, and you need to be signed in on the Khan Academy. So, <a href="/login">sign in or sign up</a>.
+        Once you've got an account you can actually start getting students to add you as their coach.
+    </p>
+    <p>
+        The next step: every student that you want to coach needs an account as well. Students over 13 can sign up for 
+        <a href="https://www.google.com/accounts/NewAccount">Google</a> or <a href="http://www.facebook.com/r.php">Facebook</a> accounts immediately.
+    </p>
+    <p>If your students are under 13:</p>
+    
+    <p style="margin-left:23px;">You currently have two options: 
+    you can sign your school up for <a href="http://www.google.com/a/help/intl/en/edu/">Google Apps for Education</a>, which will help you provide each student with a Google account that can be used with Khan Academy, or you can have your students' parents individually create accounts for each student on either <a href="https://www.google.com/accounts/NewAccount">Google</a> or <a href="http://www.facebook.com/r.php">Facebook</a>. We are constantly working to improve this situation, but that's the best we've got at the moment (sorry!).
+    </p>
+    <p style="margin-left:23px;">
+        If you already have Google Apps for Education accounts but aren't able to use them to sign in on the Khan Academy, 
+        <a href="#" onclick="$('#google-upgrade').slideDown('fast');return false;">you might need to upgrade your account</a>.
+    </p>
+    <div id="google-upgrade" class="vertical-shadow rounded-background" style="display: none; margin-left:23px; padding: 0 18px; background: #eee; text-shadow: 0 1px 0 #fff;">
+        <p>
+            Google Apps is in the process of unifying their accounts such that Google Apps users will be able to take advantage of all services that 
+            normal Google accounts have access to. Log in to your account and click on "Manage this domain" in the upper right of your Google Apps account.
+            You should see a screen that says:
+        </p>
+        <pre>
+            Google Apps is changing
+
+            You've probably heard that Google is about to make more of its services available to 
+            organizations with Google Apps accounts. Well, we're ready! Here is what this means for you:
+
+            In addition to the core suite of messaging and collaboration applications, your users may now
+            access many more Google services with their Google Apps accounts. Learn more
+
+            You will retain control over which Google services your users can access.
+
+            This update is free, and Google will automatically make the transition for you in early 2011. 
+            In most cases, though, we think you'll want to step through the transition wizard yourself and 
+            actively communicate the forthcoming changes to your users. You can move everyone to the new 
+            infrastructure today, or you can try out the new account services with selected pilot users. 
+            Learn more
+        </pre>
+        <p>
+            Clicking "Get started" should take you through the process to finish the upgrade.
+        </p>
+    </div>
+    <p>
+        Once this is done, each student will need to identify you as their coach. There are detailed instructions and screenshots on the 
+        <a href="/class_profile">Coach page</a> or <a href="" onclick="$('#empty-class-container').slideDown('fast');return false;">you can find them here</a>.
+    </p>
+    <div id="empty-class-container" style="display: none;">
+        {{ coach.empty_class_instructions(False) }}
+    </div>
+    <a name="schools"><h2>I'm an administrator considering a pilot in my school, where do I begin?</h2></a>
+    <p>
+        First, we're really thankful for your interest in the Khan Academy and implementing it in your school.  
+        We're getting ready for the next round of hands-on pilot programs in the fall, and if you'd like to participate, you can apply here:
+    </p>
+    <p><a href="http://khanacademy.wufoo.com/forms/khan-academy-school-implementation-application/" class="simple-button action-gradient">Apply to become a pilot school</a></p>
+    <p>We won't be able to work with everyone that applies, and there's no reason you can't start using the Khan Academy right now. If you're interested, we recommend checking out the following resources:</p>
+    <ol style="list-style: decimal outside; font-size: 15px; margin-left: 23px;">
+        <li>Sign up to get updated on our progress via our <a href="/about/blog">blog and mailing lists</a>.</li>
+        <li>
+            Read and learn more about what we are doing in Los Altos. Everything they are using is free for any school to use. <br/><br/>
+                <a href="http://www.thegatesnotes.com/TED/Speakers-Topics/Sal-Khan">http://www.thegatesnotes.com/TED/Speakers-Topics/Sal-Khan</a><br/>
+                <a href="http://lasdandkhanacademy.edublogs.org/">http://lasdandkhanacademy.edublogs.org/</a><br/><br/>
+        </li>
+        <li>
+            Let us know what you are doing with the Khan Academy by <a href="http://khanacademy.wufoo.com/forms/khan-academy-school-implementation-application/">filling out this survey</a>.  If we get enough resources 
+            to be more actively engaged, we'll reach out to you shortly.  We enjoy visiting classrooms and getting feedback from teachers. 
+            At some point, we will make more resources available on our website, and potentially even ask schools like yourself to share 
+            your experiences with others.
+        </li>
+    </ol>
+    <p>
+        We are moving fast, so we expect a lot to happen by next school year!  We'd love to see you involved in our next big wave. 
+    </p>
+    </div>
+    <div class="clear"></div>
+    <p>&nbsp;</p>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {	
+        // Waypoint behavior not supported in IE7-
+        if ($.browser.msie && parseInt($.browser.version) < 8) return;
+
+        $.waypoints.settings.scrollThrottle = 50;
+
+        $("#wp1").waypoint(function(event, direction) {
+
+            var jel = $("#faq-nav");
+            var jelPlaceholder = $("#nav-placeholder");
+            
+            if (direction == "down") {
+                jel.css('position', 'fixed').css('top', '-60px').css('max-width', jelPlaceholder.width()).css('min-width', jelPlaceholder.width());
+            }
+            else {
+                jel.css('position', 'static').css('max-width', '31%').css('min-width', '31%');
+            }
+        });
+    });
+</script>
+{% endblock aboutcontent %}
+

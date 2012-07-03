@@ -1,0 +1,150 @@
+{% extends "page_template.html" %}
+{% block pagetitle %}{% if page_search_query %}Search Results for {{page_search_query|escape}}{% else %}Search{% endif %}{% endblock pagetitle %}
+{% block pagescript %}
+<style>
+    #page_sub_nav { display: none; }
+
+    .error {
+        width: 100%;
+        text-align: center;
+        font-size: large;
+        font-weight: bolder;
+        background-color: #fcc;
+    }
+    .search_results form {
+        display: block;
+        margin: 1em 0;
+    }
+    .search_results form * {
+        font-size: large;
+    }
+    .search_results section {
+        margin-top: 1em;
+    }
+    .search_results h1 {
+        font-size: large;
+        font-weight: bold;
+    }
+    .search_results dl {
+        margin-left: 2em;
+    }
+    .search_results dt {
+        font-size: large;
+    }
+    .search_results dd {
+        margin-left: 0;
+        margin-bottom: 1em;
+    }
+    .search_results dd .keywords {
+        font-style: italic;
+    }
+    .search_results .highlight {
+        font-weight: bold;
+    }
+    #search-page-box {
+        width: 270px;
+    }
+</style>
+{% endblock pagescript %}
+{% block pagemessage %}
+    {% if query_too_short %}
+    <div class="error">
+        Search terms must contain at least {{query_too_short}} letters.
+    </div>
+    {% endif %}
+{% endblock pagemessage %}
+{% block pagecontent %}
+<article class="search_results" id="search_results">
+    <form id="page_requery" action="/search">
+        <input id="search-page-box" type="text" name="page_search_query" value='{{page_search_query|escape}}'>
+        <button type="submit">New Search</button>
+    </form>
+    <section class="searchresult-counts">
+        {% if (video_count == 0 and playlist_count == 0) %}
+            No results for this search. Please try a different query.
+        {% else %}
+            Found {{ video_count }} video{{ video_count|pluralize }} and {{ playlist_count }}  playlist{{ playlist_count|pluralize }} that match your query:
+        {% endif %}
+    </section>
+    {% if playlists %}
+    <section class="playlists" id="search-playlists">
+        <dl>
+        {% for playlist in playlists %}
+            <dt><h2 class="playlist searchresulthighlight">{{ playlist.title|escape }}
+            <span class="match_count">
+                {% if playlist.match_count > 0 %}
+                    ({{ playlist.match_count }} matching video{{ playlist.match_count|pluralize }})
+                {% endif %}
+            </span>
+            </h2>
+            </dt>
+            {% if playlist.description %}
+            <dd class="searchresulthighlight">{{ playlist.description|escape }}</dd>
+            {% endif %}
+
+            <ol>
+            {% for video in videos %}
+                {% if playlist.title in video.playlists %}
+                    <li class="videos">
+                      <div class="column">
+                        <a href="/video/{{video.readable_id|urlencode}}" class="video-result"><span class="searchresulthighlight">{{ video.title|escape }}</span></a>
+                        {% if video.description %}
+                        <p class="description searchresulthighlight">{{ video.description|escape }}</p>
+                        {% endif %}
+                      </div>
+                      <div class="column">
+                        <p class="column-heading">Watch</p>
+                        <ul>
+                          <li><a href="/video/{{video.readable_id|urlencode}}" class="vl"><span class="vid-progress v{{ video.key().id() }}">Watch the video lesson</a></li>
+                        </ul>
+                      </div>
+                      {% if video_exercises[video.key().__str__()] %}
+                      <div class="column">
+                        <p class="column-heading">Practice Exercises</p>
+                          <ul>
+                            {% for exercise in video_exercises[video.key().__str__()] %}
+                              <li><a href="{{ exercise.relative_url }}" class="exercise-link">{{ exercise.display_name|escape }}</a></li>
+                            {% endfor %}
+                          </ul>
+                      </div>
+                      {% endif %}
+                      <br>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <li>
+                <a href="/#{{playlist.title|slugify|escape}}">See all videos from playlist {{ playlist.title|escape }}</a>
+            </li>
+            </ol>
+        {% endfor %}
+        </dl>
+    </section>
+    {% endif %}
+</article>
+
+<div id="back-to-top">
+    <a class="arrow" href="#">▲</a>
+    <a class="text" href="#">Back to Top</a>
+</div>
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+{{ super() }}
+<script type="text/javascript">
+$(function() {
+    SearchResultHighlight.highlight('{{ search_string|escapejs }}');
+
+    if (!$.browser.msie) {
+        var jelTop = $("#back-to-top");
+        jelTop.css("display", "block");
+    }
+
+    initAutocomplete("#search_results #search-page-box", true);
+
+    $("#page_requery").submit(function(e) {
+        // Only allow submission if there is a non-empty query.
+        return !!$.trim( $("#page_requery #search-page-box").val() );
+    });
+})
+</script>
+{% endblock bottompagescript %}

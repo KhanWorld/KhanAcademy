@@ -1,0 +1,58 @@
+{
+    "chart": {
+        "renderTo": "container",
+        "plotBackgroundColor": "rgba(35,37,38,0)",
+        "backgroundColor": "rgba(35,37,38,100)",
+        "borderColor": "rgba(35,37,38,100)",
+        "lineColor": "rgba(35,37,38,100)",
+        "plotBorderColor": "rgba(35,37,38,100)",
+        "plotBorderWidth": null,
+        "plotShadow": false,
+        "height": 340,
+        "type": "areaspline"
+    },
+    "colors": [ "#058DC7", "#50B432", "#FF00AF" ],
+    "credits": { "enabled": false },
+    "title": { "text": "{{ title }}" },
+    "legend": { "enabled": {{ showLegend }} },
+    "plotOptions": {
+        "areaspline": {
+            "dataLabels": { "enabled": false },
+            "size": "100%"
+        }
+    },
+    "series": [
+        {% for data in series %}
+            {
+                "data": {{ data.values }},
+                "name": "{{ data.name }}",
+                "type": "{{ data.type }}",
+                "yAxis": {{ data.axis }},
+            }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+    "yAxis": [
+        {% for axis in axes %}
+            {
+                "title": { "text": null },
+                "max": {{ axis.max }},
+                "labels": {
+                    {% if forloop.last %}
+                        "style": { "color": "#50B432" }
+                    {% else %}
+                        "style": { "color": "#058DC7" }
+                    {% endif %}
+                }
+                {% if forloop.last %}
+                    , "opposite": true
+                {% endif %}
+            }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+    "xAxis": {
+        "type": "datetime",
+        "dateTimeLabelFormats": {
+            "day": "%a %e %b"
+        }
+    }
+}

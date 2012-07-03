@@ -1,0 +1,19 @@
+{% extends "page_template_mini.html" %}
+
+{% block pagecontent %}
+
+    <h2>{{ title|escape }}</h2><br/>
+		
+	<div style ="margin:auto;width:800px">
+	
+	    <div id="treecopyfade_hype_container" style="position:relative;overflow:hidden;width:800px;height:400px;">
+		    <script type="text/javascript" src="javascript/treecopy.js"></script>
+            <meta http-equiv="refresh" content="5;url={{dest_url}}"/>
+	    </div>
+	
+	</div>
+
+    <h2>{{ message_html }}</h2>
+    <p>{{ sub_message_html }}</p>
+
+{% endblock pagecontent %}

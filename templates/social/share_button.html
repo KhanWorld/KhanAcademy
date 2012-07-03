@@ -1,0 +1,26 @@
+{% if type %}
+<a href="#" class="simple-button action-gradient with-icon download-icon share-link notif-share" onclick="{% if event_description %}_gaq.push(['_trackEvent', 'Click', '{{event_description}}-Button']);{% endif %}return false;">
+  <img src="/images/share-icon-small.png" />
+          Share
+  </a>
+<div class="sharepop">
+	<div class="triangle-isosceles top">
+	{% if type == "badge" %}
+        {{ social.email_share_badge(description, target_context_name, event_description) }}
+ <!--       {{ social.facebook_share_badge(description, icon_src, extended_description, target_context_name, event_description) }} -->
+        {{ social.twitter_share_badge(description, target_context_name, event_description) }}
+	{% endif %}
+	{% if type == "video" %}
+        {{ social.email_share_video(video_title, youtube_id, event_description) }}
+  <!--       {{ social.facebook_share_video(video_title, description, youtube_id, event_description) }}-->
+        {{ social.twitter_share_video(video_title, youtube_id, event_description) }}
+    {% endif %}
+    {% if type == "exercise" %}
+        {{ social.email_share_exercise(name, problem_count, proficiency, event_description) }}
+ <!--        {{ social.facebook_share_exercise(problem_count, proficiency, name, event_description) }}-->
+        {{ social.twitter_share_exercise(name, problem_count, proficiency, event_description) }}
+    {% endif %}
+    <div class="clearFloat"></div>
+	</div>
+</div>
+{% endif %}

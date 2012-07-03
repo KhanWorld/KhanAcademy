@@ -1,0 +1,154 @@
+{% extends 'profiles/class_graph.html' %}
+
+{% block graph_content %}
+
+<script>
+    var updateInterval = 5000;
+    var movingAverageInterval = 60000;
+    var cPointsPerAverage = movingAverageInterval / updateInterval;
+    var cPoints = 30;
+    var rgPointsChange = [];
+    var pointsLast = -1;
+    var email_coach = null;
+
+    {% if user_data_coach %}
+        email_coach = '{{ user_data_coach.email|escapejs }}';
+    {% endif %}
+
+    var now = (new Date()).getTime();
+    var chart;
+
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            credits: {
+                enabled: false
+            },
+            chart: {
+                renderTo: 'highchart',
+                defaultSeriesType: 'spline',
+                events: {
+                    load: function() {
+                        var series = this.series[0];
+                        var poll = function() {
+                            var params = {coach: email_coach, update: 1};
+                            
+                            var list_id = $('#studentlists_dropdown ol').data('selected').key;
+                            if (list_id != 'allstudents')
+                            {
+                                params['list_id'] = list_id;
+                            }
+
+                            var tab = $("#nav-accordion a[href*='classenergypointsperminute']")
+
+                            if( tab.attr("aria-expanded") === "true"){
+
+                                $.get("/profile/graph/classenergypointsperminute", params, function(data) {
+
+                                    try { eval("var dict_json = " + data); }
+                                    catch(e) { return; }
+
+                                    var x = (new Date()).getTime();
+
+                                    if (pointsLast > -1)
+                                    {
+                                        var dPoints = dict_json.points - pointsLast;
+
+                                        if (rgPointsChange.length >= cPointsPerAverage) rgPointsChange.shift();
+                                        rgPointsChange[rgPointsChange.length] = dPoints;
+
+                                        var sum = 0;
+                                        for (var ix = 0; ix < rgPointsChange.length; ix++)
+                                        {
+                                            sum += rgPointsChange[ix];
+                                        }
+                                        var avg = sum / rgPointsChange.length;
+
+                                        series.addPoint({x: x, y: avg}, true, true);
+                                    }
+                                    else
+                                    {
+                                        series.addPoint({x: x, y: 0}, true, true);
+                                    }
+                                    pointsLast = dict_json.points;
+                                });
+                            }else{
+                                window.clearInterval(pollID);
+                            }
+
+                        };
+                        var pollID = setInterval(poll, updateInterval);
+                    }
+                }
+            },
+            plotOptions: {
+                scatter: {
+                    dashStyle: 'Solid',
+                    lineWidth: 1
+                },
+                series: {
+                    showInLegend: false
+                }
+            },
+            title: {
+                text: '',
+                align: 'left',
+                x: 60
+            },
+            subtitle: {
+                text: '',
+                align: 'left',
+                x: 60
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                labels: {
+                    enabled: false
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Energy Points'
+                },
+                min: 0,
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.point.y +' Energy Points per Minute (Rolling Average)</b>';
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -10,
+                y: 100,
+                borderWidth: 0
+            },
+            series: [
+            {
+                name: 'Random',
+                data:
+                    function() {
+                        var data = [];
+                        for (var ix = 0; ix < cPoints; ix++)
+                        {
+                            data[data.length] = {x: now - (ix * updateInterval), y: 0};
+                        }
+                        return data;
+                    }()
+            }]
+        });
+    });
+</script>
+
+<div id="highchart-container">
+    <div id="highchart"></div>
+</div>
+
+{% endblock graph_content %}

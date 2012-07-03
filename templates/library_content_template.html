@@ -1,0 +1,46 @@
+{% import 'macros/library.html' as library %}
+
+<div id="library">
+        <div id="library-content" >
+            {{ library.column_major_order_styles() }}
+            <div id="library-content-main">
+            {% for playlist_data in all_playlists %}
+            {% if loop.first %}
+                <div class="clear desktop-only"><a name="{{ playlist_data.title|slugify|escape }}" id="{{ playlist_data.title|slugify|escape }}">&nbsp;</a></div>
+            {% endif %}
+            <div data-role="page" id="{{ playlist_data.title|slugify|escape }}" data-theme="b">
+                <div data-role="header">
+                    <a href="#" data-rel="back" data-icon="arrow-l" class="mobile-only">Back</a>
+                    <h2 class='playlist-heading {% if loop.first %}playlist-heading-first{% endif %}'>{{playlist_data.title|escape}}</h2>
+                    <a href="/" data-icon="home" data-iconpos="notext" data-direction="reverse" class="mobile-only"></a>
+                </div>
+                <div data-role="content">
+                    {% if playlist_data.playlist.description %}
+                        <p class='playlist-desc'>{{playlist_data.playlist.description|escape}}</p>
+                    {% endif %}
+
+					<ol style="height:{{playlist_data.list_height}}px;" data-role="listview" data-inset="true">
+                    <span style="padding-left: 16px;">Loading videos...</span>
+                    </ol>
+
+                    {% if playlist_data.title == "Arithmetic" and smart_history %}
+
+                    {% endif %}
+
+                    <div class="clear desktop-only">
+                    {% if playlist_data.next %}
+                        <a name="{{ playlist_data.next.title|slugify|escape }}" id="{{ playlist_data.next.title|slugify|escape }}">&nbsp;</a>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+
+
+            {% endfor %}
+            </div>
+        </div>
+</div>
+
+{# Pass along the caching information to the JS so that
+	when it makes its request for content, it can use this token #}
+<script>var Homepage_cacheToken = new Date().getTime();</script>

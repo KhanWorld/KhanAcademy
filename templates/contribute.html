@@ -1,0 +1,198 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/analytics.html' as analytics %}
+
+{% block meta_page_title %}Contribute | {% endblock meta_page_title %}
+{% block pagescript %}
+    <style>
+        #page_sub_nav { display: none; }
+        #public #container #form1 #header {display: none; }
+    </style>
+{% endblock pagescript %}
+{% block pagecontent %}
+<article id="contribute">
+    <div class="col1 sixty-forty">
+        <div id="translation">
+        <h2 class="section-headline">Help us translate</h2>
+        <h4 class="pulls">Create Subtitles</h4>
+        <p class="pulled">
+        You can help us subtitle any video on Khan Academy
+        <form target="_blank" id ="subtitle" method="GET" action="http://khan-report.appspot.com/translations/subtitleactions">
+            Pick a language:
+            <small><a href="http://khan-report.appspot.com/translations/subtitlestatus">(Full list)</a></small>
+            <select id="language-id" name="language">
+            </select>
+            <input id="playlist-id" name="playlist" value="all" type="hidden" />
+            <input id="random-id" name="random" value="1" type="hidden" />
+            <input id="subtitle-submit" type="submit" value="Subtitle Now" />
+        </form>
+        or
+        <form target="_blank" id ="lang-status" method="GET" action="http://khan-report.appspot.com/translations/subtitlestatus">
+            <input id="playlist-id" name="playlist" value="all" type="hidden" />
+            <input id="display" name="display" value="1" type="hidden" />
+            <input id="language-status-submit" type="submit" value="Pick a Video" />
+        </form>
+        <script>
+            $.ajax({
+                type: 'GET',
+                url: 'http://khan-report.appspot.com/translations/getsubtitlelanguages',
+                dataType: 'jsonp',
+                success: function(l) {
+                    $.each(l, function(i) {
+                        $("#language-id").append($("<option />").val(l[i]).text(l[i]))
+                    });
+                    $("#language-id").val('Spanish')
+                }
+            });
+
+            $("#lang-status").submit(function(e) {
+                $.each($("#lang-status").children(), function() {
+                    $("#language").remove()
+                });
+                var lang = $("#language-id").val()
+                $(this).append($("<input>").attr({id:"language", name:"language", value:lang, type:"hidden"}))
+            });
+        </script>
+        </p>
+        <p>
+        You can also go to any video on the Khan Academy site, click on the subtitles button on the bottom right, use the universal subitles tool to select a language
+        </p>
+            <h4 class="pulls">Dub Videos</h4>
+            <p class="pulled">
+                We have dubbed videos in <a href="https://www.youtube.com/KhanAcademyLanguages">16 languages</a>. If you feel that you can dub videos, what should you do?
+            </p>
+            <p>
+                <a href="http://khanacademy.wufoo.com/forms/m7x3p9/" onclick="window.open(this.href,  null, 'height=1295, width=680, toolbar=0, location=0, status=1, scrollbars=1, resizable=1'); return false" title="Application Form" class="simple-button action-gradient" style="display: inline-block;">Apply to become a translator</a>
+            <p>
+            Also join the language specific translators' groups. Send a blank email (no text in subject or body of message) to [language]-translators+subscribe@khanacademy.org <a href="https://sites.google.com/a/khanacademy.org/forge/for-translators/reference-page/translations-update">(languages list)</a>. It will be a source of information and periodic updates about the translation effort.
+            </p>
+        </div>
+    </div>
+    <div class="col2 sixty-forty">
+        <h2 class="section-headline">Donate</h2>
+        <p>
+            <em>Help us create the world's totally free virtual school!</em> We believe 
+            everyone in the world should have access to a high quality education, and 
+            we are feverishly trying to do our part to make this a reality.
+        </p>
+        <p>
+            If you think we're on to something, or Khan Academy has helped you 
+            personally -- we would welcome any support you can provide. Help us 
+            make a difference!
+        </p>
+
+        <p class="pulls"><a id="where-money-link" href="#">Where does my money go?</a></p>
+        <div id="where-money" style="display:none;">
+            <p>Your money supports our people and technology, and helps us:</p>
+            <ul>
+            <li>Keep the site running, totally free</li>
+                <li>Create more high-quality content, in more languages</li>
+                <li>Develop interactive assessment exercises, to complement the video library</li>
+                <li>Improve our website and create the best free, online educational experience possible </li>
+                <li>Support efforts to use our technology in schools around the world</li>
+                <li>Explore other ideas we have on the future of education and how 
+                we think learning should be done!</li>
+            </ul>
+        </div>
+        <script>$("#where-money-link").click(function(){$("#where-money").slideDown("fast"); return false;});</script>
+
+        <p class="pulled" style="font-family: Georgia, serif; font-size: 13px; margin-bottom: 18px;">
+            <em>We are a nonprofit (Tax ID: 26-1544963), and are totally reliant on donations 
+            like yours to keep us running. Your gifts are tax-deductible where applicable.</em>
+        </p>
+        <div class="col1" style="max-width: 45%; min-width: 45%;">
+            <h4>One-time donation</h4>
+            <p>
+                <a class="google-analytics-link-track" onclick="_gaq.push(['_trackEvent', 'Click', 'Donate-Link-Paypal']);" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2439291" >
+                    <img src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif">
+                </a>
+            </p>
+        </div>
+        <div class="col2" style="text-align: left;">
+            <h4>Recurring donation</h4>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="recurring-donations">
+                <input type="hidden" name="cmd" value="_xclick-subscriptions">
+                <input type="hidden" name="business" value="JBBC7SGTYUGK2">
+                <input type="hidden" name="lc" value="US">
+                <input type="hidden" name="item_name" value="Recurring donation to Khan Academy">
+                <input type="hidden" name="no_note" value="1">
+                <input type="hidden" name="no_shipping" value="2">
+                <input type="hidden" name="src" value="1">
+                <input type="hidden" name="p3" value="1">
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribeCC_LG.gif:NonHosted">
+                <input type="hidden" name="return" value="http://khanacademy.org">
+                    Donate $<input type="text" name="a3" value="25" maxlength="30" style="width:45px;margin-left:2px;"> once a
+                    <nobr>
+                    <select name="t3" id="time-frame-select">
+                    	<option value="W" data-plural="weeks">week</option>
+                    	<option value="M" data-plural="months" selected>month</option>
+                    	<option value="Y" data-plural="years">year</option>
+                    </select>
+                    for
+                    <select name="srt">
+                         <option value="2">2</option>
+                         <option value="3">3</option>
+                         <option value="4">4</option>
+                         <option value="5">5</option>
+                         <option value="6">6</option>
+                         <option value="7">7</option>
+                         <option value="8">8</option>
+                         <option value="9">9</option>
+                         <option value="10">10</option>
+                         <option value="11">11</option>
+                         <option value="12" selected>12</option>
+                         <option value="24">24</option>
+                         <option value="36">36</option>
+                         <option value="0">Forever</option>
+                     </select>
+                     <span id="selected-time-frame">months</span></nobr>
+                <input id="recurring-donations-submit" type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                 <img src="/images/throbber.gif" class="throbber" style="display:none;" />
+                 <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+             </form>
+             <script>
+                 $("#time-frame-select").change(function() {
+                     $("#selected-time-frame").html($("option:selected", this).attr("data-plural"));
+                 });
+             </script>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <hr>
+    <div class="col1 sixty-forty">
+        <h2>Get the word out</h2>
+        <p>
+            Spreading the word about the Khan Academy is one of the best ways to help
+            us. Each month we serve around 4 million students, but there's no reason it 
+            shouldn't be 50 million. Please take a moment to share this site with your 
+            friends and community. 
+        </p>
+        <p>
+            <a href="http://www.facebook.com/khanacademy" class="simple-button action-gradient social-button">
+                <img src="/images/social_facebook_box_blue_48.png" width=48 height=48 />
+                Join us on Facebook
+            </a>
+            <a href="http://twitter.com/khanacademy" class="simple-button action-gradient social-button">
+                <img src="/images/social_twitter_box_blue_48.png" width=48 height=48 />
+                Follow us on Twitter
+            </a>
+        <br>
+        <p>
+        If you are interested in helping bring Khan Academy to a school near you,
+        <a href="/toolkit">find out more</a> and ask the school leaders to
+        <a href="/about/getting-started#schools">submit an application</a>
+        </p>
+        
+    </div>
+    <div class="col2 sixty-forty">
+        <iframe id="meetup" src="http://www.meetup.com/everywhere/widget2/khanacademy/?width=275&height=290&usetheme=1" border="0" frameborder="0" height="290" width="100%"></iframe>
+    </div>
+    <div class="clear"></div>
+    <hr>
+    <div style="text-align:center; padding-bottom: 18px;"><p>The Khan Academy has also received the time, energy, and expertise of many <a href="/contribute/credits">volunteers and part-time contributors</a>.</p></div>
+</article>
+{% endblock pagecontent %}
+{% block bottompagescript %}
+    {{ analytics.crazyegg_tracker(False) }}
+{% endblock bottompagescript %}

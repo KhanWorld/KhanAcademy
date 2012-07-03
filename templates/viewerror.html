@@ -1,0 +1,52 @@
+{% extends "page_template_mini.html" %}
+
+{% block pagecontent %}
+
+    <style>
+        #tree-container {
+            padding-top: 45px;
+        }
+        #leaf {
+            position: relative;
+            top: -108px;
+            left: -62px;
+        }
+    </style>
+
+    <h2>{{ title|escape }}</h2><br/>
+    <div id="tree-container">
+        <img src="/images/missing-leaf.png"/><br/>
+        <img id="leaf" src="/images/leaf.png" />
+    </div>
+    <h2>{{ message_html }}</h2>
+    <p>{{ sub_message_html }}</p>
+
+    <script>
+        var shake = 4;
+        var sway = 6;
+        var drop = 20;
+        $(function(){setTimeout(function() {
+            $("#leaf").animate({left:"+="+shake}, 100, function() {
+                $("#leaf").animate({left:"-="+shake}, 100, function() {
+                    $("#leaf").animate({left:"+="+shake}, 100, function() {
+                        $("#leaf").animate({left:"-="+shake}, 100, function() {
+                            $("#leaf").animate({left:"+="+shake}, 100, function() {
+                                $("#leaf").animate({left:"-="+shake}, 100, function() {
+                                    $("#leaf").animate({left:"-="+sway, top:"+="+drop}, 750, "linear", function() {
+                                        $("#leaf").animate({left:"+="+sway, top:"+="+drop}, 750, "linear", function() {
+                                            $("#leaf").animate({left:"-="+sway, top:"+="+drop}, 750, "linear", function() {
+                                                $("#leaf").animate({left:"+="+sway, top:"+="+drop}, 750, "linear", function() {
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        }, 1000);});
+    </script>
+
+{% endblock pagecontent %}

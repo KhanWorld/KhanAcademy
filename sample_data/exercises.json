@@ -1,0 +1,2483 @@
+[
+    {
+        "covers": [], 
+        "display_name": "Addition 1", 
+        "h_position": 0, 
+        "ka_url": "http://khanacademy.org/exercises?exid=addition_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "addition_1", 
+        "prerequisites": [], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Add. 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [], 
+        "display_name": "Subtraction 1", 
+        "h_position": 1, 
+        "ka_url": "http://khanacademy.org/exercises?exid=subtraction_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "subtraction_1", 
+        "prerequisites": [
+            "addition_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 4.0, 
+        "short_display_name": "Sub. 1", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [
+            "addition_1"
+        ], 
+        "display_name": "Addition 2", 
+        "h_position": 1, 
+        "ka_url": "http://khanacademy.org/exercises?exid=addition_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "addition_2", 
+        "prerequisites": [
+            "addition_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 6.0, 
+        "short_display_name": "Add. 2", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "addition_1"
+        ], 
+        "display_name": "Multiplication 0.5", 
+        "h_position": 1, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplication_0.5", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplication_0.5", 
+        "prerequisites": [
+            "addition_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Mult. 0.5", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [
+            "addition_2"
+        ], 
+        "display_name": "Addition 3", 
+        "h_position": 2, 
+        "ka_url": "http://khanacademy.org/exercises?exid=addition_3", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "addition_3", 
+        "prerequisites": [
+            "addition_2"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 9.0, 
+        "short_display_name": "Add. 3", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "subtraction_1"
+        ], 
+        "display_name": "Subtraction 2", 
+        "h_position": 2, 
+        "ka_url": "http://khanacademy.org/exercises?exid=subtraction_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "subtraction_2", 
+        "prerequisites": [
+            "subtraction_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Sub. 2", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [
+            "addition_2", 
+            "multiplication_0.5"
+        ], 
+        "display_name": "Multiplication 1", 
+        "h_position": 2, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplication_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplication_1", 
+        "prerequisites": [
+            "addition_2", 
+            "multiplication_0.5"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Mult. 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [], 
+        "display_name": "Division 0.5", 
+        "h_position": 2, 
+        "ka_url": "http://khanacademy.org/exercises?exid=division_0.5", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "division_0.5", 
+        "prerequisites": [
+            "multiplication_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Div. 0.5", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [
+            "addition_3"
+        ], 
+        "display_name": "Addition 4", 
+        "h_position": 3, 
+        "ka_url": "http://khanacademy.org/exercises?exid=addition_4", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "addition_4", 
+        "prerequisites": [
+            "addition_3"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Add. 4", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "subtraction_2"
+        ], 
+        "display_name": "Subtraction 3", 
+        "h_position": 3, 
+        "ka_url": "http://khanacademy.org/exercises?exid=subtraction_3", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "subtraction_3", 
+        "prerequisites": [
+            "subtraction_2"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 10.0, 
+        "short_display_name": "Sub. 3", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [
+            "division_0.5"
+        ], 
+        "display_name": "Division 1", 
+        "h_position": 3, 
+        "ka_url": "http://khanacademy.org/exercises?exid=division_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "division_1", 
+        "prerequisites": [
+            "division_0.5"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Div. 1", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [
+            "multiplication_1"
+        ], 
+        "display_name": "Multiplication 1.5", 
+        "h_position": 3, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplication_1.5", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplication_1.5", 
+        "prerequisites": [
+            "multiplication_1"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Mult. 1.5", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [
+            "multiplication_1.5"
+        ], 
+        "display_name": "Multiplication 2", 
+        "h_position": 4, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplication_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplication_2", 
+        "prerequisites": [
+            "multiplication_1.5"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 7.0, 
+        "short_display_name": "Mult. 2", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [
+            "addition_4"
+        ], 
+        "display_name": "Adding decimals", 
+        "h_position": 4, 
+        "ka_url": "http://khanacademy.org/exercises?exid=adding_decimals", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "adding_decimals", 
+        "prerequisites": [
+            "addition_4"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 14.0, 
+        "short_display_name": "Add. Dec.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "subtraction_3"
+        ], 
+        "display_name": "Subtraction 4", 
+        "h_position": 4, 
+        "ka_url": "http://khanacademy.org/exercises?exid=subtraction_4", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "subtraction_4", 
+        "prerequisites": [
+            "subtraction_3"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 18.0, 
+        "short_display_name": "Sub. 4", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Arithmetic challenge", 
+        "h_position": 4, 
+        "ka_url": "http://khanacademy.org/exercises?exid=arithmetic_challenge", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "arithmetic_challenge", 
+        "prerequisites": [
+            "multiplying_decimals", 
+            "dividing_decimals", 
+            "multiplying_fractions", 
+            "multiplying_and_dividing_negative_numbers", 
+            "dividing_fractions"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 14.0, 
+        "short_display_name": "Arith. Ch.", 
+        "suggested": true, 
+        "summative": true, 
+        "v_position": 4
+    },
+    {
+        "covers": [
+            "division_1"
+        ], 
+        "display_name": "Division 1.5", 
+        "h_position": 4, 
+        "ka_url": "http://khanacademy.org/exercises?exid=division_1.5", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "division_1.5", 
+        "prerequisites": [
+            "division_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Div. 1.5", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [
+            "subtraction_4"
+        ], 
+        "display_name": "Subtracting decimals", 
+        "h_position": 5, 
+        "ka_url": "http://khanacademy.org/exercises?exid=subtracting_decimals", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "subtracting_decimals", 
+        "prerequisites": [
+            "subtraction_4"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 21.0, 
+        "short_display_name": "Sub. Dec.", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 6
+    },
+    {
+        "covers": [
+            "multiplication_2"
+        ], 
+        "display_name": "Multiplication 3", 
+        "h_position": 5, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplication_3", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplication_3", 
+        "prerequisites": [
+            "multiplication_2"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 11.0, 
+        "short_display_name": "Mult. 3", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [
+            "division_1.5"
+        ], 
+        "display_name": "Division 2", 
+        "h_position": 5, 
+        "ka_url": "http://khanacademy.org/exercises?exid=division_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "division_2", 
+        "prerequisites": [
+            "division_1.5"
+        ], 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "Div. 2", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Adding and subtracting negative numbers", 
+        "h_position": 5, 
+        "ka_url": "http://khanacademy.org/exercises?exid=adding_and_subtracting_negative_numbers", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "adding_and_subtracting_negative_numbers", 
+        "prerequisites": [
+            "adding_decimals"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 6.0, 
+        "short_display_name": "+- Neg. #s", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "multiplication_3"
+        ], 
+        "display_name": "Multiplication 4", 
+        "h_position": 6, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplication_4", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplication_4", 
+        "prerequisites": [
+            "multiplication_3"
+        ], 
+        "seconds_per_fast_problem": 21.0, 
+        "short_display_name": "Mult. 4", 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [
+            "multiplication_4"
+        ], 
+        "display_name": "Multiplying decimals", 
+        "h_position": 6, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplying_decimals", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplying_decimals", 
+        "prerequisites": [
+            "multiplication_4"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 23.25, 
+        "short_display_name": "Mult. Dec.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [
+            "division_2"
+        ], 
+        "display_name": "Division 3", 
+        "h_position": 6, 
+        "ka_url": "http://khanacademy.org/exercises?exid=division_3", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "division_3", 
+        "prerequisites": [
+            "division_2"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Div. 3", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Prime numbers", 
+        "h_position": 6, 
+        "ka_url": "http://khanacademy.org/exercises?exid=prime_numbers", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "prime_numbers", 
+        "prerequisites": [
+            "division_2"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "Prime #s", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Absolute value", 
+        "h_position": 6, 
+        "ka_url": "http://khanacademy.org/exercises?exid=absolute_value", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "absolute_value", 
+        "prerequisites": [
+            "adding_and_subtracting_negative_numbers"
+        ], 
+        "seconds_per_fast_problem": 4.0, 
+        "short_display_name": "Abs. Value", 
+        "summative": false, 
+        "v_position": 0
+    },
+    {
+        "covers": [], 
+        "display_name": "Rounding numbers", 
+        "h_position": 6, 
+        "ka_url": "http://khanacademy.org/exercises?exid=rounding_numbers", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "rounding_numbers", 
+        "prerequisites": [
+            "adding_decimals"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 7.0, 
+        "short_display_name": "Rounding", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": -1
+    },
+    {
+        "covers": [], 
+        "display_name": "Significant figures 1", 
+        "h_position": 6, 
+        "ka_url": "http://khanacademy.org/exercises?exid=significant_figures_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "significant_figures_1", 
+        "prerequisites": [
+            "adding_decimals"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Sig fig 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": -2
+    },
+    {
+        "covers": [
+            "division_3"
+        ], 
+        "display_name": "Division 4", 
+        "h_position": 7, 
+        "ka_url": "http://khanacademy.org/exercises?exid=division_4", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "division_4", 
+        "prerequisites": [
+            "division_3", 
+            "multiplication_2"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 15.0, 
+        "short_display_name": "Div. 4", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Multiplying and dividing negative numbers", 
+        "h_position": 7, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplying_and_dividing_negative_numbers", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplying_and_dividing_negative_numbers", 
+        "prerequisites": [
+            "division_3"
+        ], 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "×÷ Neg. #s", 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [], 
+        "display_name": "Greatest common divisor", 
+        "h_position": 7, 
+        "ka_url": "http://khanacademy.org/exercises?exid=greatest_common_divisor", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "greatest_common_divisor", 
+        "prerequisites": [
+            "division_3"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 7.0, 
+        "short_display_name": "GCD", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [], 
+        "display_name": "Prime factorization", 
+        "h_position": 7, 
+        "ka_url": "http://khanacademy.org/exercises?exid=prime_factorization", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "prime_factorization", 
+        "prerequisites": [
+            "prime_numbers"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 12.0, 
+        "short_display_name": "Prime Fac.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Order of operations", 
+        "h_position": 8, 
+        "ka_url": "http://khanacademy.org/exercises?exid=order_of_operations", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "order_of_operations", 
+        "prerequisites": [
+            "adding_and_subtracting_negative_numbers", 
+            "multiplying_and_dividing_negative_numbers"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 9.0, 
+        "short_display_name": "Order Ops.", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [], 
+        "display_name": "Least common multiple", 
+        "h_position": 8, 
+        "ka_url": "http://khanacademy.org/exercises?exid=least_common_multiple", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "least_common_multiple", 
+        "prerequisites": [
+            "greatest_common_divisor"
+        ], 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "LCM", 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [
+            "division_4"
+        ], 
+        "display_name": "Dividing decimals", 
+        "h_position": 8, 
+        "ka_url": "http://khanacademy.org/exercises?exid=dividing_decimals", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "dividing_decimals", 
+        "prerequisites": [
+            "division_4"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 18.0, 
+        "short_display_name": "Div. Dec.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Mean median and mode", 
+        "h_position": 8, 
+        "ka_url": "http://khanacademy.org/exercises?exid=mean_median_and_mode", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "mean_median_and_mode", 
+        "prerequisites": [
+            "dividing_decimals"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 14.0, 
+        "short_display_name": "M/M/M", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Pre-algebra challenge", 
+        "h_position": 8, 
+        "ka_url": "http://khanacademy.org/exercises?exid=pre-algebra_challenge", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "pre-algebra_challenge", 
+        "prerequisites": [
+            "order_of_operations", 
+            "multiplying_and_dividing_negative_numbers", 
+            "scientific_notation", 
+            "exponents_3", 
+            "units", 
+            "simplifying_radicals", 
+            "ordering_numbers", 
+            "exponents_2", 
+            "multiplying_fractions", 
+            "dividing_fractions"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 11.0, 
+        "short_display_name": "Pre-alg Ch.", 
+        "suggested": false, 
+        "summative": true, 
+        "v_position": 1
+    },
+    {
+        "covers": [], 
+        "display_name": "Equivalent fractions", 
+        "h_position": 9, 
+        "ka_url": "http://khanacademy.org/exercises?exid=equivalent_fractions", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "equivalent_fractions", 
+        "prerequisites": [
+            "least_common_multiple"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 6.0, 
+        "short_display_name": "Equiv Frac.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [
+            "multiplying_and_dividing_negative_numbers"
+        ], 
+        "display_name": "Exponents 1", 
+        "h_position": 9, 
+        "ka_url": "http://khanacademy.org/exercises?exid=exponents_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "exponents_1", 
+        "prerequisites": [
+            "multiplying_and_dividing_negative_numbers"
+        ], 
+        "seconds_per_fast_problem": 6.0, 
+        "short_display_name": "Exponents 1", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [
+            "prime_factorization"
+        ], 
+        "display_name": "Divisibility", 
+        "h_position": 9, 
+        "ka_url": "http://khanacademy.org/exercises?exid=divisibility", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "divisibility", 
+        "prerequisites": [
+            "least_common_multiple"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 12.0, 
+        "short_display_name": "Divisibil.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Adding fractions with common denominators", 
+        "h_position": 9, 
+        "ka_url": "http://khanacademy.org/exercises?exid=adding_fractions_with_common_denominators", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "adding_fractions_with_common_denominators", 
+        "prerequisites": [
+            "adding_and_subtracting_negative_numbers"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 7.0, 
+        "short_display_name": "+CommDenom", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "multiplying_and_dividing_negative_numbers"
+        ], 
+        "display_name": "Multiplying fractions", 
+        "h_position": 10, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplying_fractions", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplying_fractions", 
+        "prerequisites": [
+            "multiplying_and_dividing_negative_numbers"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 14.0, 
+        "short_display_name": "Mult. Frac.", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [
+            "equivalent_fractions"
+        ], 
+        "display_name": "Ordering numbers", 
+        "h_position": 10, 
+        "ka_url": "http://khanacademy.org/exercises?exid=ordering_numbers", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "ordering_numbers", 
+        "prerequisites": [
+            "equivalent_fractions"
+        ], 
+        "seconds_per_fast_problem": 26.0, 
+        "short_display_name": "Ordering #s", 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [
+            "exponents_1"
+        ], 
+        "display_name": "Exponents 2", 
+        "h_position": 10, 
+        "ka_url": "http://khanacademy.org/exercises?exid=exponents_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "exponents_2", 
+        "prerequisites": [
+            "exponents_1"
+        ], 
+        "seconds_per_fast_problem": 9.0, 
+        "short_display_name": "Exponents 2", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Geometry 1", 
+        "h_position": 10, 
+        "ka_url": "http://khanacademy.org/exercises?exid=geometry_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "geometry_1", 
+        "prerequisites": [
+            "exponents_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 9.0, 
+        "short_display_name": "Geometry 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 10
+    },
+    {
+        "covers": [], 
+        "display_name": "Angle types", 
+        "h_position": 10, 
+        "ka_url": "http://khanacademy.org/exercises?exid=angle_types", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "angle_types", 
+        "prerequisites": [
+            "addition_2"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Angle Types", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 6
+    },
+    {
+        "covers": [], 
+        "display_name": "Subtracting fractions with common denominators", 
+        "h_position": 10, 
+        "ka_url": "http://khanacademy.org/exercises?exid=subtracting_fractions_with_common_denominators", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "subtracting_fractions_with_common_denominators", 
+        "prerequisites": [
+            "adding_fractions_with_common_denominators"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 6.0, 
+        "short_display_name": "-CommDenom", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "exponents_2"
+        ], 
+        "display_name": "Exponent rules", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=exponent_rules", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "exponent_rules", 
+        "prerequisites": [
+            "exponents_2"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 11.0, 
+        "short_display_name": "Exp. Rules", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Angles 1", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=angles_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "angles_1", 
+        "prerequisites": [
+            "angle_types"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 12.0, 
+        "short_display_name": "Angles 1", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 7
+    },
+    {
+        "covers": [
+            "adding_and_subtracting_negative_numbers", 
+            "multiplying_and_dividing_negative_numbers", 
+            "equivalent_fractions", 
+            "least_common_multiple", 
+            "adding_fractions_with_common_denominators", 
+            "subtracting_fractions_with_common_denominators"
+        ], 
+        "display_name": "Adding and subtracting fractions", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=adding_and_subtracting_fractions", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "adding_and_subtracting_fractions", 
+        "prerequisites": [
+            "adding_and_subtracting_negative_numbers", 
+            "multiplying_and_dividing_negative_numbers", 
+            "equivalent_fractions", 
+            "adding_fractions_with_common_denominators", 
+            "subtracting_fractions_with_common_denominators"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 26.0, 
+        "short_display_name": "+- Fract.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "multiplying_fractions"
+        ], 
+        "display_name": "Dividing fractions", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=dividing_fractions", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "dividing_fractions", 
+        "prerequisites": [
+            "multiplying_fractions"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 19.0, 
+        "short_display_name": "Div. Frac.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [], 
+        "display_name": "Units", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=units", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "units", 
+        "prerequisites": [
+            "multiplying_fractions"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 24.0, 
+        "short_display_name": "Units", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 0
+    },
+    {
+        "covers": [
+            "exponents_2"
+        ], 
+        "display_name": "Exponents 3", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=exponents_3", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "exponents_3", 
+        "prerequisites": [
+            "exponents_2"
+        ], 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "Exponents 3", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Degrees to radians", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=degrees_to_radians", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "degrees_to_radians", 
+        "prerequisites": [
+            "angle_types"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 15.0, 
+        "short_display_name": "Deg -> Rad", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 8
+    },
+    {
+        "covers": [], 
+        "display_name": "Complementary angles", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=complementary_angles", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "complementary_angles", 
+        "prerequisites": [
+            "angle_types"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 7.0, 
+        "short_display_name": "Comp Ang", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 9
+    },
+    {
+        "covers": [
+            "geometry_1"
+        ], 
+        "display_name": "Solid geometry", 
+        "h_position": 11, 
+        "ka_url": "http://khanacademy.org/exercises?exid=solid_geometry", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "solid_geometry", 
+        "prerequisites": [
+            "geometry_1"
+        ], 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Solid geo", 
+        "summative": false, 
+        "v_position": 10
+    },
+    {
+        "covers": [
+            "division_1"
+        ], 
+        "display_name": "Linear equations 1", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=linear_equations_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "linear_equations_1", 
+        "prerequisites": [
+            "adding_and_subtracting_fractions", 
+            "dividing_fractions"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "Lin. Eq. 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [], 
+        "display_name": "Graphing points", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=graphing_points", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "graphing_points", 
+        "prerequisites": [
+            "linear_equations_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 16.0, 
+        "short_display_name": "Graph Pts.", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [
+            "angles_1"
+        ], 
+        "display_name": "Angles 2", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=angles_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "angles_2", 
+        "prerequisites": [
+            "angles_1"
+        ], 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Angles 2", 
+        "summative": false, 
+        "v_position": 7
+    },
+    {
+        "covers": [
+            "multiplication_1"
+        ], 
+        "display_name": "Logarithms 1", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=logarithms_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "logarithms_1", 
+        "prerequisites": [
+            "exponents_3"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 7.0, 
+        "short_display_name": "Log. 1", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [], 
+        "display_name": "Simplifying radicals", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=simplifying_radicals", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "simplifying_radicals", 
+        "prerequisites": [
+            "exponents_3", 
+            "exponent_rules"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 12.0, 
+        "short_display_name": "Simp. Rad.", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Scientific notation", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=scientific_notation", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "scientific_notation", 
+        "prerequisites": [
+            "exponents_3", 
+            "exponent_rules"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 11.0, 
+        "short_display_name": "Sci. Notat.", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Trigonometry challenge", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=trigonometry_challenge", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "trigonometry_challenge", 
+        "prerequisites": [
+            "trigonometry_2", 
+            "graphs_of_sine_and_cosine", 
+            "inverse_trig_functions", 
+            "trig_identities_1", 
+            "pythagorean_theorem_2", 
+            "trigonometry_1", 
+            "distance_formula", 
+            "pythagorean_theorem_1", 
+            "angles_2"
+        ], 
+        "seconds_per_fast_problem": 22.0, 
+        "short_display_name": "Trig. Chal.", 
+        "summative": true, 
+        "v_position": 7
+    },
+    {
+        "covers": [], 
+        "display_name": "Probability 1", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=probability_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "probability_1", 
+        "prerequisites": [
+            "equivalent_fractions"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 19.0, 
+        "short_display_name": "Prob. 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 11
+    },
+    {
+        "covers": [], 
+        "display_name": "Supplementary angles", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=supplementary_angles", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "supplementary_angles", 
+        "prerequisites": [
+            "angle_types"
+        ], 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "Supp Ang", 
+        "summative": false, 
+        "v_position": 9
+    },
+    {
+        "covers": [], 
+        "display_name": "Radians to degrees", 
+        "h_position": 12, 
+        "ka_url": "http://khanacademy.org/exercises?exid=radians_to_degrees", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "radians_to_degrees", 
+        "prerequisites": [
+            "angle_types"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Rad -> Deg", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 8
+    },
+    {
+        "covers": [
+            "linear_equations_1"
+        ], 
+        "display_name": "Percentage word problems 1", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=percentage_word_problems_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "percentage_word_problems_1", 
+        "prerequisites": [
+            "linear_equations_1"
+        ], 
+        "seconds_per_fast_problem": 19.0, 
+        "short_display_name": "% Word 1", 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [
+            "linear_equations_1"
+        ], 
+        "display_name": "Linear equations 2", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=linear_equations_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "linear_equations_2", 
+        "prerequisites": [
+            "linear_equations_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Lin. Eq. 2", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [], 
+        "display_name": "Functions 1", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=functions_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "functions_1", 
+        "prerequisites": [
+            "graphing_points"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 9.0, 
+        "short_display_name": "Functions 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Pythagorean theorem 1", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=pythagorean_theorem_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "pythagorean_theorem_1", 
+        "prerequisites": [
+            "simplifying_radicals", 
+            "angles_1"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 17.0, 
+        "short_display_name": "Pythag. 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 6
+    },
+    {
+        "covers": [], 
+        "display_name": "Distance formula", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=distance_formula", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "distance_formula", 
+        "prerequisites": [
+            "graphing_points", 
+            "pythagorean_theorem_1"
+        ], 
+        "seconds_per_fast_problem": 23.0, 
+        "short_display_name": "Dist. Form.", 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Algebra challenge", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=algebra_challenge", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "algebra_challenge", 
+        "prerequisites": [
+            "equation_of_a_line", 
+            "linear_equations_4", 
+            "linear_inequalities", 
+            "average_word_problems", 
+            "solving_quadratics_by_factoring", 
+            "quadratic_equation", 
+            "systems_of_equations", 
+            "even_and_odd_functions", 
+            "inverses_of_functions", 
+            "shifting_and_reflecting_functions", 
+            "percentage_word_problems_2", 
+            "logarithms_1", 
+            "domain_of_a_function", 
+            "age_word_problems", 
+            "midpoint_formula", 
+            "solving_for_a_variable", 
+            "line_relationships", 
+            "absolute_value_equations", 
+            "expressions_with_unknown_variables_2", 
+            "radical_equations"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 21.0, 
+        "short_display_name": "Alg. Chal.", 
+        "suggested": true, 
+        "summative": true, 
+        "v_position": 0
+    },
+    {
+        "covers": [
+            "probability_1"
+        ], 
+        "display_name": "Dependent probability", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=dependent_probability", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "dependent_probability", 
+        "prerequisites": [
+            "probability_1"
+        ], 
+        "seconds_per_fast_problem": 46.0, 
+        "short_display_name": "Dep. Prob.", 
+        "summative": false, 
+        "v_position": 11
+    },
+    {
+        "covers": [], 
+        "display_name": "Writing expressions 1", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=writing_expressions_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "writing_expressions_1", 
+        "prerequisites": [
+            "linear_equations_1"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 9.0, 
+        "short_display_name": "Write Exp1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": -4
+    },
+    {
+        "covers": [
+            "degrees_to_radians", 
+            "radians_to_degrees"
+        ], 
+        "display_name": "Radians and degrees", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=radians_and_degrees", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "radians_and_degrees", 
+        "prerequisites": [
+            "degrees_to_radians", 
+            "radians_to_degrees"
+        ], 
+        "seconds_per_fast_problem": 14.0, 
+        "short_display_name": "Rad <-> Deg", 
+        "summative": false, 
+        "v_position": 8
+    },
+    {
+        "covers": [
+            "complementary_angles", 
+            "supplementary_angles"
+        ], 
+        "display_name": "Complementary and supplementary angles", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=complementary_and_supplementary_angles", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "complementary_and_supplementary_angles", 
+        "prerequisites": [
+            "complementary_angles", 
+            "supplementary_angles"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "CompSuppAng", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 9
+    },
+    {
+        "covers": [], 
+        "display_name": "Logarithms 2", 
+        "h_position": 13, 
+        "ka_url": "http://khanacademy.org/exercises?exid=logarithms_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "logarithms_2", 
+        "prerequisites": [
+            "logarithms_1", 
+            "exponents_1"
+        ], 
+        "seconds_per_fast_problem": 6.0, 
+        "short_display_name": "Log. 2", 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [], 
+        "display_name": "Percentage word problems 2", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=percentage_word_problems_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "percentage_word_problems_2", 
+        "prerequisites": [
+            "percentage_word_problems_1"
+        ], 
+        "proficient": true, 
+        "review": true, 
+        "seconds_per_fast_problem": 26.0, 
+        "short_display_name": "% Word 2", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [
+            "linear_equations_2"
+        ], 
+        "display_name": "Linear equations 3", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=linear_equations_3", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "linear_equations_3", 
+        "prerequisites": [
+            "linear_equations_2"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 26.0, 
+        "short_display_name": "Lin. Eq. 3", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "pythagorean_theorem_1"
+        ], 
+        "display_name": "Pythagorean theorem 2", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=pythagorean_theorem_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "pythagorean_theorem_2", 
+        "prerequisites": [
+            "pythagorean_theorem_1"
+        ], 
+        "seconds_per_fast_problem": 16.0, 
+        "short_display_name": "Pythag. 2", 
+        "summative": false, 
+        "v_position": 6
+    },
+    {
+        "covers": [
+            "functions_1"
+        ], 
+        "display_name": "Functions 2", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=functions_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "functions_2", 
+        "prerequisites": [
+            "functions_1"
+        ], 
+        "seconds_per_fast_problem": 28.0, 
+        "short_display_name": "Functions 2", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Trigonometry 1", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=trigonometry_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "trigonometry_1", 
+        "prerequisites": [
+            "pythagorean_theorem_2"
+        ], 
+        "seconds_per_fast_problem": 24.0, 
+        "short_display_name": "Trig. 1", 
+        "summative": false, 
+        "v_position": 8
+    },
+    {
+        "covers": [
+            "adding_decimals"
+        ], 
+        "display_name": "Midpoint formula", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=midpoint_formula", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "midpoint_formula", 
+        "prerequisites": [
+            "distance_formula"
+        ], 
+        "seconds_per_fast_problem": 23.0, 
+        "short_display_name": "Midpoint F.", 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "New definitions 1", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=new_definitions_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "new_definitions_1", 
+        "prerequisites": [
+            "linear_equations_2"
+        ], 
+        "seconds_per_fast_problem": 12.0, 
+        "short_display_name": "New Def. 1", 
+        "summative": false, 
+        "v_position": -3
+    },
+    {
+        "covers": [
+            "linear_equations_3"
+        ], 
+        "display_name": "Radical equations", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=radical_equations", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "radical_equations", 
+        "prerequisites": [
+            "simplifying_radicals", 
+            "linear_equations_3"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 22.0, 
+        "short_display_name": "Rad Eq 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [], 
+        "display_name": "Rate problems 1", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=rate_problems_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "rate_problems_1", 
+        "prerequisites": [
+            "units", 
+            "linear_equations_3"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 60.0, 
+        "short_display_name": "Rate Prob 1", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 0
+    },
+    {
+        "covers": [
+            "writing_expressions_1"
+        ], 
+        "display_name": "Writing expressions 2", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=writing_expressions_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "writing_expressions_2", 
+        "prerequisites": [
+            "writing_expressions_1", 
+            "linear_equations_1"
+        ], 
+        "seconds_per_fast_problem": 16.0, 
+        "short_display_name": "Write Exp2", 
+        "summative": false, 
+        "v_position": -4
+    },
+    {
+        "covers": [], 
+        "display_name": "Adding vectors", 
+        "h_position": 14, 
+        "ka_url": "http://khanacademy.org/exercises?exid=adding_vectors", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "adding_vectors", 
+        "prerequisites": [
+            "linear_equations_1"
+        ], 
+        "seconds_per_fast_problem": 12.0, 
+        "short_display_name": "+ Vectors", 
+        "summative": false, 
+        "v_position": 10
+    },
+    {
+        "covers": [], 
+        "display_name": "Domain of a function", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=domain_of_a_function", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "domain_of_a_function", 
+        "prerequisites": [
+            "functions_2"
+        ], 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Domain fx.", 
+        "summative": false, 
+        "v_position": 6
+    },
+    {
+        "covers": [
+            "trigonometry_1"
+        ], 
+        "display_name": "Trigonometry 2", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=trigonometry_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "trigonometry_2", 
+        "prerequisites": [
+            "trigonometry_1"
+        ], 
+        "seconds_per_fast_problem": 31.0, 
+        "short_display_name": "Trig. 2", 
+        "summative": false, 
+        "v_position": 8
+    },
+    {
+        "covers": [
+            "linear_equations_3"
+        ], 
+        "display_name": "Linear equations 4", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=linear_equations_4", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "linear_equations_4", 
+        "prerequisites": [
+            "linear_equations_3"
+        ], 
+        "seconds_per_fast_problem": 46.0, 
+        "short_display_name": "Lin. Eq. 4", 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [], 
+        "display_name": "Systems of equations", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=systems_of_equations", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "systems_of_equations", 
+        "prerequisites": [
+            "linear_equations_3"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 60.0, 
+        "short_display_name": "Sys. of Eq.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [], 
+        "display_name": "Multiplying expressions 1", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=multiplying_expressions_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "multiplying_expressions_1", 
+        "prerequisites": [
+            "linear_equations_3"
+        ], 
+        "seconds_per_fast_problem": 28.0, 
+        "short_display_name": "Mult. Ex. 1", 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [
+            "linear_equations_3"
+        ], 
+        "display_name": "Linear inequalities", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=linear_inequalities", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "linear_inequalities", 
+        "prerequisites": [
+            "linear_equations_3"
+        ], 
+        "seconds_per_fast_problem": 27.0, 
+        "short_display_name": "Lin. Ineq.", 
+        "summative": false, 
+        "v_position": 0
+    },
+    {
+        "covers": [], 
+        "display_name": "Even and odd functions", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=even_and_odd_functions", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "even_and_odd_functions", 
+        "prerequisites": [
+            "functions_2"
+        ], 
+        "seconds_per_fast_problem": 5.0, 
+        "short_display_name": "Even/Odd fx", 
+        "summative": false, 
+        "v_position": 7
+    },
+    {
+        "covers": [], 
+        "display_name": "Shifting and reflecting functions", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=shifting_and_reflecting_functions", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "shifting_and_reflecting_functions", 
+        "prerequisites": [
+            "functions_2"
+        ], 
+        "seconds_per_fast_problem": 17.0, 
+        "short_display_name": "Shif/Ref fx", 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Inverse trig functions", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=inverse_trig_functions", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "inverse_trig_functions", 
+        "prerequisites": [
+            "trigonometry_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 10.0, 
+        "short_display_name": "Inv Trig fx", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 9
+    },
+    {
+        "covers": [
+            "absolute_value", 
+            "linear_equations_3"
+        ], 
+        "display_name": "Absolute value equations", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=absolute_value_equations", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "absolute_value_equations", 
+        "prerequisites": [
+            "absolute_value", 
+            "linear_equations_3"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 19.0, 
+        "short_display_name": "Abs Val Eq.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": -1
+    },
+    {
+        "covers": [
+            "new_definitions_1"
+        ], 
+        "display_name": "New definitions 2", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=new_definitions_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "new_definitions_2", 
+        "prerequisites": [
+            "new_definitions_1"
+        ], 
+        "seconds_per_fast_problem": 43.0, 
+        "short_display_name": "New Def. 2", 
+        "summative": false, 
+        "v_position": -3
+    },
+    {
+        "covers": [], 
+        "display_name": "Direct and inverse variation", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=direct_and_inverse_variation", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "direct_and_inverse_variation", 
+        "prerequisites": [
+            "linear_equations_3"
+        ], 
+        "seconds_per_fast_problem": 11.0, 
+        "short_display_name": "Dir/Inv Var", 
+        "summative": false, 
+        "v_position": -2
+    },
+    {
+        "covers": [
+            "addition_1", 
+            "multiplication_1"
+        ], 
+        "display_name": "Evaluating expressions 1", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=evaluating_expressions_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "evaluating_expressions_1", 
+        "prerequisites": [
+            "writing_expressions_1"
+        ], 
+        "proficient": true, 
+        "review": false, 
+        "seconds_per_fast_problem": 7.0, 
+        "short_display_name": "Eval Exp1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": -4
+    },
+    {
+        "covers": [], 
+        "display_name": "Functions 3", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=functions_3", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "functions_3", 
+        "prerequisites": [
+            "functions_2"
+        ], 
+        "seconds_per_fast_problem": 60.0, 
+        "short_display_name": "Functions 3", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Scaling vectors", 
+        "h_position": 15, 
+        "ka_url": "http://khanacademy.org/exercises?exid=scaling_vectors", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "scaling_vectors", 
+        "prerequisites": [
+            "adding_vectors"
+        ], 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "Scaling Vec", 
+        "summative": false, 
+        "v_position": 10
+    },
+    {
+        "covers": [
+            "linear_equations_1", 
+            "addition_1", 
+            "multiplication_1"
+        ], 
+        "display_name": "Average word problems", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=average_word_problems", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "average_word_problems", 
+        "prerequisites": [
+            "systems_of_equations"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 43.0, 
+        "short_display_name": "Avg. Word", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [], 
+        "display_name": "Graphs of sine and cosine", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=graphs_of_sine_and_cosine", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "graphs_of_sine_and_cosine", 
+        "prerequisites": [
+            "trigonometry_2"
+        ], 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Gr. sin/cos", 
+        "summative": false, 
+        "v_position": 8
+    },
+    {
+        "covers": [], 
+        "display_name": "Solving quadratics by factoring", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=solving_quadratics_by_factoring", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "solving_quadratics_by_factoring", 
+        "prerequisites": [
+            "multiplying_expressions_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 34.0, 
+        "short_display_name": "Quadr. Fac.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [], 
+        "display_name": "Line graph intuition", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=line_graph_intuition", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "line_graph_intuition", 
+        "prerequisites": [
+            "linear_equations_3"
+        ], 
+        "seconds_per_fast_problem": 19.0, 
+        "short_display_name": "Line Graph", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Trig identities 1", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=trig_identities_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "trig_identities_1", 
+        "prerequisites": [
+            "trigonometry_1"
+        ], 
+        "seconds_per_fast_problem": 17.0, 
+        "short_display_name": "Trig. Id. 1", 
+        "summative": false, 
+        "v_position": 9
+    },
+    {
+        "covers": [], 
+        "display_name": "Kinematic equations", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=kinematic_equations", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "kinematic_equations", 
+        "prerequisites": [
+            "linear_equations_4", 
+            "units"
+        ], 
+        "seconds_per_fast_problem": 60.0, 
+        "short_display_name": "Kinem. Eq.", 
+        "summative": false, 
+        "v_position": -1
+    },
+    {
+        "covers": [], 
+        "display_name": "Solving for a variable", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=solving_for_a_variable", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "solving_for_a_variable", 
+        "prerequisites": [
+            "linear_equations_4", 
+            "systems_of_equations"
+        ], 
+        "seconds_per_fast_problem": 57.0, 
+        "short_display_name": "Solving Var", 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "multiplication_1", 
+            "division_1"
+        ], 
+        "display_name": "Arithmetic word problems", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=arithmetic_word_problems", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "arithmetic_word_problems", 
+        "prerequisites": [
+            "writing_expressions_1", 
+            "linear_equations_4"
+        ], 
+        "seconds_per_fast_problem": 14.0, 
+        "short_display_name": "", 
+        "summative": false, 
+        "v_position": 0
+    },
+    {
+        "covers": [], 
+        "display_name": "Range of a function", 
+        "h_position": 16, 
+        "ka_url": "http://khanacademy.org/exercises?exid=range_of_a_function", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "range_of_a_function", 
+        "prerequisites": [
+            "domain_of_a_function"
+        ], 
+        "seconds_per_fast_problem": 12.0, 
+        "short_display_name": "Range of fn", 
+        "summative": false, 
+        "v_position": 6
+    },
+    {
+        "covers": [], 
+        "display_name": "Age word problems", 
+        "h_position": 17, 
+        "ka_url": "http://khanacademy.org/exercises?exid=age_word_problems", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "age_word_problems", 
+        "prerequisites": [
+            "arithmetic_word_problems"
+        ], 
+        "seconds_per_fast_problem": 27.0, 
+        "short_display_name": "Age Word", 
+        "summative": false, 
+        "v_position": 0
+    },
+    {
+        "covers": [], 
+        "display_name": "Quadratic equation", 
+        "h_position": 17, 
+        "ka_url": "http://khanacademy.org/exercises?exid=quadratic_equation", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "quadratic_equation", 
+        "prerequisites": [
+            "solving_quadratics_by_factoring"
+        ], 
+        "seconds_per_fast_problem": 40.0, 
+        "short_display_name": "Quad. Eq.", 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [], 
+        "display_name": "Solving for the y-intercept", 
+        "h_position": 17, 
+        "ka_url": "http://khanacademy.org/exercises?exid=solving_for_the_y-intercept", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "solving_for_the_y-intercept", 
+        "prerequisites": [
+            "line_graph_intuition"
+        ], 
+        "seconds_per_fast_problem": 20.0, 
+        "short_display_name": "y-intercept", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Slope of a line", 
+        "h_position": 17, 
+        "ka_url": "http://khanacademy.org/exercises?exid=slope_of_a_line", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "slope_of_a_line", 
+        "prerequisites": [
+            "line_graph_intuition"
+        ], 
+        "seconds_per_fast_problem": 20.0, 
+        "short_display_name": "Line slope", 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [], 
+        "display_name": "Inverses of functions", 
+        "h_position": 17, 
+        "ka_url": "http://khanacademy.org/exercises?exid=inverses_of_functions", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "inverses_of_functions", 
+        "prerequisites": [
+            "domain_of_a_function", 
+            "range_of_a_function"
+        ], 
+        "seconds_per_fast_problem": 18.0, 
+        "short_display_name": "Inverse fx", 
+        "summative": false, 
+        "v_position": 6
+    },
+    {
+        "covers": [], 
+        "display_name": "Limits 1", 
+        "h_position": 17, 
+        "ka_url": "http://khanacademy.org/exercises?exid=limits_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "limits_1", 
+        "prerequisites": [
+            "functions_1"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 9.0, 
+        "short_display_name": "Limits 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [], 
+        "display_name": "Expressions with unknown variables", 
+        "h_position": 17, 
+        "ka_url": "http://khanacademy.org/exercises?exid=expressions_with_unknown_variables", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "expressions_with_unknown_variables", 
+        "prerequisites": [
+            "solving_for_a_variable"
+        ], 
+        "seconds_per_fast_problem": 9.0, 
+        "short_display_name": "Unkn Vars 1", 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [
+            "solving_for_the_y-intercept", 
+            "line_graph_intuition"
+        ], 
+        "display_name": "Equation of a line", 
+        "h_position": 18, 
+        "ka_url": "http://khanacademy.org/exercises?exid=equation_of_a_line", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "equation_of_a_line", 
+        "prerequisites": [
+            "solving_for_the_y-intercept", 
+            "slope_of_a_line"
+        ], 
+        "seconds_per_fast_problem": 51.0, 
+        "short_display_name": "Equat. Line", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Limits 2", 
+        "h_position": 18, 
+        "ka_url": "http://khanacademy.org/exercises?exid=limits_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "limits_2", 
+        "prerequisites": [
+            "limits_1"
+        ], 
+        "seconds_per_fast_problem": 11.0, 
+        "short_display_name": "Limits 2", 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [], 
+        "display_name": "Derivatives 1", 
+        "h_position": 19, 
+        "ka_url": "http://khanacademy.org/exercises?exid=derivatives_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "derivatives_1", 
+        "prerequisites": [
+            "limits_2"
+        ], 
+        "seconds_per_fast_problem": 15.0, 
+        "short_display_name": "Deriv. 1", 
+        "summative": false, 
+        "v_position": 2
+    },
+    {
+        "covers": [], 
+        "display_name": "Power rule", 
+        "h_position": 19, 
+        "ka_url": "http://khanacademy.org/exercises?exid=power_rule", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "power_rule", 
+        "prerequisites": [
+            "derivatives_1", 
+            "multiplying_expressions_1"
+        ], 
+        "seconds_per_fast_problem": 15.0, 
+        "short_display_name": "Power Rule", 
+        "summative": false, 
+        "v_position": 3
+    },
+    {
+        "covers": [], 
+        "display_name": "Line relationships", 
+        "h_position": 19, 
+        "ka_url": "http://khanacademy.org/exercises?exid=line_relationships", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "line_relationships", 
+        "prerequisites": [
+            "equation_of_a_line"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 11.0, 
+        "short_display_name": "Line Relat.", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [
+            "expressions_with_unknown_variables"
+        ], 
+        "display_name": "Expressions with unknown variables 2", 
+        "h_position": 19, 
+        "ka_url": "http://khanacademy.org/exercises?exid=expressions_with_unknown_variables_2", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "expressions_with_unknown_variables_2", 
+        "prerequisites": [
+            "expressions_with_unknown_variables"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 14.0, 
+        "short_display_name": "Unkn Vars 2", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 1
+    },
+    {
+        "covers": [], 
+        "display_name": "Special derivatives", 
+        "h_position": 20, 
+        "ka_url": "http://khanacademy.org/exercises?exid=special_derivatives", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "special_derivatives", 
+        "prerequisites": [
+            "power_rule", 
+            "graphs_of_sine_and_cosine", 
+            "logarithms_1"
+        ], 
+        "seconds_per_fast_problem": 8.0, 
+        "short_display_name": "Spec. Deriv", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [
+            "special_derivatives", 
+            "power_rule"
+        ], 
+        "display_name": "Chain rule 1", 
+        "h_position": 21, 
+        "ka_url": "http://khanacademy.org/exercises?exid=chain_rule_1", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "chain_rule_1", 
+        "prerequisites": [
+            "special_derivatives", 
+            "shifting_and_reflecting_functions"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 13.0, 
+        "short_display_name": "Chain Ru. 1", 
+        "suggested": false, 
+        "summative": false, 
+        "v_position": 5
+    },
+    {
+        "covers": [
+            "special_derivatives"
+        ], 
+        "display_name": "Product rule", 
+        "h_position": 21, 
+        "ka_url": "http://khanacademy.org/exercises?exid=product_rule", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "product_rule", 
+        "prerequisites": [
+            "special_derivatives"
+        ], 
+        "seconds_per_fast_problem": 18.0, 
+        "short_display_name": "Product Ru.", 
+        "summative": false, 
+        "v_position": 4
+    },
+    {
+        "covers": [], 
+        "display_name": "Quotient rule", 
+        "h_position": 21, 
+        "ka_url": "http://khanacademy.org/exercises?exid=quotient_rule", 
+        "kind": "Exercise", 
+        "live": true, 
+        "name": "quotient_rule", 
+        "prerequisites": [
+            "special_derivatives"
+        ], 
+        "proficient": false, 
+        "review": false, 
+        "seconds_per_fast_problem": 17.0, 
+        "short_display_name": "Quot Rule", 
+        "suggested": true, 
+        "summative": false, 
+        "v_position": 3
+    }
+]

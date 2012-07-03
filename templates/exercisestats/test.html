@@ -1,0 +1,110 @@
+{% extends "page_template.html" %}
+
+{% block pagesubmenu %}
+<span class="breadcrumbs_nav">
+    <a href="/exercisestats/test" class="selected">Exercise Statistics Test</a>
+</span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+
+<article id="exercise-stats" style="line-height: 1">
+    <div id="highchart-container" style="outline:1px solid red">
+        <div id="highchart-timehist" style="outline:1px solid red"></div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: "highchart-timehist",
+                    type: "spline"
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: "Distribution of Answer Times {{ total }}"
+                },
+                tooltip: {
+                    shared: true,
+                    formatter: function() {
+                        console.log(this.points);
+                        return '<b>' + Math.round(this.points[0].y) + '%</b> of correct answers took <b>between ' + this.x + ' and ' + ( this.x + 1 ) + '</b> seconds<br><br><b>' + Math.round(this.points[0].point.percent_cumulative) + '%</b> of correct answers took <b>between 0 and ' + ( this.x + 1 ) + '</b> seconds';
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        borderWidth: 0,
+                        shadow: false,
+                        pointPadding: 0,
+                        groupPadding: 0.1
+                    },
+                    spline: {
+                        shadow: false,
+                        marker: {
+                            enabled: false,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    radius: 5
+                                }
+                            }
+                        },
+                        states: {
+                            hover: {
+                                lineWidth: 2
+                                // enabled: false
+                            }
+                        }
+                    }
+                },
+                xAxis: {
+                    min: 0,
+                    title: {
+                        text: "Time (sec)"
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: "Frequency (%/sec)"
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [{
+                    name: "what",
+                    data: [
+                        {% for line in hist %}
+                            {
+                                x: {{ line.time }},
+                                y: {{ line.percent }},
+                                percent_cumulative: {{ line.percent_cumulative }}
+                            }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }, {
+                    name: "what2",
+                    data: [
+                        {% for line in hist %}
+                            {
+                                x: {{ line.time }},
+                                y: {{ line.percent_cumulative_tenth }},
+                                percent_cumulative: {{ line.percent_cumulative }}
+                            }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }]
+            });
+        });
+    </script>
+    
+</article>
+
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {{ js_css_packages.js_package("exercisestats") }}
+{% endblock bottompagescript %}
+

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script src="/gandalf/static/js/mustache.js"></script>
+        <script src="/gandalf/static/js/jQueryMustache.js"></script>
+        <script src="/gandalf/static/js/dashboard.js"></script>
+
+        <link rel="stylesheet" href="/gandalf/static/css/base.css" type="text/css" media="screen" />
+        <link rel="stylesheet" id="current-theme" href="/gandalf/static/css/style.css" type="text/css" media="screen" />
+
+        <title>Gandalf Dashboard</title>
+
+        <style>
+            body {
+                text-align: center;
+            }
+    
+            #main {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: left;
+                float: none;
+                width: 900px;
+            }
+    
+            #main div.bridge-container {
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            #main div.bridge-container-minimized:hover {
+                cursor: pointer;
+                background: #B8D1E2;
+            }
+    
+            .filter-whitelist {
+                background-color: #CFE0A3;
+            }
+
+            .filter-blacklist {
+                background-color: #E5A1A1;
+            }
+
+            .bridge-status {
+                float: right;
+                margin-top: 30px;
+            }
+
+            .bridge-delete-container {
+                float: right;
+            }
+
+            .filter-delete-container {
+                float: right;
+            }
+
+            #progress-bar {
+                margin-top: 40px;
+                text-align: center;
+            }
+
+            .filter-container {
+                padding: 5px; 
+                margin-bottom: 10px; 
+                border-radius: 5px 5px 5px 5px; 
+            }
+
+            .whitelist-buttons {
+                margin: 0px 5px;
+            }
+        </style>
+
+        <script id="tmpl-bridges" type="x-tmpl-mustache">
+            <div class="bridge-container  block">
+                <form id="bridge-new-form">
+                    <input type="text" name="bridge_name">
+                    <button type="submit" class="button" id="bridge-new-button" data-replace-with="Creating bridge...">New bridge</button>
+                </form>
+            </div>
+
+            {{^bridges}}
+            <div class="bridge-container block">
+                <h3>No bridges created yet.</h3>
+                <p>You should create some!</p>
+            </div>
+            {{/bridges}}
+
+            {{#bridges}}
+
+            <div class="bridge-container bridge-container-minimized block" data-bridge-name="{{key_name}}">
+                <div class="bridge-status">
+                    <strong>Status: </strong> {{status}}
+                </div>
+                <h2 class="bridge-title">
+                    {{key_name}}
+                </h2>
+                <div class="filters-container"></div>
+            </div>
+             
+            {{/bridges}}
+        </script>
+
+        <script id="tmpl-filters" type="x-tmpl-mustache">
+            <div class="bridge-delete-container">
+                <button type="submit" class="button bridge-delete-button" data-bridge-name="{{#bridge}}{{key_name}}{{/bridge}}" value="delete" data-replace-with="Deleting bridge...">Delete bridge</button>
+            </div>
+
+            <form class="filter-new-form">
+                <input type="hidden" name="bridge_name" value="{{#bridge}}{{key_name}}{{/bridge}}">
+                <input type="hidden" name="action" value="new">
+                <select name="filter_type">
+                    {{#filter_types}}
+                    <option value={{name}}>{{proper_name}}</option>
+                    {{/filter_types}}
+                </select>
+
+                <span class="whitelist-buttons">
+                    <label><input type="radio" name="whitelist" value="1" checked="checked"> Whitelist</label>
+                    <label><input type="radio" name="whitelist" value="0"> Blacklist</label>
+                </span>
+
+                <button type="submit" class="button filter-new-button" data-replace-with="Creating filter...">New filter</button>
+            </form>
+
+
+            <p>Users can cross this bridge if they match <strong>any</strong> of the whitelists, and <strong>none</strong> of the blacklists.</p>
+
+            {{^filters}}
+            <p><strong>No filters, this bridge currently lets no one through.</strong></p>
+            {{/filters}}
+
+            {{#filters}}
+
+            {{#whitelist_message}}
+            <h4>Whitelists:</h4>
+            {{/whitelist_message}}
+
+            {{#blacklist_message}}
+            <h4>Blacklists:</h4>
+            {{/blacklist_message}}
+
+            <div class="filter-container {{#whitelist}}filter-whitelist{{/whitelist}}{{^whitelist}}filter-blacklist{{/whitelist}}">
+
+                <strong>{{proper_name}}</strong>
+
+                <form class="filter-update-form">
+
+                    <input type="hidden" name="filter_key" value="{{key}}">
+                    <input type="hidden" name="action" value="save">
+
+                    <p>
+                        {{#whitelist}}Allowing {{/whitelist}}
+                        {{^whitelist}}Not allowing {{/whitelist}}
+                        <input type="text" name="percentage" value="{{percentage}}" size="4">% of users
+                        {{{html}}}
+                    </p>
+
+                    <div class="filter-delete-container">
+                        <button type="submit" class="button filter-delete-button" data-filter-key="{{key}}" data-bridge-name="{{#bridge}}{{key_name}}{{/bridge}}" data-replace-with="Deleting filter..." value="delete">Delete filter</button>
+                    </div>
+                    <div class="filter-save-container">
+                        <button type="submit" class="button filter-save-button" data-replace-with="Saving filter...">Save filter</button> 
+                    </div>
+                </form>
+            </div>
+
+            {{/filters}}
+
+        </script>
+
+    </head>
+    <body>
+
+        <div id="main">
+            <div id="header"><h1><a href="/gandalf">Gandalf Dashboard</a></h1></div>
+        </div>
+
+        <div id="progress-bar"><img src="/gandalf/static/images/ajax-loader.gif"/></div>
+
+    </body>
+</html>
+

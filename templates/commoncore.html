@@ -1,0 +1,53 @@
+{% extends "page_template.html" %}
+
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/admin94040">Dev Panel</a>
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+    
+   <div id="devpanel" style="padding: 9px 23px;">
+        <div>
+            <h2>Common Core</h2>
+
+            {% if token %}
+			    
+			    {% if cc_videos %}
+			    
+				<h4>The following videos were successfully mapped:</h4>
+			    <table id="CCTable" class="tablesorter"> 
+                <thead>
+                <tr>    
+                    <th>Common Core Standard</th>
+                    <th>Video Title</th>
+                </tr>    
+			    </thead>
+			    <tbody>
+			    
+    				{% for cc_video in cc_videos %}
+    			    <tr>
+    			        <td>{{cc_video['keyword']}}</td>
+    			        <td><a href="http://www.youtube.com/watch?v={{ cc_video['youtube_id']|escape }}" target="_blank">{{ cc_video['title']|escape }}</td>
+    			    </tr>
+  
+    				{% endfor %}
+    				
+			    </tbody>
+                </table>				
+				{% else %}
+				
+				<h4>All videos up to date!</h4>
+                
+                {% endif %}
+            {% else %}
+				
+                <a id="auth_link" href="{{auth_sub_url|escape}}">Log in to your YouTube account</a>
+
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock pagecontent %}
+

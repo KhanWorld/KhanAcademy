@@ -1,0 +1,11 @@
+<div id="{{ browser_id|escape }}" class="playlist_browser pulled" {% if hidden %}style="display:none;"{% endif %}>
+<div id="playlist-jump">
+<span class="playlist_browser_title desktop-only">Ga naar filmlijst:</span>
+<nav class="css-menu" id="page_main_nav">
+<ul data-role="listview" data-inset="true">
+    {{ templatetags.playlist_browser_structure(playlist_structure) }}
+</ul>
+</nav>
+</div>
+<div class="clear"></div>
+</div>

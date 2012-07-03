@@ -1,0 +1,15 @@
+<div id="module-progress">
+  {{#exercises}}
+  <div class="student-module-status exercise-progress-block exercise-color {{color}}"
+       id="exercise-{{name}}">
+	  <span class="exercise-display-name"><nobr>{{shortName}}</nobr></span>
+    <div class="hover-data" style="display: none;">
+      <div class=exercise-display-name>{{displayName}}</div>
+      <div class=exercise-status>Status: {{status}}</div>
+      <div class=exercise-progress>Progress: {{progress}}</div>
+      <div class=exercise-done>Problems attempted: {{totalDone}}</div>
+    </div>
+		<div style="clear:both"></div>
+  </div>
+  {{/exercises}}
+</div>

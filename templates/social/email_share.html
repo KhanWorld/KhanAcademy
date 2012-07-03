@@ -1,0 +1,3 @@
+{% if subject %}
+<a class="emailShare" href="mailto:?Subject={{subject}}&amp;Body={{body}}" {% if event_description %}onclick="_gaq.push(['_trackEvent', 'Click', '{{event_description}}-Email']);"{% endif %}>Email</a>
+{% endif %}

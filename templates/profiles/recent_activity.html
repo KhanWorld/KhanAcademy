@@ -1,0 +1,28 @@
+{% import 'macros/profiles.html' as profile_macros %}
+
+<div id="recent-activity">
+    <h2>Recent Activity</h2>
+    {% if list_recent_activity %}
+    <div id="activity-list">
+  		<ul style="width:100%">
+            {% for recent_activity in list_recent_activity %}
+			
+                {% if recent_activity.s_type == "Badge" %}
+                {{ profile_macros.recent_activity_entry_badge(user_data_student, recent_activity, view) }}
+                {% endif %}
+
+                {% if recent_activity.s_type == "Exercise" %}
+                {{ profile_macros.recent_activity_entry_exercise(user_data_student, recent_activity, view) }}
+                {% endif %}
+
+                {% if recent_activity.s_type == "Video" %}
+                {{ profile_macros.recent_activity_entry_video(user_data_student, recent_activity, view) }}
+                {% endif %}
+
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+        <br/>Recent <a href="/#browse">video</a>, <a href="/exercisedashboard">exercise</a>, and <a href="/badges/view">badge</a> activity will show up here.
+    {% endif %}
+</div>

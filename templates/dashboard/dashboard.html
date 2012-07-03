@@ -1,0 +1,14 @@
+{% extends "page_template_mini.html" %}
+
+{% import 'macros/dashboard.html' as dashboard %}
+
+{% block pagecontent %}
+    {% for graph in graphs %}
+        {{ dashboard.daily_graph(graph.kind_name, graph.title, graph.kind_name, graph.data) }}
+    {% endfor %}
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {{ js_css_packages.js_package("profile") }}
+{% endblock bottompagescript %}
+

@@ -1,0 +1,146 @@
+{% if is_graph_empty %}
+<div class="graph-notification">This chart doesn't have any focus to show. Go <a href="/#browse">watch some videos</a> and <a href="/exercisedashboard">do some exercises</a>!</div>
+{% endif %}
+
+<script>
+    var chart;
+    var star = $.browser.msie ? "*" : "★";
+    $(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'highchart'
+            },
+            plotOptions: {
+                pie: {
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: 'black',
+                        connectorColor: 'black',
+                        formatter: function() {
+                            if (!this.point.name) return false;
+                            return "<b>" + this.point.name + (this.point.proficient ? star : "") + "</b>";
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    if (this.point.fLegend) return false;
+                    return this.point.tooltip_title + "<br/> - " + this.point.time_spent + " total<br><br>" + this.point.tooltip_more;
+                }
+            },
+            series: [
+                {% if total_exercise_seconds %}
+                {
+                    type: 'pie',
+                    name: 'Exercises',
+                    cursor: '',
+                    size: '20%',
+                    innerSize: '13%',
+                    center: ['11%', '14%'],
+                    dataLabels: {
+                        connectorColor: 'silver', 
+                        connectorWidth: 2,
+                        color: '#898989'
+                    },
+                    data: [
+                            {
+                                name: 'Exercises',
+                                fLegend: true,
+                                y: 100,
+                                color: 'silver'
+                            }
+                    ]
+                },
+                {% endif %}
+                {% if total_playlist_seconds %}
+                {
+                    type: 'pie',
+                    name: 'Videos',
+                    cursor: '',
+                    size: '9.4%',
+                    innerSize: '3%',
+                    center: ['11%', '14%'],
+                    dataLabels: {
+                        connectorColor: 'silver', 
+                        connectorWidth: 2,
+                        color: '#898989'
+                    },
+                    data: [
+                            {
+                                name: '',
+                                fLegend: true,
+                                y: 25,
+                                visible: false,
+                                color: 'silver'
+                            },
+                            {
+                                name: 'Videos',
+                                fLegend: true,
+                                y: 75,
+                                color: 'silver'
+                            }
+                    ]
+                },
+                {% endif %}
+                {
+                    type: 'pie',
+                    cursor: '',
+                    name: 'Video Focus',
+                    {% if total_exercise_seconds %}
+                        size: '40%',
+                        innerSize: '10%',
+                        dataLabels: {enabled: false},
+                    {% else %}
+                        innerSize: '55%',
+                        size: '85%',
+                    {% endif %}
+                    data: [
+                        {% for key_playlist in dict_playlist_seconds %}
+                            {
+                                name: '{{ dict_playlist_seconds[key_playlist]["playlist_title"]|escapejs }}',
+                                y: {{ dict_playlist_seconds[key_playlist]["percentage"]|escapejs }},
+                                tooltip_title: '<b>{{ dict_playlist_seconds[key_playlist]["playlist_title"]|escapejs }}</b> (videos)',
+                                time_spent: '{{ dict_playlist_seconds[key_playlist]["time_spent"]|escapejs }}',
+                                tooltip_more: '{{ dict_playlist_seconds[key_playlist]["tooltip_more"]|escapejs }}'
+                                }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }{% if total_exercise_seconds %},
+                {
+                    type: 'pie',
+                    name: 'Exercise Focus',
+                    innerSize: '55%',
+                    size: '85%',
+                    point: {
+                        events: {
+                            click: function() {
+                                Profile.collapseAccordion();
+                                Profile.loadGraph('/profile/graph/exerciseproblems?student_email={{ student_email|escapejs }}&exercise_name=' + this.exid);
+                            }
+                        }
+                    },
+                    data: [
+                        {% for key_exercise in dict_exercise_seconds %}
+                            {
+                                name: '{{ dict_exercise_seconds[key_exercise]["exercise_title"]|escapejs }}',
+                                exid: '{{ dict_exercise_seconds[key_exercise]["exid"]|escapejs }}',
+                                y: {{ dict_exercise_seconds[key_exercise]["percentage"]|escapejs }},
+                                proficient: {% if dict_exercise_seconds[key_exercise]["proficient"] %}true{% else %}false{% endif %},
+                                tooltip_title: '<b>{{ dict_exercise_seconds[key_exercise]["exercise_title"]|escapejs }}</b> (exercise{% if dict_exercise_seconds[key_exercise]["proficient"] %}, <b>' + star + 'Proficient</b>{% endif %})',
+                                time_spent: '{{ dict_exercise_seconds[key_exercise]["time_spent"]|escapejs }}',
+                                tooltip_more: '{{ dict_exercise_seconds[key_exercise]["s_problems"]|escapejs }}<br/>{{ dict_exercise_seconds[key_exercise]["s_correct_problems"]|escapejs }}<br/>'
+                            }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }
+                {% endif %}
+            ]
+        });
+    });
+</script>
+
+<div id="highchart-container" class="{% if is_graph_empty %}empty-chart{% endif %}">
+    <div id="highchart"></div>
+</div>

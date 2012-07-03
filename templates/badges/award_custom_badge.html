@@ -1,0 +1,64 @@
+{% extends "page_template.html" %}
+
+{% block pagesubmenu %}
+<span class="breadcrumbs_nav">
+    <a href="/badges/custom/create">Create custom badge</a>
+    <a href="/badges/custom/award" class="selected">Award custom badge</a>
+</span>
+{% endblock pagesubmenu %}
+
+{% block pagecss %}
+<style>
+    #form-badges td { padding-right: 9px; vertical-align: top; }
+</style>
+{% endblock pagecss %}
+
+{% block pagecontent %}
+    <div style="padding: 9px 23px;">
+
+        {% if custom_badge_awarded %}
+            <div style="font-weight:bold;">{{ custom_badge_awarded.description|escape }} awarded to:<br/>
+                {% for email in emails_awarded %}
+                    {{ email|escape }}<br/>
+                {% endfor %}
+            </div><hr/>
+        {% endif %}
+
+        <div>
+            <form id="form-badges" method="POST" action="/badges/custom/award">
+
+                <table>
+
+                    <tr>
+                        <td style="font-weight:bold;">Custom Badge</td>
+                        <td style="padding-bottom:9px;">
+                            <select name="name" style="width:200px;">
+                                <option value="-1"> - Choose a badge - </option>
+                                {% for custom_badge in custom_badges %}
+                                    <option value="{{ custom_badge.name|escape }}">{{ custom_badge.description|escape }}</option>
+                                {% endfor %}
+                            </select><br/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Users</td>
+                        <td style="padding-bottom:9px;">
+                            <textarea name="emails" rows="5" cols="40"></textarea><br/>
+                            <em>
+                                Specify all student ids to be awarded, separated by newlines.
+                            </em>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <br/>
+                <input class="button" type="submit" value="Create badge"/>
+
+            </form>
+        </div>
+    </div>
+{% endblock pagecontent %}
+
+

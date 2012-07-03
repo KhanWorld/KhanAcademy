@@ -1,0 +1,181 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/analytics.html' as analytics %}
+{% import 'macros/coach.html' as coach %}
+
+{% block meta_page_title %}About | {% endblock meta_page_title %}
+{% block pagescript %}
+    <style>
+        #credits dt {
+            font-weight: bold;
+            float: left;
+            margin-right: 1ex;
+        }
+        #credits dd:before {
+            content: "- ";
+        }
+    </style>
+	<style>
+    #faq {
+        padding-top: 18px;
+    }
+    #faq-nav {
+        background: #eee;
+        padding: 9px;
+        max-width: 31%;
+        min-width: 31%;
+        margin-right: 3%;
+        margin-bottom: 90px;
+    }
+    #faq-nav ul {
+        list-style: outside decimal;
+        margin-left: 18px;
+    }
+    #faq-nav li {
+        margin-bottom: 5px;
+    }
+    #faq-nav li a {
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+    }
+    #faq-nav li a:hover {
+        text-decoration: underline;
+    }
+	</style>
+	<script type="text/javascript" src="/javascript/homepage-package/waypoints.min.js?{{App.version}}"></script>
+{% endblock pagescript %}
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/nl-content/about.html" id="the-site">De Site</a>
+        <!-- class="selected"> Selected -->
+        <a href="/nl-content/gettingstarted.html" id="getting-started">Aan de slag!</a>
+        <a href="/nl-content/faq.html" id="faq" class="selected">FAQ</a>
+        <a href="http://blog.khanacademie.nl/" id="blog">Blog</a>
+		<a href="/nl-content/contact.html" id="faq">Contact</a>
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+<article id="about-us">
+{% block aboutcontent %}
+<div id="faq">
+    
+    <div id="faq-nav-wrapper">
+        <div id="faq-nav" class="col1 forty-sixty vertical-shadow visited-no-recolor">
+            <h2 class="pulls">Frequently Asked Questions</h2>
+            <p id="wp1" style="margin-top: 9px;">
+                <em></em>
+            </p>
+            <ul>
+                <li><a href="#why">Wat is de Khan Academie?</a></li>
+                <li><a href="#wat">Wat maakt de Khan Academie totaal anders dan alle andere onderwijsmogelijkheden?</a></li>
+                <li><a href="#lesprogramma">Wat voor soort lesprogramma volg je?</a></li>
+                <!--<li><a href="#werkt">Hoe weet je dat de de Khan Academie werkt?</a></li>
+                <li><a href="#leraar">Ik ben een leraar die gebruik wil gaan maken van de Khan Academie in mijn klas of een ouder die zijn/haar kind wil inschrijven. Hoe pak ik dit aan?</a></li>
+                <li><a href="#youtube">Mijn YouTube toegang is om een bepaalde reden geblokkeerd of ik heb geen toegang tot internet op de plek waar ik ben. Is er een andre manier om bij de lesstof te komen?</a></li>
+                <li><a href="#videos">Maak je alle video's zelf?</a></li>
+                <li><a href="#vertalen">Kan ik de video's in een andere taal omzetten? Hoe pak ik dat aan?</a></li>
+                <li><a href="#termijn">Wat is het lange termijn doel van de Khan Academy?</a></li>-->
+            </ul>
+        </div>
+        <div id="nav-placeholder" class="col1 forty-sixty" style="height: 1px; padding: 0 9px; max-width: 31%; min-width: 31%; margin-right: 3%;">
+            &nbsp;
+        </div>
+    </div>
+    <div class="col2 forty-sixty" style="text-align: justify; padding-top: 9px;">
+    
+    <a name="why"><h2>Wat is de Khan Academie?</h2></a>
+    <p>
+        De Khan Academie is de Nederlandse versie van de Khan Academy. 
+		Aangezien we heel enthousiast zijn over de toegevoegde waarde van de oorspronkelijke Amerikaanse versie van de Khan Academy, 
+		en we er van overtuigd zijn dat dit concept ook toepasbaar is op de Nederlandse situatie, hebben we een eigen versie ge&iuml;nstalleerd en zijn we de site gaan vertalen. 
+		Details over de techniek vindt u hier.
+    </p>
+	<a name="wat"><h2>Wat maakt de Khan Academie totaal anders dan alle andere onderwijsmogelijkheden?</h2></a>
+    <p>
+        Er zijn een aantal opvallende verschillen. Met meer dan 2600 video's is het verreweg de meest uitgebreide collectie onderwijsmateriaal die op het internet beschikbaar is. De Khan Academy geeft studenten de mogelijkheid vrijwel alle leemtes in hun kennis op te vullen. Het materiaal is beschikbaar in hapklare brokken van 10 tot 20 minuten en speciaal ontwikkeld om te bekijken op een computer. Daarmee is het wezenlijk anders dan video-opnames van gewone lessen. Het relaxte taalgebruik is het tegenovergestelde van wat mensen normaal verwachten van wiskunde en science lessen. Het zijn echter juist de meest onopvallende verschillen die de filmpjes zo bijzonder maken. 
+    </p>		
+	<a name="lesprogramma"><h2>Wat voor soort lesprogramma volg je?</h2></a>
+    <p>
+		Eigenlijk volg ik geen lesprogramma. Ik ben ervan overtuigd dat degene die de kern van de lesstof goed begrijpt met succes onderwijs kan volgen zonder dat dat is ingebed in een lesprogramma. Om nog wat verder te gaan: ik geloof dat wie de vreugde ervaart van iets echt goed te begrijpen nooit meer tevreden zal zijn met het oppervlakkige leren waaraan de meeste studenten gewend zijn geraakt. Voor de Khan Academy is niets zo belangrijk als echt begrip te kweken.
+		Dat gezegd hebbende, in landelijke examens komt allerlei stof aan bod waar studenten kennis van moeten hebben om de examens met succes te kunnen afleggen. Daarom probeer ik alle mogelijke onderwerpen aan bod te laten komen.
+		</br></br>
+		Ik geef les zoals ik zelf les had willen krijgen. De lessen komen van mij, een mens van vlees en bloed, gefascineerd door de wereld om mij heen. De lesstof wordt uitgelegd zoals ik het zelf begrijp niet zoals ze in een stoffig lesboek staan.
+		Wie mijn video's bekijkt ziet dat er met veel liefde  aan gewerkt is door  een beetje aparte, eigenwijze man die een passie heeft voor leren en onderwijzen. Ik denk niet dat er &eacute;&eacute;n bedrijf of overheidsinstantie is die dit voor elkaar krijgt, hoeveel geld ze er ook tegenaan gooien.
+		</br></br>
+		In de jaren dat ik zelf onderwijs kreeg heb ik me vaak dood ge&euml;rgerd aan de manier waarop informatie werd overgebracht in lesboeken en colleges. Er waren verbanden aan te brengen tussen bepaalde onderdelen van het lesprogramma waar totaal aan voorbijgegaan werd ondanks dat het de lesstof toegankelijker gemaakt zou hebben, en vooral ook leuker en beter te onthouden.
+		</br></br>
+		k had het gevoel dat fascinerende en prachtige concepten min of meer expres gepropt werden in vele bladzijden van slaapverwekkende teksten en eentonige, van papier opgelezen lessen. Ik zag hoe overigens slimme leeftijdgenoten onderdelen en formules van examenstof uit hun hoofd zaten te leren zonder enig idee waar het eigenlijk over ging en de lesstof dus binnen een paar weken helemaal kwijt waren. Met deze video's laat ik zien hoe die concepten eigenlijk uitgelegd hadden moeten worden, zonder daarbij concessies te doen aan de kern van de stof of de volledigheid.
+	</p>	
+	<!--<a name="werkt"><h2>Hoe weet je dat de de Khan Academie werkt?</h2></a>
+    <p>
+		<img class="rounded-background" style="float:right;margin-left:20px;margin-bottom:10px;width:350px;" src="/images/attention.GIF">
+		<img class="rounded-background" style="float:right;clear:both;margin-left:20px;;width:350px;" src="/images/averagechart.GIF">
+		Mijn achtergrond is wiskunde, informatica, en het managen van investeringen, dus je kunt je voorstellen dat er niemand meer geobsedeerd is door getallen en analyses dan ik. De grafiek rechts wordt door YouTube  verzorgd. Hij kan worden gebruikt om vast te stellen of en/of wanneer de aandacht verslapt tijdens het bekijken van een video. Ik kan dan terugkijken en proberen te achterhalen wat er op dat punt in de video is gebeurd en proberen er iets aan te doen.
+		</br></br>De volgende grafiek toont de gemiddelde vooruitgang (zwarte lijn)  van een groep leerlingen die 6 weken lang met Khan software aan de slag zijn. De horizontale as geeft het aantal dagen aan dat ze er aan werken en de verticale as het aantal modules dat ze af hebben. De groene lijnen geven de standaard afwijking aan naar boven en naar beneden. Deze grafiek is een voorbeeld van het niveau van de gegevens die wij boven water krijgen en benadrukt het belang van maatwerk, leren in je eigen tempo en een actueel volg- en beoordelingssysteem.
+		</br></br>De paarse lijn laat een student zien die -bij gebruik van traditionele beoordelingsinstrumenten- als langzaam zou zijn beoordeeld omdat ze duidelijk onder het gemiddelde van de klas presteerde nadat ze een paar dagen achter de computer had gezeten. In werkelijkheid had ze gewoon wat meer tijd nodig om om te leren gaan met negatieve getallen. Toen ze genoeg tijd had gekregen om de stof goed onder de knie te krijgen, ging ze er als een speer doorheen en eindigde uiteindelijk bij de allerbeste studenten van haar groep.
+		</br></br>Nog meer dan deze gegevens zijn het de grappige getuigenissen van gebruikers die mij ervan hebben overtuigd dat ik mijn baan moest opgeven om mij helemaal aan de video's te gaan wijden. Ik ontving honderden brieven en commentaren per week. Veel ervan zijn simpele blijken van waardering, maar sommige zijn echt heel inspirerend. Hieronder staat een brief die ik ontving van een gebruiker van YouTube in september 2009.
+		<blockquote>Mr. Khan, 
+		</br></br>
+		No teacher has ever done me any good--this may sound harsh but I mean it quite literally. I was force fed medication to keep me from talking and chastised for not speaking out when called on. Where I am from blacks are not welcomed with open arms into schools--my mother and her sisters had to go to a small shack two hours from home when they went to school. About five years ago my family collected enough money to move from where i was born, so that I could have a chance at having an education and living a real life. But without a real mastery of elementary math I was slow to progress. 
+		</br></br>
+		I am now in college and learning more than I ever have in my life. But an inadequate math background has been holding me back. I found the Kahn Academy in June of 2009, right after I completed Math 141 ( a college algebra course). I have spent the entire summer on your youtube page. And I just wanted to thank you for everything you are doing. You are a Godsend. Last week I tested for a math placement exam and I am now in Honors Math 200. No question was answered incorrectly. My placement test holder was so impressed by the breadth of my knowledge of math that he said I should be in Linear algebra. </br></br>
+		Mr. Khan, I can say without any doubt that you have changed my life and the lives of everyone in my family. </br></br>
+		I wish you and the Khan Academy the best of luck.</blockquote>
+	</p>	
+	<a name="leraar"><h2>Ik ben een leraar die gebruik wil gaan maken van de Khan Academie in mijn klas of een ouder die zijn/haar kind wil inschrijven. Hoe pak ik dit aan?</h2></a>
+    <p>
+		Raadpleeg de <a href="/nl-content/gettingstarted.html#teachers">Aan de slag!</a> pagina.
+	</p>
+	<a name="youtube"><h2>Mijn YouTube toegang is om een bepaalde reden geblokkeerd of ik heb geen toegang tot internet op de plek waar ik ben. Is er een andre manier om bij de lesstof te komen?</h2></a>
+	<p>
+		Alle video's zijn opgeslagen in archive.org. en als je YouTube toegang is geblokkeerd zal je automatisch toegang worden verschaft tot de kopie&euml;n. Het <a href="http://www.k16bridge.org/">lewis Centrum voor onderwijsonderzoek</a>, dat gelieerd is aan NASA zorgt ervoor dat de content overal wordt verspreid. Het programma <a href="http://www.worldpossible.org/">world possible</a> zorgt ervoor dat de content wordt verspreid in landelijke gebieden of achterstandsgebieden waar niet of nauwelijks toegang is tot internet.
+	</p>
+	<a name="videos"><h2>Maak je alle video's zelf?</h2></a>
+	<p>
+		Hoewel we in principe voor deze site gebruik maken van vertalingen van de filmpjes die door Samuel Khan zijn gemaakt, zullen we ook zelf filmpjes gaan producrene. We proberen dit zoveel mogelijk te doen in de stijl van Khan.
+	</p>
+	<a name="vertalen"><h2>Kan ik de video's in een andere taal omzetten? Hoe pak ik dat aan?</h2></a>
+	<p>
+		Ja, dat kan zeer zeker! Het is feitelijk zo dat het vertaalproject van de Khan Academy op zoek is naar enthousiaste individuen zoals jijzelf die de lessen kunnen vertalen in zoveel mogelijk talen die op de wereld worden gesproken. Als jij de garantie kunt geven dat je eenduidig bent in je stijl en op alle onderdelen kwaliteit kunt leveren, zullen we je vertalingen zelfs op de Khan Academy website zetten! Bezoek het <a href="http://blog.khanacademie.nl">vertaalproject</a> voor ondersteuning en nieuwtjes.
+	</p>
+	<a name="termijn"><h2>Wat is het lange termijn doel van de Khan Academy?</h2></a>
+	<p>
+		Ik voorzie dat de Khan Academy de eerste gratis toegankelijke digitale school is van top niveau. Een wereldschool waar iedereen alles gratis kan leren.
+		De video's zijn onderdeel van mijn ideaal. We bouwen de adaptieve software zo uit dat zij alle onderwerpen van de video's dekken. Ook zijn we van plan simulatie spellen te ontwikkelen om ervoor te zorgen dat  de lesstof wordt toegepast zodat hij nog beter beklijft.
+	</p>-->
+	</div>
+    <div class="clear"></div>
+	    <div style="text-align:left; padding-bottom: 18px;"><p>De Nederlandse Khan Academie bestaat nog maar kort, dus we hebben nog niet veel vragen ontvangen :-)</br>
+		Heb je een vraag die hier niet wordt beantwoord? <a href="https://www.google.com/moderator/#15/e=1d97ce&t=1d97ce.40" target="_blank">Stel 'm hier!</a></br></br>
+		Heb je een vraag over een oefening? Ga dan naar die oefening en kies daar linksonder voor "Probleem melden". Op die manier weten wij meteen over welke oefening je de vraag stelt.</p></div>
+    <p>&nbsp;</p>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {	
+        // Waypoint behavior not supported in IE7-
+        if ($.browser.msie && parseInt($.browser.version) < 8) return;
+
+        $.waypoints.settings.scrollThrottle = 50;
+
+        $("#wp1").waypoint(function(event, direction) {
+
+            var jel = $("#faq-nav");
+            var jelPlaceholder = $("#nav-placeholder");
+            
+            if (direction == "down") {
+                jel.css('position', 'fixed').css('top', '-80px').css('max-width', jelPlaceholder.width()).css('min-width', jelPlaceholder.width());
+            }
+            else {
+                jel.css('position', 'static').css('max-width', '31%').css('min-width', '31%');
+            }
+        });
+    });
+</script>
+{% endblock aboutcontent %}
+</article>
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {{ analytics.crazyegg_tracker(False) }}
+{% endblock bottompagescript %}

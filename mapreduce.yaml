@@ -1,0 +1,56 @@
+mapreduce:
+- name: BackfillCheckUserProperties
+  mapper:
+    input_reader: mapreduce.input_readers.DatastoreInputReader
+    handler:  backfill.check_user_properties
+    params:
+    - name: entity_kind
+      default: models.UserData
+    - name: shard_count
+      default: 64
+    - name: queue_name
+      default: backfill-mapreduce-queue
+    - name: processing_rate
+      default: 350
+
+- name: BackfillCacheUserNickname
+  mapper:
+    input_reader: mapreduce.input_readers.DatastoreInputReader
+    handler:  backfill.cache_user_nickname
+    params:
+    - name: entity_kind
+      default: models.UserData
+    - name: shard_count
+      default: 64
+    - name: queue_name
+      default: backfill-mapreduce-queue
+    - name: processing_rate
+      default: 350
+
+- name: BackfillUserExerciseProgress
+  mapper:
+    input_reader: mapreduce.input_readers.DatastoreInputReader
+    handler: backfill.update_user_exercise_progress
+    params:
+    - name: entity_kind
+      default: models.UserExercise
+    - name: shard_count
+      default: 64
+    - name: queue_name
+      default: backfill-mapreduce-queue
+    - name: processing_rate
+      default: 350
+
+- name: BackfillUserDataHasCurrentGoal
+  mapper:
+    input_reader: mapreduce.input_readers.DatastoreInputReader
+    handler: backfill.fix_has_current_goal
+    params:
+    - name: entity_kind
+      default: models.Goal
+    - name: shard_count
+      default: 64
+    - name: queue_name
+      default: backfill-mapreduce-queue
+    - name: processing_rate
+      default: 350

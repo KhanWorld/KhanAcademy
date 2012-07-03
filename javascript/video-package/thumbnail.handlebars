@@ -1,0 +1,14 @@
+<div class="thumbnail">
+    <a class="related-video" href="{{href}}" title="{{video.title}}">
+        {{#with video}}
+        <div class="thumb" style="background-image: url(http://img.youtube.com/vi/{{youtube_id}}/hqdefault.jpg); ">
+            <div class="thumbnail_label">
+                <div class="thumbnail_desc">
+                    <span class="vid-progress v{{id}}">{{title}}</span>
+                </div>
+                <div class="thumbnail_teaser">{{description}}</div>
+            </div>
+        </div>
+        {{/with}}
+    </a>
+</div>

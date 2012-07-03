@@ -1,0 +1,167 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/youtube.html' as youtube %}
+
+{% block meta_page_title %}{{ exercise.display_name|escape }} | {% endblock meta_page_title %}
+{% block meta_description %}Practice {{ exercise.display_name|escape }} with Khan Academy's free online exercises.{% endblock %}
+
+{% block pagecss %}
+    {{ js_css_packages.css_package("exercises") }}
+    {% if renderable %}
+        {{ js_css_packages.css_package("video") }}
+    {% endif %}
+{% endblock pagecss %}
+
+{% block pagescript %}
+
+    {% if renderable %}
+
+    <style>#page_sub_nav {display: none;}</style>
+
+    <script>
+	  var userEmail = "{{ user_data.email }}";
+      var userExercise = {{ user_exercise_json }};
+      var userExerciseName = '{{ exercise.name }}';
+      var initialReviewsLeftCount = {{ reviews_left_count }};
+    </script>
+
+    {{ js_css_packages.js_package("exercises") }}
+
+    <script>{{ exercise_inline_script }}</script>
+    <style id="exercise-inline-style">{{exercise_inline_style}}</style>
+
+    <script>
+        {% if alternate_hints_treatment == "more_visible" %}
+
+            jQuery( Khan ).bind( "checkAnswer", function(event, pass) {
+                // change the color of the hint button
+                jQuery( "#hint" ).switchClass( "orange", "green" );
+
+                jQuery(".hint-box .info-box-sub-description").text("Now that you've already submitted an answer, viewing hints for this problem will not hurt your progress.");
+                if( pass === false ) {
+                    jQuery(".hint-box .info-box-sub-description").effect("pulsate", { times:3 }, 2000);
+                    jQuery(".hint-box").effect("shake", { times:2 }, 150);
+                }
+            });
+
+            jQuery( Khan ).bind( "newProblem", function() {
+                jQuery( "#hint" ).switchClass( "green", "orange" )
+                jQuery(".hint-box .info-box-sub-description").html("This <strong>will</strong> set back your progress!");
+            });
+
+        {% elif alternate_hints_treatment == "solution_button" %}
+
+            jQuery( Khan ).bind( "checkAnswer", function() {
+                if ( !jQuery( "#hint" ).parent().is( '#show-solution-button-container' ) ) {
+                    // Transform the hint button into the "Show Solution" button
+                    // Note: IE craps out if 0 is passed as duration
+                    jQuery( "#hint" ).switchClass("orange", "green", 1 /* duration */, function() {
+                        jQuery( this ).data( "buttonText", Khan.showSolutionButtonText )
+                            .val( Khan.showSolutionButtonText )
+                            .hide()
+                            .appendTo( "#show-solution-button-container" )
+                            .fadeIn('slow');
+                    });
+                }
+
+                jQuery( ".hint-box" ).hide();
+            });
+
+            jQuery( Khan ).bind( "newProblem", function() {
+                // Restore the hint button
+                jQuery( "#hint" )
+                    .switchClass( "green", "orange" )
+                    .val( "I'd like a hint" )
+                    .data( "buttonText", false )
+                    .stop( true /* clear */, true /* jump */ )
+                    .appendTo( "#get-hint-button-container" );
+
+                jQuery( ".hint-box" ).show();
+            });
+
+        {% elif alternate_hints_treatment == "full_solution" %}
+
+            jQuery( Khan ).bind( "checkAnswer", function(e, pass) {
+                if ( pass === true ) return;
+
+                // Show all hints if incorrectly answered
+                while ( !jQuery( "#hint" ).is( ":disabled" ) ) {
+                    jQuery( "#hint" ).click();
+                }
+
+                jQuery( ".hint-box" ).hide();
+            });
+
+            jQuery( Khan ).bind( "newProblem", function() {
+                jQuery( ".hint-box" ).show();
+            });
+
+        {% endif %}
+    </script>
+
+    {% else %}
+
+    <style>
+        #cannot-render { padding:0 9px; margin:0 1px; background: white; }
+        #cannot-render p { margin-top: 0; }
+    </style>
+
+    {% endif %}
+
+{% endblock pagescript %}
+
+{% block pagecontent %}
+<div id="container" class="single-exercise visited-no-recolor" style="overflow: hidden">
+    {% if renderable %}
+
+    <!-- Wrap problem definition in <pre> to protect newlines for IE. -->
+    <pre style="display:none;">{{ exercise_body_html }}</pre>
+    {{ exercise_template_html }}
+
+    {% else %}
+
+        {% if browser_disabled %}
+
+        <div id='browserwarning'>
+            {% if is_webos %}
+
+            <p>
+                We're sorry. Your device is not supported for Khan Academy's practice exercises.
+            </p>
+
+            {% else %}
+
+            <p>
+                You need to upgrade your browser to use Khan Academy's practice exercises.
+            </p>
+            <p>
+                We suggest using
+                <a href="http://www.google.com/chrome/">Chrome</a>,
+                <a href="http://www.mozilla.com/">Firefox</a>,
+                <a href="http://www.apple.com/safari/">Safari</a>, or
+                <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home">a recent version of Internet Explorer</a>.
+            </p>
+
+            {% endif %}
+        </div>
+
+        {% else %}
+
+        <div id="cannot-render">
+            <p>
+                This specific problem from the past was created with a very old version of Khan Academy, and we're unable to show it to you. <strong>No progress has been lost.</strong> This inconvenience is restricted to very old problems, and it will not affect any current or future work.
+            </p>
+            <p>
+                If you believe this is a mistake, please don't hesitate to <a href="/reportissue?type=Defect">let us know</a>.
+            <p/>
+        </div>
+
+        {% endif %}
+
+    {% endif %}
+</div>
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+{{ js_css_packages.js_package("video") }}
+{% endblock bottompagescript %}

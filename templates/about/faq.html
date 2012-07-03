@@ -1,0 +1,343 @@
+{% extends "about/about_template.html" %}
+{% block pagescript %}
+<style>
+    #faq {
+        padding-top: 18px;
+    }
+    #faq-nav {
+        background: #eee;
+        padding: 9px;
+        max-width: 31%;
+        min-width: 31%;
+        margin-right: 3%;
+        margin-bottom: 90px;
+    }
+    #faq-nav ul {
+        list-style: outside decimal;
+        margin-left: 18px;
+    }
+    #faq-nav li {
+        margin-bottom: 5px;
+    }
+    #faq-nav li a {
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+    }
+    #faq-nav li a:hover {
+        text-decoration: underline;
+    }
+</style>
+<script type="text/javascript" src="/javascript/homepage-package/waypoints.min.js?{{App.version}}"></script>
+{% endblock %}
+{% block aboutcontent %}
+
+<div id="faq">
+    
+    <div id="faq-nav-wrapper">
+        <div id="faq-nav" class="col1 forty-sixty vertical-shadow visited-no-recolor">
+            <h2 class="pulls">Frequently Asked Questions</h2>
+            <p id="wp1" style="margin-top: 9px;">
+                <em>Sal answers a few commonly asked questions about the Khan Academy...</em>
+            </p>
+            <ul>
+                <li><a href="#why">Why are you doing this project?</a></li>
+                <li><a href="#what">What do you think makes the Khan Academy different than all of the other educational resources out there?</a></li>
+                <li><a href="#curricula">What curricula are you following?</a></li>
+                <li><a href="#effective">How do you know that the Khan Academy is effective?</a></li>
+                <li><a href="#teachers">I'm a teacher trying to set up Khan Academy in my classroom or a parent trying to sign up my child. How do I start using this with my student(s)?</a></li>
+                <li><a href="#started">How did you get started?</a></li>
+                <li><a href="#full-time">How did you have the time to do this while working full-time?</a></li>
+                <li><a href="#access-content">Is there any way to access the content besides YouTube?</a></li>
+                <li><a href="#funding">How are you funding/making money off of this?</a></li>
+                <li><a href="#business">Are you interested in turning this into a business? Maybe with some VC funding?</a></li>
+                <li><a href="#videos">Did you do all of the videos?</a></li>
+                <li><a href="#dub">Can I dub your videos in another language?</a></li>
+                <li><a href="#topics">What topics do you plan to cover?</a></li>
+                <li><a href="#long-term">What is the long-term goal for the Khan Academy?</a></li>
+                <li><a href="#equipment">What equipment do you use to make your videos?</a></li>
+                <li><a href="#where-from">Where are you from? What ethnicity/religion are you?</a></li>
+                <li><a href="#help">How can I/you help?</a></li>
+            </ul>
+        </div>
+        <div id="nav-placeholder" class="col1 forty-sixty" style="height: 1px; padding: 0 9px; max-width: 31%; min-width: 31%; margin-right: 3%;">
+            &nbsp;
+        </div>
+    </div>
+    <div class="col2 forty-sixty" style="text-align: justify; padding-top: 9px;">
+    
+    <a name="why"><h2>Why are you doing this project?</h2></a>
+    <p>
+        I (Sal) can't imagine a better use of my (or anyone's) time.
+    </p>
+    <p>
+        With just a computer and a pen-tablet-mouse, one can educate the world!  Even better,
+        the content never goes old.  My (or your) great-great-great grandchildren could
+        learn from the very same videos!
+    </p>
+
+    <a name="what"><h2>What do you think makes the Khan Academy different than all of the other educational resources out there?</h2></a>
+    <img class="rounded-background" src="/images/sal_faq.png" style="float:right;height:228px;width:341px;margin-left:20px;"/>
+    <p>
+    There are some obvious distinctions.  With over {{ approx_vid_count|escape }} videos, it is easily the most exhaustive collection of instruction on the
+        internet allowing learners to know that they can fill in almost any of their "gaps" with the content on this site.  The content
+        is made in digestible 10-20 minute chunks especially purposed for viewing on the computer as opposed to being a longer video
+        of a conventional "physical" lecture.  The conversational style of the videos is the tonal antithesis of what people traditionally
+        associate with math and science instruction. The less obvious distinctions are, however, what make the site hard to reproduce.
+    </p>
+
+    <p>
+        I teach the way that I wish I was taught.
+        The lectures are coming from me, an actual human being who is fascinated by
+        the world around him. The concepts are conveyed as they are understood by me, not as they are written in a textbook developed
+        by an educational bureaucracy.  Viewers know that it is the labor of love of one somewhat quirky and determined man who has
+        a passion
+        for learning and teaching.
+        I don't think any corporate or governmental effort--regardless of how much money is thrown at the problem--can reproduce this.
+    </p>
+
+    <p>
+        A lot of my own educational experience was spent frustrated with how information was conveyed in textbooks and lectures.
+        There would
+        be connections in the subject matter that standard curricula would ignore despite the fact that they make the content easier
+        to understand, enjoy, and RETAIN.  I felt like fascinating and INTUITIVE concepts were almost intentionally being butchered into
+        pages and pages of sleep-inducing text and monotonic, scripted lectures.  I saw otherwise intelligent peers memorizing
+        steps and formulas for the next exam without any sense of the intuition or big picture,
+        only to forget everything within a matter of weeks.
+        These videos are my expression of how the concepts
+        should have been expressed in the first place, all while not compromising rigor or comprehensiveness.
+    </p>
+
+    <a name="curricula"><h2>What curricula are you following?</h2></a>
+    <p>
+        The simple answer is none.  I believe that someone who truly understands the core concepts will thrive
+        academically regardless of the curricular context.  To take it a step further, I believe that someone who
+        experiences the joy and satisfaction of true understanding will never again be satisfied with the superficial
+        type of learning that
+        most students have grown accustomed to.  The Khan Academy is about placing deep understanding above anything else.
+    </p>
+    <p>
+        With that said, there are concepts covered on national examinations that any student needs to be exposed to in order to
+        be competitive.  That is why I try to cover all topics that would appear on A.P. tests, SATs, and other
+        standardized tests.  Taking it a step further, there are several hundred videos devoted to SAT, GMAT and other standardized
+        test problems.  I also believe that, because of the granular nature of the 10 minute videos,  the content
+        can be mapped to almost any state's or nation's standards.
+    </p>
+
+    <a name="effective"><h2>How do you know that the Khan Academy is effective?</h2></a>
+    <p>
+        <img class="rounded-background" style="float:right;margin-left:20px;margin-bottom:10px;width:350px;" src="/images/attention.GIF">
+        <img class="rounded-background" style="float:right;clear:both;margin-left:20px;;width:350px;" src="/images/averagechart.GIF">
+        My background is in math, computer science, and investment management, so I think you can
+        imagine that no one is more obsessed with data and analytics than me.  The chart to the right is provided by YouTube.  It can be
+        used to determine if and/or when viewers' attention falls off at a certain point of a video.  I can then go back and try to identify
+        (and possibly fix) what happened at that point in the video.
+    </p>
+    <p>
+        The next chart 
+        shows the average (black line) progress of a cohort of 30 rising 8th graders on the Khan Academy software over a 6-week period.
+        The horizontal axis is "days working on the site" and the vertical axis is "modules completed."  The green lines show one standard
+        deviation above and below the mean.  This chart exemplifies both the level of data we are capturing and also highlights the importance
+        of individualized, self-paced instruction and real-time assessment.  The purple line shows a student
+        who may have been deemed "slow" by traditional assessments because she was more than one standard deviation below the class
+        average after working on the site for a few days.  The reality is that she just needed more time ramping up on negative numbers
+        than the other students in the cohort.  Once she was given the chance to become proficient on that concept, she raced forward
+        and ended up being one of the top students in the cohort.
+    </p>
+
+    <p>
+        More than the data, however, it is the anecdotal evidence from users that has convinced me to quit my job and make this
+        the focus of my life. I receive hundreds of letter and comments a week.  Many are simply notes of strong appreciation, but several
+        reach the level of being genuinely inspiring.  Here is a letter I received from a YouTube user in September 2009 (I bolded some
+        of the text):
+    </p>
+
+    <blockquote style="padding-left:40px;">
+        Mr. Khan,
+        <br/><br/>
+        No teacher has ever done me any good--this may sound harsh but I mean it quite literally.
+        I was force fed medication to keep me from talking and chastised for not speaking out when called on.
+        Where I am from blacks are not welcomed with open arms into schools--my mother and her sisters had to go to a
+        small shack two hours from home when they went to school.
+        About five years ago my family collected enough money to move from where i was born, so that I
+        could have a chance at having an education and living a real life.
+        But without a real mastery of elementary math I was slow to progress.
+        <br/><br/>
+        I am now in college and learning more than I ever have in my life.
+        <b>But an inadequate math background has been holding me back</b>.
+        I found the Kahn Academy in June of 2009, right after I completed Math 141 ( a college algebra course).
+        <b>I have spent the entire summer on your youtube page.</b>
+        And I just wanted to thank you for everything you are doing.
+        You are a Godsend. Last week I tested for a math placement exam and I am now in Honors Math 200.
+        <b>No question was answered incorrectly.</b>
+        My placement test holder was so impressed by the breadth of my knowledge of math that he said I should be in Linear algebra.
+        <br/>
+        Mr. Khan, I can say without any doubt that you have changed my life and the lives of everyone in my family.
+        <br/><br/>
+        I wish you and the Khan Academy the best of luck.
+    </blockquote>
+    <br/>
+    <a name="teachers"><h2>I'm a teacher trying to set up Khan Academy in my classroom or a parent trying to sign up my child. How do I start using this with my student(s)?</h2></a>
+    <p>
+        Check out the <a href="/about/getting-started#teachers">Getting Started</a> page for details.
+    </p>
+    <a name="started"><h2>How did you get started?</h2></a>
+    <p>
+        My uncle's family visited me in Boston after my wedding in the summer of 2004.  At
+        some point during the trip, my Aunt told me that her daughter (my cousin) was
+        having trouble with "unit conversion" which was not allowing her to be placed in
+        the more advanced math track for 7th grade.  Nadia was clearly a very bright girl, so
+        I made a deal with her.  I'd remotely tutor her for an hour after work as long as she was
+        willing to do any extra work I gave her.
+    </p>
+    <p>
+        I began remotely tutoring Nadia in August of 2004.  She was
+        in New Orleans--where I also grew up-- so we used a telephone to talk and Yahoo Doodle
+        as a shared notepad.  Nadia ended up catching up and getting ahead of her class
+        so I started tutoring her brothers, Arman and Ali, as well. Eventually, word got around
+        and I was remotely tutoring and handful of cousins and family friends.  Scheduling
+        around my work, their soccer practice, and the different time zones became a little
+        ridiculous, so I started to make YouTube videos for them to watch in their own time, at
+        their own pace.
+    </p>
+    <p>
+        It didn't take long to see that other students (including adult learners) were hungry
+        for videos like these so I kept going!
+    </p>
+    <p>
+        Even before I made the videos, I started writing simple Javascript problem generators so
+        that my cousins would never run out of practice problems.  I wanted to know when and how
+        they were doing the problems, so I added a database to track usage.  100 modules and thousands of
+        lines of code later (much of which has made the software adaptive), it has morphed
+        into the adaptive assessment exercises on our site.
+    </p>
+
+    <a name="full-time"><h2>How did you have the time to do this while working full-time?</h2></a>
+    <p>
+        My wife was doing her residency--in internal medicine-- from 2005 to 2008, so there were
+        many nights/weekends where she was working and I would have felt guilty doing
+        anything less productive.  I also try to watch very little television.  On top of that,
+        I was working at an investment fund that had me working 5am to 2pm (we were working
+        East Coast hours from California) so my afternoons were free (although I did go to bed at 9).
+    </p>
+
+    <a name="access-content"><h2>My school/district/country blocks YouTube or I don't have an internet connection where I
+            want to use the site.  Is there any other way to access the content?</h2></a>
+    <p>
+        All the videos are mirrored at archive.org, and if YouTube is blocked for you the site will
+        automatically fall back to show you the copies from there.
+        <a href="http://k16bridge.org/">The Lewis Center for Educational Research</a> which is
+        affiliated with NASA is bringing the content into community colleges and charter schools
+        around the country.  <a href="http://www.worldpossible.org">World Possible</a> is creating
+        offline snapshots of the content to distribute in rural, developing regions with limited
+        or no access to the Internet.  One can also download the content off of YouTube for free
+        using the latest version of RealPlayer, or <a href="/downloads">in bulk from several other sources</a>.
+    </p>
+
+    <a name="funding"><h2>How are you funding/making money off of this?</h2></a>
+    <p>
+        I quit my
+        day job as of September 2009 to work on this full-time and was  digging into my savings until recently.
+        In May 2010, some generous individuals gave large enough gifts for me to take a salary.
+        <br/><br/>
+        Since then, Khan Academy has received donations from <a href="http://www.youtube.com/watch?v=UuMTSU9DcqQ">The Gates Foundation</a> and won <a href="http://project10tothe100.com">Google's Project 10 to the 100</a> of ideas to change the world.
+    </p>
+    <p>
+        Khan Academy is an IRS-recognized 501c3 not-for-profit organization.  My goal is to make
+        it self-sustaining in the next five years.
+    </p>
+
+    <a name="business"><h2>Are you interested in turning this into a business?  Maybe with some VC funding?</h2></a>
+    <p>
+    I've been approached several times, but it just didn't feel right. When I'm 80, I want
+    to feel that I helped give access to a world-class education to billions of students around the
+    world. Sounds a lot better than starting a business that educates some subset of the developed world that
+    can pay $19.95/month and eventually selling it to some text book company or something.
+    I already have a beautiful wife, a hilarious son, two hondas and a decent house.  What else does a man need?
+    </p>
+    <p>
+    With that said, if you are a social venture capitalist and are looking to deploy capital with
+    the highest possible social return per dollar invested, we should talk.   I think you'll find that there is no
+    more measurable, scalable and high impact way to educate the world.
+    </p>
+
+    <a name="videos"><h2>Did you do all of the videos?</h2></a>
+    <p>
+    As of today (10/27/2011), the vast majority of the {{ approx_vid_count }}+ videos have been made by me.  Recently, <a href="/about/blog/post/11669374513/khan-academy-expands-to-art-history">we partnered with Smarthistory</a>, and Dr. Beth Harris and Dr. Steven Zucker have joined our faculty and added <a href="/#smarthistory">hundreds of Art History videos</a> to our library. Volunteers have also begun to translate the videos
+    into other languages.  <A href="http://www.youtube.com/user/KhanAcademyEspanol">Here is the Khan Academy en espanol</A>.
+    Hope to have other channels in the not-too-far-off future!
+    </p>
+
+    <a name="dub"><h2>Can I dub your videos in another language? How do I go about doing it?</h2></a>
+    <p>
+        Absolutely! In fact, <a href="/contribute#translation">the Khan Academy’s translation project</a>
+        is looking for passionate individuals like yourself who can
+        translate the tutorials into the world’s widely spoken languages. If you can offer consistency in voice and quality
+        across topics, we will feature YOUR translations on the Khan Academy website! Visit
+        <a href="/contribute#translation">the translation project</a> for assistance and
+        updates.
+    </p>
+
+    <a name="topics"><h2>What topics do you plan to cover?</h2></a>
+    <p>
+        My goal is to cover everything.  Yes, everything!  Most of k-12 math has already been done.
+        My goal really is to keep making videos until the day I die (which will hopefully
+        not be for at least another 50 or 60 years).  Should give me time to make several tens of thousands of videos in pretty
+        much every subject.
+    </p>
+    <a name="long-term"><h2>What is the long-term goal for the Khan Academy?</h2></a>
+    <p>
+    I see Khan Academy becoming the world's first free, world-class virtual school where anyone can learn anything--for free.
+    </p>
+    <p>
+    The videos are just part of the vision.  We are building out the adaptive software to cover all the topics that the
+    videos cover.  We also intend to develop simulation games to give more nuanced and applied understanding of concepts.
+    </p>
+
+    <a name="equipment"><h2>What equipment do you use to make your videos?</h2></a>
+    <p>
+    I use Camtasia Recorder ($200) + SmoothDraw3(Free) + a Wacom Bamboo Tablet ($80) on a PC.  I used to use ScreenVideoRecorder($20) and
+    Microsoft Paint (Free).
+    </p>
+
+    <a name="where-from"><h2>Where are you from?  What ethnicity/religion are you?</h2></a>
+    <p>
+    I was born and raised in New Orleans, Lousiana.  My mother was born in Calcutta, India.  My father was born in Barisal, Bangladesh.
+    </p>
+    <p>
+    If you believe in trying to make the best of the finite number of years we have on this planet
+    (while not making it any worse for anyone else), think that pride and self-righteousness are the cause of most conflict and negativity,
+    and are humbled by the vastness and
+    mystery of the Universe, then I'm the same religion as you.
+    </p>
+
+    <a name="help"><h2>How can I/you help?</h2></a>
+    <p>
+    See the <a href="/contribute">How to help</a> page.
+    </p>
+    </div>
+    <div class="clear"></div>
+    <p>&nbsp;</p>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {	
+        // Waypoint behavior not supported in IE7-
+        if ($.browser.msie && parseInt($.browser.version) < 8) return;
+
+        $.waypoints.settings.scrollThrottle = 50;
+
+        $("#wp1").waypoint(function(event, direction) {
+
+            var jel = $("#faq-nav");
+            var jelPlaceholder = $("#nav-placeholder");
+            
+            if (direction == "down") {
+                jel.css('position', 'fixed').css('top', '-80px').css('max-width', jelPlaceholder.width()).css('min-width', jelPlaceholder.width());
+            }
+            else {
+                jel.css('position', 'static').css('max-width', '31%').css('min-width', '31%');
+            }
+        });
+    });
+</script>
+{% endblock aboutcontent %}
+

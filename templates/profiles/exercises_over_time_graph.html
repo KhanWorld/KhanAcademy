@@ -1,0 +1,87 @@
+{% if not user_exercises %}
+    <div class="graph-notification">You don't have any proficient exercises...yet. <a href="/exercisedashboard">Go get some</a>.</div>
+{% endif %}
+
+<script>
+
+var chart;
+			$(document).ready(function() {
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'highchart',
+						defaultSeriesType: 'scatter'
+					},
+                    plotOptions: {
+                        scatter: {
+                            cursor: 'pointer',
+                            dashStyle: 'Solid',
+                            lineWidth: 1
+                        },
+                        series: {
+                            showInLegend: false,
+                            marker: {
+                                radius: 6
+                            },
+                            point: {
+                                events: {
+                                    click: function() {
+                                        Profile.collapseAccordion();
+                                        Profile.loadGraph('/profile/graph/exerciseproblems?student_email={{ student_email|escapejs }}&exercise_name=' + this.name);
+                                    }
+                                }
+                            }
+                        }
+                    },
+					xAxis: {
+						title: {
+							text: 'Days working on the site'
+						},
+                        min: 0,
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					yAxis: {
+						title: {
+							text: 'Modules Completed'
+						},
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					tooltip: {
+						formatter: function() {
+				                return '<b>' + this.point.display_name + '</b><br/>' + this.point.dt;
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						align: 'right',
+						verticalAlign: 'top',
+						x: -10,
+						y: 100,
+						borderWidth: 0
+					},
+                    series: [{data:[
+                            {% for user_exercise in user_exercises %}
+                            { 
+                                dt: '{{ user_exercise.proficient_date|escapejs }}', 
+                                name: '{{ user_exercise.name|escapejs }}', 
+                                display_name: '{{ user_exercise.display_name()|escapejs }}', 
+                                x: {{ user_exercise.days_until_proficient }}, 
+                                y: {{loop.index}} }
+                            {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                            ]}]
+				});
+			});
+
+</script>
+
+<div id="highchart-container" class="{% if not user_exercises %}empty-chart{% endif %}">
+    <div id="highchart"></div>
+</div>

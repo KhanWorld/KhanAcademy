@@ -1,0 +1,255 @@
+{% if is_graph_empty %}
+<div class="graph-notification">This chart doesn't have any activity to show. Go <a href="/#browse">watch some videos</a> and <a href="/exercisedashboard">do some exercises</a>!</div>
+{% endif %}
+
+<script>
+
+    function drillIntoBucket(ix) {
+        if (ix == null) return;
+        var bucket = chart.options.xAxis.categories[ix];
+        if (bucket)
+            Profile.loadGraph('/profile/graph/activity?student_email={{ student_email|escapejs }}&dt_start=' + bucket);
+    }
+
+    var chart;
+    $(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'highchart',
+                events: {
+                    click: function(e) {
+                        {% if enable_drill_down %}
+                            if (e && e.xAxis && e.xAxis[0]) drillIntoBucket(Math.round(e.xAxis[0].value || 0));
+                        {% endif %}
+                    }
+                }
+            },
+            {% if graph_title %}
+            subtitle: {
+                text: "{{ graph_title|escapejs }}",
+                x: -10
+            },
+            {% endif %}
+            plotOptions: {
+                series: {
+                    {% if enable_drill_down %}
+                        cursor: 'pointer',
+                    {% endif %}
+                    events: {
+                        legendItemClick: function() { return false; },
+                        click: function(e) {
+                        {% if enable_drill_down %}
+                            if (e && e.point) drillIntoBucket(e.point.x);
+                        {% endif %}
+                        }
+                    }
+                },
+                column: {
+                    stacking: 'normal'
+                },
+                scatter: {
+                    marker: {
+                        states: {
+                            hover: {
+                                fillColor: 'transparent',
+                                lineColor: 'transparent'
+                            }
+                        }
+                    }
+                }
+            },
+            xAxis: {
+                categories: [
+                {% for bucket in bucket_list %}
+                '{{ bucket|escapejs }}'{% if not loop.last %},{% endif %}
+                {% endfor %}
+                ],
+                labels: {
+                    align: 'left',
+                    x: -5,
+                    y: 10,
+                    rotation: 45
+                },
+                min: 0
+            },
+            yAxis: [
+                {
+                    title: {
+                        text: 'Time Spent (Minutes)',
+                        style: {
+                            color: '#0080C9'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            color: '#0080C9'
+                        }
+                    },
+                    min: 0,
+                    maxPadding: 0.15,
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                {
+                    title: {
+                        text: 'Energy Points Earned',
+                        style: {
+                            color: '#C9001B'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            color: '#C9001B'
+                        }
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }],
+                    min: 0,
+                    opposite: true
+                }
+            ],
+            tooltip: {
+                shared: true,
+                crosshairs: true,
+                formatter: function() {
+                    var sTitle = "<b>" + this.x + "</b>";
+                    s = "";
+                    for (var ix = 0; ix < this.points.length; ix++)
+                    {
+                        if (this.points[ix].point.desc)
+                        {
+                            s += "<br/><br/>" + this.points[ix].point.desc;
+                        }
+                        else if (this.points[ix].point.fEnergyPoints)
+                        {
+                            sTitle += "<br/>" + this.points[ix].point.y + " energy points";
+                        }
+                    }
+                    return sTitle + s;
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                floating: true,
+                backgroundColor: 'white',
+                shadow: true,
+                x: 70,
+                y: 5,
+                itemHoverStyle: {
+                    cursor: 'default',
+                    color: '#3E576F'
+                }                
+            },
+            series: [
+                    { 
+                        type: 'column',
+                        name: 'Video Minutes',
+                        color: '#0080C9',
+                        data: [
+                        {% for bucket in bucket_list %}
+                        {
+                            x: {{ loop.index0 }}, 
+                            {% if dict_playlist_buckets[bucket] %}
+                                y: {{ dict_playlist_buckets[bucket]["minutes"] }},
+                                desc: '<strong>Videos</strong> ({{ dict_playlist_buckets[bucket]["time_spent"]|escapejs }})<br/>{{ dict_playlist_buckets[bucket]["html_summary"]|escapejs }}'
+                            {% else %}
+                                y: 0
+                            {% endif %}
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                        ]
+                    },
+                    { 
+                        type: 'column',
+                        name: 'Exercise Minutes',
+                        color: '#00C9AF',
+                        data: [
+                        {% for bucket in bucket_list %}
+                        {
+                            x: {{ loop.index0 }}, 
+                            {% if dict_exercise_buckets[bucket] %}
+                                y: {{ dict_exercise_buckets[bucket]["minutes"] }},
+                                desc: '<strong>Exercises</strong> ({{ dict_exercise_buckets[bucket]["time_spent"]|escapejs }})<br/>{{ dict_exercise_buckets[bucket]["html_summary"]|escapejs }}'
+                            {% else %}
+                                y: 0
+                            {% endif %}
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                        ]
+                    },
+                    { 
+                        type: 'spline',
+                        name: 'Energy Points',
+                        yAxis: 1,
+                        marker: {enabled: false},
+                        color: '#C9001B',
+                        data: [
+                        {% for bucket in bucket_list %}
+                        {
+                            x: {{ loop.index0 }}, 
+                            {% if dict_points_buckets[bucket] %}
+                                y: {{ dict_points_buckets[bucket] }},
+                            {% else %}
+                                y: 0,
+                            {% endif %}
+                            fEnergyPoints: true
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                        ]
+                    },
+                    {
+                        type: 'scatter',
+                        name: 'Badges',
+                        showInLegend: false,
+                        data: [
+                        {% for bucket in bucket_list %}
+                        {
+                            x: {{ loop.index0 }},
+                            {% if dict_badge_buckets[bucket] %}
+                                y: {{ dict_badge_buckets[bucket]["y"] }},
+                                desc: '<strong>Achievements</strong><br/>{{ dict_badge_buckets[bucket]["html_summary"]|escapejs }}',
+                                marker: { symbol: 'url({{ dict_badge_buckets[bucket]["badge_url"] }})'}
+                            {% else %}
+                                y: 0,
+                                enabled: false
+                            {% endif %}
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                        ]
+                    },
+                    {
+                        type: 'scatter',
+                        name: 'Proficient Exercises',
+                        showInLegend: false,
+                        data: [
+                        {% for bucket in bucket_list %}
+                        {
+                            x: {{ loop.index0 }},
+                            {% if dict_proficiency_buckets[bucket] %}
+                                y: {{ dict_proficiency_buckets[bucket]["y"] }},
+                                desc: '<strong>Proficiencies</strong><br/>{{ dict_proficiency_buckets[bucket]["html_summary"]|escapejs }}',
+                                marker: { symbol: 'url(/images/node-complete-chart.png)'}
+                            {% else %}
+                                y: 0,
+                                enabled: false
+                            {% endif %}
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                        ]
+                    }
+                ]
+        });
+    });
+</script>
+
+<div id="highchart-container" class="{% if is_graph_empty %}empty-chart{% endif %}">
+    <div id="highchart"></div>
+</div>

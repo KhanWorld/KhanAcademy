@@ -1,0 +1,199 @@
+{% extends "profile_template.html" %}
+
+{% import 'macros/coach.html' as coach %}
+{% import 'macros/profiles.html' as profile_macros %}
+
+{% block meta_page_title %}Class Profile | {% endblock meta_page_title %}
+
+{% block pagescript %}
+{{ js_css_packages.css_package("studentlists") }}
+{% endblock pagescript %}
+
+{% block pagesubmenu %}
+<span class="breadcrumbs_nav">
+    <a href="/coaches" id="manage-coaches">Manage Coaches</a>
+    <a href="/students" id="manage-students">Manage Students</a>
+    <a href="/class_profile" id="class-stats" class="selected">Class Stats For</a>
+    <span id="studentlists_dropdown" style="display:none;">
+        <a>{{ student_list.name|escape }}</a>
+        <div id="studentlists_menu">
+            <ol>
+                {% for list in student_lists %}
+                <li data-selected="{% if list.key == list_id %}selected{% endif %}" data-list_id={{ list.key }}>
+                    <a href="/class_profile?list_id={{ list.key }}">{{list.name|escape}}</a>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </span>
+</span>
+{% endblock pagesubmenu %}
+
+{% block statistics_title %}Class Statistics{% endblock statistics_title %}
+
+{% block graph_accordion %}
+<div id="high-level-class-stats">
+    <span id="students-coached">
+        <span class="profile-header-icon"><img src="/images/class-students-icon-shadow.png" /></span>
+        <span class="count">
+            <span id="count_students">&hellip;</span><br />
+            <span class="label">Students</span>
+        </span>
+    </span>
+    <span id="energy-points">
+        <span class="energy-points-badge">&hellip;</span><br />
+        <span class="label">Class Energy Points</span>
+    </span>
+</div>
+
+    <ul id="nav-accordion">
+        <li>
+            {{ profile_macros.class_api_link(user_data_coach, "Progress Report", "progressreport", selected_graph_type, list_id) }}
+            <div class="accordion-content">
+                Shows you which exercises your class has worked on and completed.
+                <div class="graph-options">
+                    <span class="progress-legend exercise-color started">Started</span>
+                    <span class="progress-legend exercise-color proficient">Proficient</span>
+                    <span class="progress-legend exercise-color review light">Review</span>
+                    <span class="progress-legend exercise-color struggling">Struggling</span>
+
+                </div>
+            </div>
+        </li>
+        <li>
+            {{ profile_macros.class_api_link(user_data_coach, "Progress Summary", "progress/summary", selected_graph_type, list_id) }}
+            <p class="accordion-content">
+                Shows you which exercises your class has worked on and completed.
+            </p>
+        </li>
+        <li>
+            {{ profile_macros.class_graph_link(user_data_coach, "Daily Activity Report", "classtime", selected_graph_type, list_id) }}
+            <p class="accordion-content">
+                Shows your total class activity on a specific date. <br /><br />
+
+              <span class="instructions">Light blue activity shows normal school hours, and dark blue is outside normal hours.</span>
+        </li>
+        <li>
+            {{ profile_macros.class_graph_link(user_data_coach, "Exercise Progress Over Time", "classexercisesovertime", selected_graph_type, list_id) }}
+            <div class="accordion-content">Shows how many exercises your students have completed over time.<br /><br />
+                <span class="instructions">Highlight a <a href="#" class="highlight-section show-students-highlight">specific student</a> or a <a href="#" class="highlight-section show-exercises-highlight">specific exercise</a>.</span><br />
+
+                <div id="students-highlight" class="vertical-choice-container" style="display:none;">
+                    <ul>
+                        <li>&hellip;</li>
+                    </ul>
+                </div>
+
+                <div id="exercises-highlight" class="vertical-choice-container" style="display:none;">
+                    <ul>
+                        {% for exercise in exercises %}
+                        <li>
+                        <a href="#" class="highlight-exercise-points" data-exercise="{{ exercise.name|escape }}">{{ exercise.display_name|escape }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </li>
+        <li>
+            {{ profile_macros.class_graph_link(user_data_coach, "Class Points per Minute", "classenergypointsperminute", selected_graph_type, list_id) }}
+            <p class="accordion-content">
+                Shows your total class energy points per minute as a continuously updating rolling average.
+            </p>
+        </li>
+        <li>
+            {{ profile_macros.class_api_link(user_data_coach, "Goals", "goals", selected_graph_type, list_id) }}
+            <div class="accordion-content">
+                Shows active student goals and progress toward completion of those goals.
+                <div class="graph-options">
+                    <span class="progress-legend exercise-color started">Started</span>
+                    <span class="progress-legend exercise-color proficient">Proficient</span>
+                    <span class="progress-legend exercise-color review light">Review</span>
+                    <span class="progress-legend exercise-color struggling">Struggling</span>
+                </div>
+            </div>
+        </li>
+    </ul>
+{% endblock graph_accordion %}
+
+{% block stats_filters %}
+  <!-- the goals filter -->
+  <div class="filter">
+    {{ profile_macros.class_api_link(user_data_coach, "Progress Report", "progressreport", selected_graph_type, list_id) }}
+
+    <div class="filter-block">
+      <h3>Progress Report</h3>
+    </div>
+    <div class="filter-block">
+      <p>Showing Only
+        <input type="text" id="student-progressreport-search" placeholder="student or exercise" class="search-input simple-input ui-corner-all blur-on-esc"></input>
+        <span class="coach-filter-block">
+            <input type="checkbox" class="progressreport-filter-check" id="progressreport-struggling" name="struggling" /><label for="progressreport-struggling">Struggling</label></span>
+      <span class="coach-filter-block"><input type="checkbox" class="progressreport-filter-check" id="progressreport-recent" name="recent" /><label for="progressreport-recent">Worked on in last:</label>
+            <select id="progressreport-filter-last-time"><option value="1">day</option><option value="2">2 days</option><option value="3">3 days</option><option selected value="7">week</option><option value="30">month</option></select></span>
+    </div>
+  </div>
+
+  <div class="filter">
+    {{ profile_macros.class_api_link(user_data_coach, "Progress Summary", "progress/summary", selected_graph_type, list_id) }}
+
+    <div class="filter-block">
+      <h3>Progress Summary</h3>
+    </div>
+    <div class="filter-block">
+      <p>Showing Only
+        <input type="text" id="student-progresssummary-search" placeholder="exercise name" class="search-input simple-input ui-corner-all blur-on-esc"></input>
+    </div>
+  </div>
+
+  <div class="filter">
+    {{ profile_macros.class_graph_link(user_data_coach, "Daily Activity Report", "classtime", selected_graph_type, list_id) }}
+    <div class="filter-block">
+        <h3>Daily Activity Report <small> for </small></h3>
+        {{ profile_macros.graph_calendar_picker(user_data_coach, "classtime") }}
+    </div>
+  </div>
+
+  <div class="filter">
+    {{ profile_macros.class_api_link(user_data_coach, "Goals", "goals", selected_graph_type, list_id) }}
+
+    <div class="filter-block">
+      <h3>Goals</h3>
+      <p>Sorted by:
+        <select id="student-goals-sort">
+          <option value="name"> First Name </option>
+          <option value="progress"> Progress </option>
+          <option value="created"> Started Recently </option>
+          <option value="updated"> Updated Recently </option>
+        </select>
+      </p>
+    </div>
+    <div class="filter-block">
+      <p>Showing Only
+        <input type="text" id="student-goals-search" placeholder="student or objective" class="search-input simple-input ui-corner-all blur-on-esc"></input>
+      <span class="coach-filter-block"><input type="checkbox" class="student-goals-filter-check" id="goal-most-recent-filter" name="most-recent" />
+        <label for="goal-most-recent-filter">Recently updated</label></span>
+      <span class="coach-filter-block"><input type="checkbox" class="student-goals-filter-check" id="goal-in-progress-filter" name="in-progress" />
+        <label for="goal-in-progress-filter">In progress</label></span>
+      <span class="coach-filter-block"><input type="checkbox" class="student-goals-filter-check" id="goal-struggling-filter" name="struggling" />
+        <label for="goal-struggling-filter">Struggling</label>
+      </span>
+    </div>
+  </div>
+{% endblock %}
+
+{% block profile_is_empty %}
+{{ coach.empty_class_instructions(True) }}
+{% endblock profile_is_empty %}
+
+{% block bottompagescript %}
+{{ super() }}
+{{ js_css_packages.js_package("studentlists") }}
+<script type="text/javascript">
+$(function() {
+    ClassProfile.student_lists = {{student_lists_json}};
+    ClassProfile.init();
+})
+</script>
+{% endblock bottompagescript %}

@@ -1,0 +1,30 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/discussion.html' as discussion %}
+
+{% block pagescript %}
+    {{ js_css_packages.css_package("video") }}
+{% endblock pagescript %}
+
+{% block pagetitle %}
+    New answers to your questions 
+    <a href="/discussion/videofeedbacknotificationfeed?email={{ email }}"><img src="{{ "/images/feed.gif"|static_url }}" class="icon" />RSS</a>
+{% endblock pagetitle %}
+
+{% block pagecontent %}
+    <br/>
+    <article class="video">
+
+    {% if videos %}
+        {% for video in videos %}
+            <div class="video_questions video_question_notifications">
+                <strong><a href="/video/{{video.readable_id}}?playlist={{video.first_playlist.title|urlencode}}">{{video.title|escape}}</a></strong>
+                {{ discussion.question_answers(dict_answers[video.key()], True, video, video.first_playlist()) }}
+            </div>
+        {% endfor %}
+    {% else %}
+        No new answers to any of your questions.  Go watch more videos and ask more questions!
+    {% endif %}
+
+    </article>
+{% endblock pagecontent %}

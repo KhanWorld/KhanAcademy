@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Google TV Template 1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="gtv-autozoom" content="off" />
+<link rel="stylesheet" href="/gtv/css/controls.css?2" />
+<link rel="stylesheet" href="/gtv/css/template_controls.css?2" />
+<link rel="stylesheet" href="/gtv/css/styles.css?2" type="text/css"/>
+</head>
+
+<body style="visibility:hidden;">
+	<div id="tooltip-container"></div>
+        <div id="header">
+            <div class="floatLeft">
+                <h2 id="videoTitle"></h2>
+                <h3 id="videoSubtitle"></h3>
+            </div>
+           <div id="mainNav" class="menu-item-parent floatRight">
+           		<div class="menu-item-parent">
+           			<div class="menu-item floatLeft">
+           				<div id="menu-item-div" class="menu-item-div">
+           					<a class="navMenuButton" href="#"><span>Menu</span></a>
+           				</div>
+           				<div class="menu-item-border menu-border-div"></div>
+           			</div>
+           		</div>
+           		<div class="menu-item-parent">
+           			<div id="detailsMenuItem" class="menu-item floatLeft">
+           				<div id="details-item-div" class="details-item-div">
+           					<a id="navBackDetailsButton" class="navDetailsButton" href="#"><span id="navBackDetailsText" class="navBackDetailsText">Details</span></a>
+           				</div>
+           				<div id="navBackDetailsBorder" class="menu-item-border details-border-div"></div>
+           			</div>
+           		</div>
+           </div>
+        </div>
+        <div id="videoContent">
+        	<div id="video">
+        		<div id="video-container"></div>
+                <div id="controls" class="controls">
+                        <div class="video-command-div"><div id="playPause" class="video-command"></div></div>
+                        <div id="progress-container"></div>
+                        <div class="video-command-div"><div id="fullscreen" class="video-command"></div></div>
+                </div>
+                </div>
+    	</div>
+    	<div id="content" class="pageContent">
+        	<h1>Plot Summary</h1>
+        	<p>	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    	</div>
+        <div id="carouselFS">
+            <div class="carouselContentFS">
+                <div id="controlsFS" class="controlsFS">
+                        <div class="video-command-div"><div id="previousFS" class="video-command"></div></div>
+                    <div class="video-command-div"><div id="rewindFS" class="video-command"></div></div>
+                    <div class="video-command-div"><div id="playPauseFS" class="video-command"></div></div>
+                    <div class="video-command-div"><div id="fastForwardFS" class="video-command"></div></div>
+                    <div class="video-command-div"><div id="nextFS" class="video-command"></div></div>
+                                        <div id="full-progress-container"></div>
+                </div>
+              	<div class="clear"></div>
+                <div class="arrows" onclick="templatePage.previousVideo();"><img src="images/arrowL.png"/></div>
+            	<div id="thumbnails" class="thumbnails"></div>
+            	<div class="arrows" onclick="templatePage.nextVideo();"><img src="images/arrowR.png"/></div>
+            </div>
+        </div>
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="js/gtvcore.js?2"></script>
+<script type="text/javascript" language="javascript"
+    src="js/sidenav.js?2"></script>
+<script type="text/javascript" language="javascript"
+    src="js/keycontrol.js?2"></script>
+<script type="text/javascript" language="javascript"
+    src="js/carousel.js?2"></script>
+<script type="text/javascript" language="javascript"
+    src="js/videocontrol.js?2"></script>
+<script type="text/javascript" language="javascript"
+    src="js/tooltip.js?2"></script>
+<script type="text/javascript" language="javascript"
+    src="js/videoprogressbar.js?2"></script>
+<script type="text/javascript" language="javascript"
+    src="js/dataprovider.js?2"></script>
+<script type="text/javascript" language="javascript"
+    src="js/fullscreen.js?2"></script>
+</html>

@@ -1,0 +1,50 @@
+{
+    "chart": {
+        "renderTo": "container",
+        "backgroundColor": "rgba(35,37,38,100)",
+        "borderColor": "rgba(35,37,38,100)",
+        "lineColor": "rgba(35,37,38,100)",
+        "plotBackgroundColor": "rgba(35,37,38,0)",
+        "plotBorderWidth": null,
+        "plotShadow": false,
+        "height": 340,
+        "type": "scatter",
+        "defaultSeriesType": "scatter"
+    },
+    "colors": [ "#058DC7", "#50B432", "#EF561A" ],
+    "credits": { "enabled": false },
+    "title": { "text": "{{ title }}" },
+    "legend": { "enabled": false },
+    "plotOptions": {
+        "scatter": {
+            "dataLabels": { 
+                "enabled": false
+            },
+            "marker": {
+                "lineWidth": 1
+            },
+            "size": "100%"
+        }
+    },
+    "series": [
+        {
+            "data": {{ series.data_values }},
+            "name": "{{ series.name }}"
+        },
+    ],
+    "yAxis": {
+        "labels": { "enabled": false },
+        "gridLineWidth": 0,
+        "title": { "text": null },
+        "endOnTick": false,
+        "startOnTick": false,
+        "min": {{ minYValue }},
+        "max": {{ maxYValue }}
+    },
+    "xAxis": {
+        "labels": { "enabled": false },
+        "lineWidth": 0,
+        "gridLineWidth": 0,
+        "tickWidth": 0
+    }
+}

@@ -1,0 +1,18 @@
+{% import 'macros/profiles.html' as profile_macros %}
+
+{% if exercise_data %}
+    <div id="module-progress" style="margin: 0;">
+    {% for exercise in exercises %}
+        {{ profile_macros.exercise_progress_block(exercise_data, exercise) }}
+    {% endfor %}
+        <div class="clear"></div>
+    </div>
+{% endif %}
+<script type="text/javascript">
+function drillIntoExercise(url) {
+    $("#info-hover-container").hide();
+    Profile.collapseAccordion();
+    Profile.loadGraph(url);
+}
+Profile.hoverContent($("#module-progress .student-module-status"));
+</script>

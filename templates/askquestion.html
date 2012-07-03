@@ -1,0 +1,27 @@
+{% extends "reportissue_template.html" %}
+{% block pagetitle %}Ask a question{% endblock pagetitle %}
+{% block pagecontent %}
+<div style="padding: 10%;">
+        <p>Have a question?&nbsp; We want to know about it!&nbsp; 
+        </p>
+        <p>If you're lucky, you can find the answer on Sal's <a href="/frequently-asked-questions">Frequently Asked Questions</a> page or by clicking on the question in the <a href="http://code.google.com/p/khanacademy/issues/list?can=1&q=Status:Done,Fixed%20Type:Question&sort=-stars&colspec=Summary">list of other answered questions</a>.&nbsp;
+        If your question isn't there, someone might have already asked it but we haven't been able to answer it yet.  If that's the case
+        you can simply vote for it by turning on <b>the star next to it</b> in
+        the 
+        <a href="http://code.google.com/p/khanacademy/issues/list?can=2&q=Status:Accepted,Started%20Type:Question&sort=-stars&colspec=Summary">list of unanswered questions</a>.&nbsp; 
+        If it's not in that list either, please use the following steps to create a new question in our issue tracking system.&nbsp;
+	<ol>
+		<li>Go to the 
+	        {% block new_issue_link %}<a href="http://code.google.com/p/khanacademy/issues/entry?template=Question%20from%20user&labels=Referer-{{referer|urlencode}},Type-Question,{{issue_labels|urlencode}}">new question form</a>{% endblock new_issue_link %}.&nbsp;
+		</li>
+		<li>Fill in the <b>Summary</b> and <b>Description</b> fields.&nbsp; <span style="color: red;"/>Note: The information you provide will become public, so do not include any private or confidential information.</span></li>
+		<li>Click the <b>Submit Issue</b> button.</li>
+	</ol>  
+        Your question will show up in the list of unanswered questions once we've had a chance to give it a quick review.&nbsp;
+        </p>
+        <p>If you vote for a question or submit a new one, you'll get emails whenever someone comments on it.&nbsp;
+        When we think we've answered it you'll get an email saying "Status: Done", and it will show up in the list of answered questions.&nbsp;
+        If at any point you want to stop getting the emails, just follow the link in one of them and click on the star to make it dim.&nbsp;
+        </p>
+</div>
+{% endblock pagecontent %}

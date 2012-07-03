@@ -1,0 +1,279 @@
+.sliding-control {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.slider-item-page {
+  overflow: hidden;
+  position: absolute;
+}
+.slider-item-row {
+  overflow: auto;
+}
+.slider-item-div {
+  float: left;
+  overflow: auto;
+}
+.slider-item-text-holder {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.slider-item {
+}
+
+.stack-item-title {
+}
+
+.stack-data-item {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.stack-div {
+  overflow: auto;
+}
+
+.rotator-div {
+  position: relative;
+  height: 110px;
+}
+
+.rotator-row {
+}
+
+.rotator-item-div {
+  overflow: auto;
+}
+
+.rotator-item {
+  display: none;
+  position: absolute;
+  width: 100%;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-iteration-count: 1;
+}
+
+.scroll-row {
+  float:left;
+}
+.scroll-items-div {
+  width: 1000000px;
+  position: relative;
+  overflow: auto;
+}
+.scroll-div {
+  float: left;
+}
+.scroll-arrow {
+  float: left;
+}
+
+.hints-cover-div {
+  position: absolute;
+  z-index: 5000;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.hints-div {
+  visibility: hidden;
+  position: absolute;
+  overflow: auto;
+  z-index: 5001;
+  top: 0px;
+  left: 0px;
+  padding: 20px;
+  margin: 0px;
+}
+
+.hints-title {
+}
+
+.hints-img {
+}
+
+.hints-text {
+}
+
+.loading-cover-div {
+  position: absolute;
+  z-index: 6000;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  opacity: 0.90;
+  background-color: #000;
+}
+
+.loading-div {
+  z-index: 6001;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.motion-letter {
+  font-size: 48px;
+  color: #2d2;
+  margin: 0px;
+  padding: 0px;
+}
+
+.motion-letter-animate {
+  position: absolute;
+  -webkit-animation-name: motiontext;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-duration: 3s;
+}
+
+@-webkit-keyframes motiontext {
+  from {
+    -webkit-transform: rotateX(0deg) translateZ(0px);
+  }
+  to {
+    -webkit-transform: rotateX(360deg) translateZ(100px);
+  }
+}
+
+@-webkit-keyframes rotatein {
+  from {
+    -webkit-transform: rotateX(270deg);
+  }
+  to {
+    -webkit-transform: rotateX(360deg);
+  }
+}
+
+@-webkit-keyframes rotateaway {
+  from {
+    -webkit-transform: rotateX(0deg);
+  }
+  to {
+    -webkit-transform: rotateX(270deg);
+  }
+}
+
+.dynarrow-container {
+  width: 0px;
+  position: absolute;
+}
+
+.dynarrow-main {
+  width: 100%;
+  position: absolute;
+}
+
+.dynarrow-tip-a {
+  -webkit-transform: rotate(35deg);
+  -webkit-transform-origin: 0 50%;
+  width: 10%;
+  position: absolute;
+}
+
+.dynarrow-tip-b {
+  -webkit-transform: rotate(325deg);
+  -webkit-transform-origin: 0 50%;
+  width: 10%;
+  position: absolute;
+}
+
+.insight-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 5001;
+}
+
+.insight-button {
+  z-index: 5002;
+  -webkit-animation-name: question;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out-in;
+  -webkit-animation-duration: 2s;
+  margin: 0;
+  position: absolute;
+}
+
+.insight-description {
+  visibility: hidden;
+  position: absolute;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+}
+
+.insight-description-show {
+}
+
+.insight-cover-div {
+  position: absolute;
+  z-index: 5000;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.sidenav-item-row {
+  overflow: auto;
+}
+
+.sidenav-rows {
+  overflow: auto;
+  z-index: 4001;
+}
+
+.sidenav-container {
+  overflow: auto;
+  z-index: 4000;
+}
+
+.sidenav-backdrop {
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background-color: #000;
+  opacity: .25;
+  z-index: 0;
+}
+
+
+@-webkit-keyframes question {
+  from {
+    -webkit-transform: scale(0.16, 0.16) rotate(0deg);
+  }
+  to {
+    -webkit-transform: scale(1.0, 1.0) rotate(0deg);
+  }
+
+  30% {
+    -webkit-transform: scale(1.25, 1.25) rotate(180deg);
+  }
+}
+
+.roller-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}

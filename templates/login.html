@@ -1,0 +1,77 @@
+{% extends "page_template.html" %}
+{% block meta_page_title %}Sign In | {% endblock meta_page_title %}
+{% block pagetitle %}{% endblock pagetitle %}
+
+{% block pagescript %}
+        <link rel="stylesheet" type="text/css" media="screen" href="/javascript/jQueryOpenIdPlugin/openid.css?{{App.version}}" />
+
+        <script type="text/javascript" src="/javascript/jQueryOpenIdPlugin/jquery.openid.js?{{App.version}}"></script>
+        <script type="text/javascript">
+        $(function () {
+           $("form.openid:eq(0)").openid();
+        });
+        </script>
+        <style>
+            #page_sub_nav { display: none; }
+        </style>
+{% endblock pagescript %}
+
+{% block pagecontent %}
+<article id="login-page">
+    <h2 class="pulls">{% if direct %}Login{% else %}Je moet inloggen om dit gedeelte van de site te gebruiken.{% endif %}</h2>
+    <h3>Heb je al een account bij &eacute;&eacute;n van deze sites? Klik op het logo om jouw account te gebruiken om hier in te loggen:</h3>
+    <form class="openid" method="post" action="/login?continue={{continue|urlencode}}">
+      <div><ul class="providers">
+      <li class="direct action-gradient" title="Google">
+			<div class="sign-in-text">Inloggen met:</div>
+            <img width="205" height="70" src="/images/google-logo-large.png" /><span>https://www.google.com/accounts/o8/id</span>
+      </li>
+      <li title="Facebook" onclick="javascript:$('#real_fb_button a').click();" class="action-gradient">
+			<div class="sign-in-text">Inloggen met:</div>
+            <img width="205" height="70" src="/images/facebook-logo-large.png" />
+      </li>
+      <li class="direct action-gradient" title="Hyves">
+			<div class="sign-in-text">Inloggen met:</div>
+            <img src="/images/hyves-logo.png" alt="icon" />
+			<span>http://hyves.nl/</span>
+	  </li>
+      </ul></div>
+      <fieldset id="username_fields">
+      <label for="openid_username">Voer je <span>Provider gebruikersnaam</span> in</label>
+      <div><span></span><input type="text" name="openid_username" /><span></span>
+      <input type="submit" value="Login" /></div>
+      </fieldset>
+      <fieldset id="domainname_fields">
+      <label for="openid_domainname">Voer je <span>Provider domeinnaam</span> in</label>
+      <div><span></span><input type="text" name="openid_domainname" /><span></span>
+      <input type="submit" value="Login" /></div>
+      </fieldset>
+      <fieldset  id="identifier_fields">
+      <label for="openid_identifier">Voer je <a class="openid_logo" href="http://openid.net">OpenID</a> in</label>
+      <div><input type="text" name="openid_identifier" />
+      <input type="submit" value="Login" /></div>
+      </fieldset>
+    </form>
+    <div class="clear"></div>
+
+    <div id="real_fb_button" style="display: none;"><fb:login-button></fb:login-button></div>
+
+    <h5 style="margin:18px 0 0 0;">Heb je nog geen account?</h5>
+    <div>
+        <ul class="providers-sign-up">
+            <li><a href="https://www.google.com/accounts/NewAccount">Meld je aan voor een Google account</a></li>
+            <li><a href="http://www.facebook.com/r.php">Meld je aan voor een Facebook account</a></li>
+            <li><a href="http://www.hyves.nl/create/">Meld je aan voor een Hyves account</a></li>
+        </ul>
+    </div>
+    <div class="clear">&nbsp;</div><br/><br/>
+    <h2 class="pulls">Waarom moet je je aanmelden?</h2>
+    <h3>Wanneer je inlogt, slaan wij je voortgang op. <a href="/nl-content/about.html">Leerlingen en coaches krijgen toegang tot handige hulpmiddelen</a>:</h3>
+    <div id="feature-list">
+        <div class="feature"><a href="/nl-content/about.html"><img src="/images/exercise-dashboard-medium.png" height="250" width="320" /></a><br />Leerlingen: <strong>navigeer je kenniskaart</strong>  terwijl je aan oefeningen werkt.</div>
+    <div class="feature"><a href="/nl-content/about.html"><img src="/images/student-profile-medium.png" height="250" width="320" /></a><br />Leerlingen: <strong>volg je video en oefeningen voortgang </strong> in je profiel.</div>
+    <div class="feature"><a href="/nl-content/about.html"><img src="/images/class-report-medium.png" height="250" width="320" /></a><br />Coaches: <strong>Volg al je leerlingen</strong> in het overzicht van je klas.</div>
+        <div class="clear">&nbsp;</div>
+    </div>
+</article>
+{% endblock pagecontent %}

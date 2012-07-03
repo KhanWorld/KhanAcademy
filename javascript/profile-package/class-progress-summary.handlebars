@@ -1,0 +1,24 @@
+<div id="progress-summary-container">
+
+  {{#each exercises}}
+    <div class="exercise-row">
+      <div class="exercise-name">
+        <span>{{display_name}}</span>
+      </div>
+
+      <div id="left-column">
+        {{#progressColumn side="left"}}
+          {{> class-progress-column}}
+        {{/progressColumn}}
+      </div>
+
+      <div id="right-column">
+        {{#progressColumn side="right"}}
+          {{> class-progress-column}}
+        {{/progressColumn}}
+      </div>
+
+      <div style="clear: both;"></div>
+    </div>
+  {{/each}}
+</div>

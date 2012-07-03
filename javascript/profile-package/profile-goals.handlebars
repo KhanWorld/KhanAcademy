@@ -1,0 +1,38 @@
+{{#if goals}}
+    <div class="student-goals">
+    {{#each goals}}
+        {{! This element is supposed to be exactly the same as that from
+        goalbook-row.handlebars. If you edit this, please also edit the other
+        file to maintain consistency. }}
+        <div class="goal pulls" data-id="{{id}}">
+            <p class="goal-description">
+                {{#if ../readonly}}
+                <span class="goal-title">{{title}}</span>
+                {{else}}
+                <input type="text" name="title" class="goal-title simple-input ui-corner-all blur-on-esc" placeholder="{{title}}" value="{{title}}"></input>
+                {{/if}}
+                {{#if ../isCurrent }}<span class="summary-light">(started {{ created_ago }})</span>{{/if}}
+                {{#if ../isCompleted }}<span class="summary-light">(completed {{ completed_ago }} in {{ completed_time }})</span>{{/if}}
+                {{#if ../isAbandoned }}<span class="summary-light">(abandoned {{ completed_ago }})</span>{{/if}}
+                {{#unless ../readonly }}
+                <span class="goal-controls">
+                    <a class="abandon simple-button action-gradient" href="javascript:void(0)" id="goal-abandon-{{id}}">Abandon</a>
+                </span>
+                {{/unless}}
+            </p>
+            <ul class="inline-list objective-list">
+            {{#each objectives}}
+                {{>goal-objectives}}
+            {{/each}}
+            </ul>
+            <div class="clear"></div>
+        </div>
+    {{/each}}
+    </div>
+{{else}}
+    {{#if readonly }}
+        Student has no current goals.
+    {{else}}
+        {{>goal-new}}
+    {{/if}}
+{{/if}}

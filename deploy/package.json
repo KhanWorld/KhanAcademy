@@ -1,0 +1,32 @@
+{
+    "name": "khan-academy",
+    "version": "1.0.0",
+    "author": "The Khan Academy",
+    "keywords": "education exercises khanacademy khan math exercises",
+    "description": "A free world-class education for anyone anywhere",
+    "licenses": [
+    {
+        "type": "BSD 2-Clause",
+        "url": "http://www.opensource.org/licenses/bsd-license.php"
+    },
+    {
+        "type": "MIT",
+        "url": "http://www.opensource.org/licenses/mit-license.php"
+    },
+    {
+        "type": "CC Attribution/Non-Commercial/Share-Alike",
+        "url": "http://creativecommons.org/licenses/by-nc-sa/3.0/"
+    }
+    ],
+
+    "repository": {
+        "type": "hg",
+        "url": "http://khanacademy.kilnhg.com/"
+    },
+
+    "dependencies": {
+        "uglify-js" : "1.2.x",
+        "handlebars" : "1.0.x",
+        "cssmin" : "0.x.x"
+    }
+}

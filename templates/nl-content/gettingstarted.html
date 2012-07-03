@@ -1,0 +1,126 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/analytics.html' as analytics %}
+{% import 'macros/coach.html' as coach %}
+
+{% block meta_page_title %}About | {% endblock meta_page_title %}
+{% block pagescript %}
+    <style>
+        #credits dt {
+            font-weight: bold;
+            float: left;
+            margin-right: 1ex;
+        }
+        #credits dd:before {
+            content: "- ";
+        }
+    </style>
+	<style>
+    #faq {
+        padding-top: 18px;
+    }
+    #faq-nav {
+        background: #eee;
+        padding: 9px;
+        max-width: 31%;
+        min-width: 31%;
+        margin-right: 3%;
+        margin-bottom: 90px;
+    }
+    #faq-nav ul {
+        list-style: outside decimal;
+        margin-left: 18px;
+    }
+    #faq-nav li {
+        margin-bottom: 5px;
+    }
+    #faq-nav li a {
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+    }
+    #faq-nav li a:hover {
+        text-decoration: underline;
+    }
+	</style>
+	<script type="text/javascript" src="/javascript/homepage-package/waypoints.min.js?{{App.version}}"></script>
+{% endblock pagescript %}
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/nl-content/about.html" id="the-site">De Site</a>
+        <!-- class="selected"> Selected -->
+        <a href="/nl-content/gettingstarted.html" id="getting-started" class="selected">Aan de slag!</a>
+        <a href="/nl-content/faq.html" id="faq">FAQ</a>
+        <a href="http://blog.khanacademie.nl/" id="blog">Blog</a>
+		<a href="/nl-content/contact.html" id="faq">Contact</a>
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+<article id="about-us">
+{% block aboutcontent %}
+<div id="faq">
+    
+    <div id="faq-nav-wrapper">
+        <div id="faq-nav" class="col1 forty-sixty vertical-shadow visited-no-recolor">
+            <h2 class="pulls">Aan de slag!</h2>
+            <p id="wp1" style="margin-top: 9px;">
+                <em>Hoe benut je de Khan Academie optimaal</em>
+            </p>
+            <ul style="font-size: 13px;">
+                <li><a href="#students">Hoe kan ik de site gebruiken?</a></li>
+                <li><a href="#teachers">Ik ben een docent, coach of ouder, hoe kan ik de site met mijn leerlingen gebruiken?</a></li>
+                <li><a href="#schools">Ik wil graag een pilot doen op onze school, kan dat?</a></li>
+            </ul>
+        </div>
+        <div id="nav-placeholder" class="col1 forty-sixty" style="height: 1px; padding: 0 9px; max-width: 31%; min-width: 31%; margin-right: 3%;">
+            &nbsp;
+        </div>
+    </div>
+    <div class="col2 forty-sixty" style="text-align: justify; padding-top: 9px;">
+    
+    <a name="students"><h2>Hoe kan ik de site gebruiken?</h2></a>
+    <a href="/about" style="float: right; margin: 0 0 20px 20px; min-width: 320px;">
+        <img src="/images/exercise-dashboard-medium.png" height="250" width="320" class="rounded-background">
+    </a>
+    <p>
+        Iedereen kan de site gratis gebruiken. Gebruik je Google account om <a href="/login">in te loggen</a> (in een latere fase hopen we Facebook login toe te voegen). 
+		Door in te loggen kun je je voortgang zien en punten en badges verdienen.
+    </p>
+    <p>
+        Als je nog geen Google account hebt,  
+        <a href="https://www.google.com/accounts/NewAccount">vraag er dan meteen een aan</a>.
+    </p>
+    <p>
+    <a name="under-13">Ben je nog geen 13?</a>
+    </p>
+    <p style="margin-left:23px;">
+        Dan heb je toestemming van je ouders nodig om een Google account aan te vragen.
+    </p>
+    <div class="clear"></div>
+    <a name="teachers"><h2>Ik ben een docent, coach of ouder, hoe kan ik de site met mijn leerlingen gebruiken?</h2></a>
+    <p>
+        Allereerst heb je zelf een account nodig om in te kunnen loggen op de Khan Academie. Dus <a href="/login">login</a> of <a href="https://www.google.com/accounts/NewAccount">vraag een account aan</a>. 
+        Zodra je bent ingelogd op de Khan Academie, kun je je door leerlingen laten toevoegen als coach.
+    </p>
+    <p>
+        Volgende stap: je leerlingen hebben ook een account nodig. Leerlingen ouder dan 13 jaar kunnen zelf een Google account aanvragen. Is een leerling nog geen 13 jaar, dan heb je twee opties: 
+        <ul>
+			<li style="font-size:14px;margin-left:23px;">1. zorg dat de leerlingen samen met hu ouders een <a href="https://www.google.com/accounts/NewAccount">Google account</a> aanvragen</li>
+			<li style="font-size:14px;margin-left:23px;">2. vraag voor de hele school <a href="http://www.google.com/apps/intl/en/edu/">Google Apps for Education</a> aan.</li>
+		</ul>
+    </p>
+    <a name="schools"><h2>Ik wil graag een pilot doen op onze school, kan dat?</h2></a>
+    <p>
+        Allereerst hartelijk dank voor de interesse in de Khan Academie. We zijn momenteel al bezig met een aantal pilot-projecten, maar zijn erg benieuwd naar meer ervaringen "in het veld". Gebruik onderstaand formulier om aan te melden voor een pilot en we nemen contact op.
+    </p>
+<div id="googleformiframe">
+<iframe src="https://docs.google.com/a/perceptum.nl/spreadsheet/embeddedform?formkey=dFZYRWdsSnJYakF4a1dyYm92UUh3dmc6MQ" width="500" height="1027" frameborder="0" marginheight="0" marginwidth="0">Bezig met laden...</iframe>
+</div>
+
+{% endblock aboutcontent %}
+</article>
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {{ analytics.crazyegg_tracker(False) }}
+{% endblock bottompagescript %}

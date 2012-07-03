@@ -1,0 +1,41 @@
+{% import 'macros/discussion.html' as discussion %}
+
+{% if not comments %}
+    <div class="comment">
+        Thank you, Sal!<br/>
+        <span class="comment_sig sig">{{ discussion.signature() }}</span>
+    </div>
+{% endif %}
+
+{% for comment in comments %}
+    <div class="comment">
+        {{ discussion.vote_tools(comment) }}
+        {{ comment.content|escape|urlize|linebreaksbr_ellipsis(" continue&hellip;")|youtube_timestamp_links }}<br/>
+        <span class="comment_sig sig">{{ discussion.signature(comment) }}</span>
+    </div>
+
+    {% if not loop.last %}
+        {% if loop.index == limit_initially_visible %}
+            <div class="comments_hidden" style="display:none;">
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{% if show_page_controls %}
+<div class="page_controls comments_page_controls">
+    <span>
+        {% if current_page_1_based != 1 %}
+        <a href="/video/{{video.readable_id}}?playlist={{playlist.title|urlencode}}&comments_page={{ prev_page_1_based }}#comments" class="button comments_page" page="{{ prev_page_1_based }}"><img class="icon" src="{{ "/images/arrow-left.png"|static_url }}" /> Comments with higher votes</a>
+        {% endif %}
+
+        {% if current_page_1_based != pages_total %}
+        <a href="/video/{{video.readable_id}}?playlist={{playlist.title|urlencode}}&comments_page={{ next_page_1_based }}#comments" class="button comments_page" page="{{ next_page_1_based }}">Comments with lower votes <img class="icon" src="{{ "/images/arrow-right.png"|static_url }}" /></a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+
+{% if comments_hidden %}
+    </div>
+    <style>.video_comments .comments_show_more { display:inline; }</style>
+{% endif %}

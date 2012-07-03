@@ -1,0 +1,19 @@
+<div class="fake-row">
+  {{#progressIter progress side=progressSide}}
+    <span class="exercise-color {{status}} segment float-off-spine" style="width: {{toPixelWidth students.length}}px;" data-width="{{toPixelWidth students.length}}" data-status="{{toDisplay status}}" data-num="{{students.length}}"><span>{{toNumberOfStudents students.length}}</span></span>
+  {{/progressIter}}
+</div>
+
+<div class="student-lists">
+  {{#progressIter progress side=progressSide}}
+    <div class="{{#if students.length}}exercise-color {{status}} border-only{{/if}} student-list-container float-off-spine">
+      <table style="table-layout: fixed; width: 95px;">
+        {{#each students}}
+        <tr><td>
+        <a class="student-link" href="#" data-exercise="{{../../name}}" data-email="{{email}}">{{nickname}}</a>
+        </td></tr>
+        {{/each}}
+      </table>
+    </div>
+  {{/progressIter}}
+</div>

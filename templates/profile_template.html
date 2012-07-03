@@ -1,0 +1,97 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/profiles.html' as profile_macros %}
+{% import 'macros/analytics.html' as analytics %}
+
+{% block pagescript %}
+{% if view == "mobile" %}
+	<style>
+		body { background: #fff; }
+		#top-header, footer, #end-of-page-spacer { display: none; }
+		#page-container { min-width: 768px; }
+		#page-container, #page-container-inner { background: none; }
+		nav#page_sub_nav { border: none; }
+		#individual_report { padding: 0 10px; margin: 0; }
+		#individual_report #achievements { margin-top: 18px; min-width: 0; }
+		#vital-statistics { display: none; }
+		#individual_report #achievements #achievement-list > ul li { min-width: 0; width: 123px; margin-right: 0; }
+		.ach-text { max-width: 600px; }
+		#individual_report #achievements.mobile-view #achievement-list > ul li:hover div.label {
+		    border: none;
+		    background: transparent;
+		    background-image: none;
+
+		    -moz-box-shadow: none;
+		    -webkit-box-shadow: none;
+		    box-shadow: none;
+		}
+		#individual_report #achievements.mobile-view #achievement-list > ul li.selected div.label {
+		    border: 1px solid #bbb;
+		    border-bottom: 1px solid #999;
+		    cursor: pointer;
+		    background: #ddd;
+		    background-image: -webkit-gradient(linear, left top, left bottom,  from(#eee), to(#ccc));
+		    background-image: -moz-linear-gradient( top, #eee, #ccc );
+		    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#cccccc');
+
+		    -moz-box-shadow: 0 1px 1px #ccc;
+		    -webkit-box-shadow: 0 1px 1px #ccc;
+		    box-shadow: 0 1px 1px #ccc;
+		}
+	</style>
+{% endif %}
+{% endblock pagescript %}
+
+{% block pagesubmenu %}
+    <div id="profile-header">
+        <span id="high-level-stats">
+            {% block high_level_stats %}{% endblock high_level_stats %}
+        </span>
+        {% block profile_name %}<span id="user-info">
+            <img src="/images/darth.png" />
+            <span id="name"></span>
+        </span>{% endblock profile_name %}
+    </div>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+
+    <article id="individual_report">
+
+    {% if is_profile_empty %}
+
+        {% block profile_is_empty %}{% endblock profile_is_empty %}
+
+    {% else %}
+
+        <div id="vital-statistics" class="{{ stats_charts_class }}">
+            <div id="stats-nav">
+                <h2>{% block statistics_title %}Vital Statistics{% endblock statistics_title %}</h2>
+                {% block graph_accordion %}{% endblock graph_accordion %}
+            </div>
+            <div id="stats-filters">
+              {% block stats_filters %}{% endblock stats_filters %}
+            </div>
+            <div id="stats-charts" class="fancy-scrollbar -ce-capture {{ stats_charts_class }}">
+                {{ profile_macros.graph_control() }}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        {% block profile_extended_sections %}{% endblock profile_extended_sections %}
+
+    {% endif %}
+
+    </article>
+
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {{ js_css_packages.js_package("profile") }}
+    <script type="text/javascript">
+		Profile.initialGraphUrl = '{{ initial_graph_url|escapejs }}';
+		Profile.email = '{{ student_email|escapejs }}';
+	</script>
+    {{ analytics.crazyegg_tracker(False) }}
+{% endblock bottompagescript %}
+

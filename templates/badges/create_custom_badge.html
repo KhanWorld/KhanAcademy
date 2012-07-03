@@ -1,0 +1,90 @@
+{% extends "page_template.html" %}
+
+{% block pagesubmenu %}
+<span class="breadcrumbs_nav">
+    <a href="/badges/custom/create" class="selected">Create custom badge</a>
+    <a href="/badges/custom/award">Award custom badge</a>
+</span>
+{% endblock pagesubmenu %}
+
+{% block pagecss %}
+<style>
+    #form-badges td { padding-right: 9px; vertical-align: top; }
+</style>
+{% endblock pagecss %}
+
+{% block pagecontent %}
+    <div style="padding: 9px 23px;">
+
+        {% if failed %}
+        <div style="color:red;padding-bottom:9px;">Badge creation failed. Either this badge already exists or the fields below were missing data.</div>
+        {% endif %}
+
+        <div>
+            <form id="form-badges" method="POST" action="/badges/custom/create">
+
+                <table>
+
+                    <tr>
+                        <td style="font-weight:bold;">Name</td>
+                        <td style="padding-bottom:9px;">
+                            <input type="text" name="name" value="" maxlength="30"/><br/>
+                            <em>A unique name for this badge. This can never be changed and is not shown to the user.</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Description</td>
+                        <td style="padding-bottom:9px;">
+                            <input type="text" name="description" value="" maxlength="30"/><br/>
+                            <em>The short description of the badge, like "Great Streak" or "Perseverance." This is shown to the user.</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Full description</td>
+                        <td style="padding-bottom:9px;">
+                            <textarea name="full_description" rows="5" cols="40"></textarea><br/>
+                            <em>An extended description of how or why the user earned this badge, usually phrased in the present tense.<br/>Examples: "Earn 100,000 energy points," "Remain a member of the Khan Academy for 3 years," "Achieve proficiency in 25 exercises."</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Points</td>
+                        <td style="padding-bottom:9px;">
+                            <input type="text" name="points" value="0"/><br/>
+                            <em>How many points should be given to those who are awarded this badge?</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Badge category</td>
+                        <td style="padding-bottom:9px;">
+                            <select name="badge_category" style="width:200px;">
+                                <option value="-1"></option>
+                                {% for badge_category in badge_categories %}
+                                    <option value="{{ badge_category.0|escape }}">{{ badge_category.1|escape }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Custom icon path</td>
+                        <td style="padding-bottom:9px;">
+                            <input type="text" name="icon_src" value=""/><br/>
+                            <em>Leave blank to use standard icon for badge's category.<br/>
+                                Use a relative url like "/images/your-icon.png" to specify a custom icon to be used for this badge.</em>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <br/>
+                <input class="button" type="submit" value="Create badge"/>
+
+            </form>
+        </div>
+    </div>
+{% endblock pagecontent %}
+

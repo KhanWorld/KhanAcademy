@@ -1,0 +1,41 @@
+{% extends "page_template.html" %}
+
+{% block pagetitle %}Bug Reports{% endblock pagetitle %}
+{% block pagecontent %}
+<article id="bugs">
+	<style>
+		table#reports {
+			width:1000px;
+			margin:10px auto;
+			table-layout:fixed;
+		}
+		table#reports tr th {
+			font-weight:bold;
+		}
+		table#reports tr * {
+			border:1px solid rgba(0,0,0,0.4);
+			padding:3px;
+		}
+	</style>
+	<table id="reports">
+		<tr>
+			<th style="width:100px;">Page</th>
+			<th style="width:100px;">Date</th>
+			<th style="width:200px;">Type</th>
+			<th style="width:300px;">Report</th>
+			<th style="width:150px;">Contact</th>
+			<th style="width:250px;">User-Agent</th>
+		</tr>
+        {% for r in reports|sort(attribute='ustamp') %}
+		<tr>
+            <td style="width:100px;">{{ r.page|e }}</td>
+			<td style="width:100px;">{{ r.udate|e }}</td>
+			<td style="width:200px;">{{ r.utype|e }}</td>
+            <td style="width:300px;">{{ r.ureport|e }}</td>
+            <td style="width:150px;">{{ r.ucontact|e }}</td>
+            <td style="width:250px;">{{ r.uagent|e }}</td>
+		</tr>
+        {% endfor %}
+	</table>
+</article>
+{% endblock pagecontent %}

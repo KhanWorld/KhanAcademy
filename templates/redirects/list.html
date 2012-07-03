@@ -1,0 +1,60 @@
+{% extends "page_template.html" %}
+
+{% block pagesubmenu %}{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+    
+    <style>
+        div.redirects-add {
+            margin-top: 18px;
+        }
+
+        table.redirects-list td,
+        div.redirects-add table td {
+            padding: 9px;
+        }
+
+        article {
+            padding-top: 9px;
+        }
+    </style>
+
+    <article>
+        <h2>Custom Redirects</h2>
+        <table class="redirects-list">
+            {% for redirect in redirects %}
+            <tr>
+                <td><a href="{{ redirect.relative_url|escape }}">{{ redirect.relative_url|escape }}</a></td>
+                <td>{{ redirect.redirect_to|escape }}</td>
+                <td>
+                    <form action="/redirects/remove" method="POST">
+                        <input type="hidden" name="redirect_from" value="{{ redirect.redirect_from|escape }}"/>
+                        <input type="submit" value="Remove" class="simple-button action-gradient"/>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="redirects-add">
+            <form action="/redirects/add" method="POST">
+                <table>
+                    <tr>
+                        <td>Redirect from:</td>
+                        <td>/r/<input type="text" name="redirect_from" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Redirect to:</td>
+                        <td>http://<input type="text" name="redirect_to" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="submit" value="Add new redirect" class="simple-button action-gradient"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </article>
+
+{% endblock pagecontent %}
+

@@ -1,0 +1,7 @@
+{{#each videos}}
+<li class="m{{col}}"{{#if firstInCol}} style="margin-top:-{{../../colHeight}}px"{{/if}}>
+<a href="/video/{{readable_id}}?playlist={{../titleEncoded}}" class="vl">
+<span class="vid-progress v{{key_id}}">{{title}}</span>
+</a>
+</li>
+{{/each}}

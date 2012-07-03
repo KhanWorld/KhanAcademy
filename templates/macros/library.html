@@ -1,0 +1,25 @@
+{% macro column_major_order_styles(num_cols=3, column_width=300, gutter=20, font_size=12) -%}
+
+{%- set columns = range(0, num_cols) -%}
+{%- set link_height = font_size * 1.5 -%}
+
+<style>
+    #library #library-content ol li {
+        width: 30%;
+        height: {{link_height}}px;   
+    }
+    #library #library-content ol li a {
+        font-size: {{font_size}}px;
+    }
+    {% for multiplier in columns %}
+    .m{{multiplier}} {
+        margin-left: {{ 33 * multiplier }}%;
+    }
+    {% endfor %}
+</style>
+{%- endmacro %}
+
+{% macro video_name_and_progress(video) -%}
+    <span class='vid-progress v{{ video.key().id() }}'>{{ video.title|escape }}</span>
+{%- endmacro %}
+

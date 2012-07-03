@@ -1,0 +1,5 @@
+{% import 'macros/library.html' as library %}
+
+<ol style="height:{{list_height}}px;" data-role="listview" data-inset="true">
+    {% for playlist_video in videos %}<li class="m{{loop.index0|find_column_index(column_indices)}}"{% if loop.index0|in_list(column_indices) %} style="margin-top:-{{loop.index0|column_height(column_indices) * link_height}}px;"{%endif%}><a href="/video/{{playlist_video.video.readable_id}}?playlist={{playlist_video.playlist.title|urlencode}}" {% if playlist_video.video.title|length > 40 %}title="{{playlist_video.video.title|escape}}" {% endif %}class='vl' data-id='{{ playlist_video.video.readable_id|escape }}'>{{ library.video_name_and_progress(playlist_video.video) }}</a></li>{% endfor %}
+</ol>

@@ -1,0 +1,93 @@
+{% import 'macros/discussion.html' as discussion %}
+
+{% for question in questions %}
+    <a name="q_{{ question.key() }}"></a>
+    <div class="question_container
+        {% if qa_expand_key == question.key().__str__() %}
+            question_container_expanded
+        {% endif %}
+    ">
+        <input type="hidden" name="entity_key" value="{{ question.key() }}" />
+        <div class="question" data-question_key="{{ question.key() }}">
+            {{ discussion.vote_tools(question) }}
+            {% if qa_expand_key != question.key().__str__() %}
+                <a class="question_link" href="/video/{{video.readable_id}}?playlist={{playlist.title|urlencode}}&qa_expand_key={{question.key()}}#q_{{question.key()}}" onclick="return false;">
+                    <span>{{ question.content|escape|linebreaksbr_ellipsis|youtube_timestamp_links }}</span>
+                </a>
+            {% endif %}
+            <span
+            {% if qa_expand_key != question.key().__str__() %}
+                class="question_content_urlized" style="display:none;"
+            {% endif %}
+            >{{ question.content|escape|urlize|linebreaksbr|youtube_timestamp_links }}</span>
+        </div>
+
+        {% if qa_expand_key != question.key().__str__() %}
+            <div class="question_answer_count
+            {% if not question.children_cache %}
+                unanswered
+            {% endif %}
+            ">
+                <table><tr>
+                <td style="vertical-align: middle;">
+                    <a href="/video/{{video.readable_id}}?playlist={{playlist.title|urlencode}}&qa_expand_key={{question.key()}}#q_{{question.key()}}" onclick="return false;">{{ question.children_cache|length }} answer{{ "s" if question.children_cache.__len__() != 1 else "" }}</a>
+                </td>
+                <td>
+                    <span class="question_answer_count_add_yours">
+                        <input type="button" class="button add_yours" value="Add yours" />
+                    </span>
+                </td>
+                </tr></table>
+            </div>
+        {% endif %}
+        
+        <div class="question_sig sig">
+            {{ discussion.signature(question, "asked") }}
+        </div>
+
+        {{ discussion.feedback_controls_question("Edit this question", question) }}
+
+        <div class="answers_and_form_container"
+            {% if qa_expand_key != question.key().__str__() %}
+                style="display:none;"
+            {% endif %}
+        >
+            <div class="answers_container">
+                {{ discussion.question_answers(question.children_cache) }}
+            </div>
+
+            <div class="answer_container">
+                <div class="answer_form">
+                    <form class="answer">
+                        {{ discussion.honeypots() }}
+                        <input type="hidden" id="video_key" name="video_key" value="{{ video.key() }}" />
+                        <input type="hidden" id="playlist_key" name="playlist_key" value="{{ playlist.key() }}" />
+                        <input type="hidden" name="question_key" value="{{ question.key() }}" />
+                        <div class="answer_placeholder">
+                            <textarea name="answer_text" class="answer_text" rows="2" cols="40" placeholder="Answer this question"></textarea>
+                        </div>
+                        {{ discussion.feedback_controls_answer("Answer this question") }}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="clearFloat">&nbsp;</div>
+{% endfor %}
+
+{% if show_page_controls %}
+<div class="page_controls questions_page_controls">
+    <span>
+        {% if current_page_1_based != 1 %}
+        <a href="/video/{{video.readable_id}}?playlist={{playlist.title|urlencode}}&qa_page={{ prev_page_1_based }}#qa" class="button page questions_page" page="{{ prev_page_1_based }}"><img class="icon" src="{{ "/images/arrow-left.png"|static_url }}" /> {% if sort_order == 2 %}Newer questions{% else %}Q&A with higher votes{% endif %}</a>
+        {% endif %}
+
+        {% if current_page_1_based != pages_total %}
+        <a href="/video/{{video.readable_id}}?playlist={{playlist.title|urlencode}}&qa_page={{ next_page_1_based }}#qa" class="button page questions_page" page="{{ next_page_1_based }}">{% if sort_order == 2 %}Older questions{% else %}Q&A with lower votes{% endif %} <img class="icon" src="{{ "/images/arrow-right.png"|static_url }}" /></a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+

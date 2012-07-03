@@ -1,0 +1,11 @@
+{% if type %}
+{% if type == "badge" %}
+<a href="javascript:void(0);" class="facebookShare" onclick="{% if event_description %}_gaq.push(['_trackEvent', 'Click', '{{event_description}}-Facebook']){% endif %};Social.facebookBadge('{{desc|escapejs}}','{{icon}}','{{extended_desc|escapejs}}','{{activity|escapejs}}');"></a>
+{% endif %}
+{% if type == "video" %}
+<a href="javascript:void(0);" class="facebookShare" onclick="{% if event_description %}_gaq.push(['_trackEvent', 'Click', '{{event_description}}-Facebook']){% endif %};Social.facebookVideo('{{name|escapejs}}','{{desc|escapejs}}','/video?v={{id}}');"></a>
+{% endif %}
+{% if type == "exercise" %}
+<a href="javascript:void(0);" class="facebookShare" onclick="{% if event_description %}_gaq.push(['_trackEvent', 'Click', '{{event_description}}-Facebook']){% endif %};Social.facebookExercise('{{problem_count}}','{{plural}}','{{proficiency|escapejs}}','{{name|escapejs}}');"></a>
+{% endif %}
+{% endif %}

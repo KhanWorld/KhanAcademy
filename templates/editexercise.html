@@ -1,0 +1,245 @@
+{% extends "page_template.html" %}
+
+{% block bottompagescript %}
+
+    <script>
+
+    function showLiveInstructions() {
+        $('#live-instructions').slideDown('fast', function(){$('#submit-live-button').focus();});
+    }
+
+    function submitLive() {
+        $("#form-exercise").attr("target", "_blank").attr("action", "http://www.khanacademy.org/updateexercise");
+        $("#form-exercise").submit();
+    }
+
+    function insertVideo(key, title) {
+        if (!insertVideo.c) insertVideo.c = 0;
+
+        var html = "<div id='video-" + key + "'>" +
+            "<input type='hidden' name='video-" + insertVideo.c + "' value='" + key + "' />" +
+            "&bull; " + title + " (<a href='#' onclick='deleteVideo(\"" + key + "\");return false;'>remove</a>)" +
+            "</div>";
+        $("#videos-container").append(html);
+
+        insertVideo.c += 1;
+    }
+
+    function addVideo(item) {
+        if (item) {
+            insertVideo(item.key, item.title);
+            $("#related-videos-input").val("");
+        }
+    }
+
+    function deleteVideo(key) {
+        $("#video-" + key).remove();
+    }
+
+    function insertCover(cover) {
+        if (!insertCover.c) insertCover.c = 0;
+
+        var html = "<div id='cover-" + cover + "'>" +
+            "<input type='hidden' name='cover-" + insertCover.c + "' value='" + cover + "' />" +
+            "&bull; " + cover + " (<a href='#' onclick='deleteCover(\"" + cover + "\");return false;'>remove</a>)" +
+            "</div>";
+        $("#covers-container").append(html);
+
+        insertCover.c += 1;
+    }
+
+    function addCover() {
+        var cover = $("#add-cover").val();
+
+        if (cover) {
+            insertCover(cover);
+            $("#add-cover").val("");
+        }
+    }
+
+    function deleteCover(cover) {
+        $("#cover-" + cover).remove();
+    }
+
+    function insertPrereq(prereq) {
+        if (!insertPrereq.c) insertPrereq.c = 0;
+
+        var html = "<div id='prereq-" + prereq + "'>" +
+            "<input type='hidden' name='prereq-" + insertPrereq.c + "' value='" + prereq + "' />" +
+            "&bull; " + prereq + " (<a href='#' onclick='deletePrereq(\"" + prereq + "\");return false;'>remove</a>)" +
+            "</div>";
+        $("#prereqs-container").append(html);
+
+        insertPrereq.c += 1;
+    }
+
+    function addPrereq() {
+        var prereq = $("#add-prereq").val();
+
+        if (prereq) {
+            insertPrereq(prereq);
+            $("#add-prereq").val("");
+        }
+    }
+
+    function deletePrereq(prereq) {
+        $("#prereq-" + prereq).remove();
+    }
+
+    $(function() {
+    {% for prereq in main_exercise.prerequisites %}
+        insertPrereq('{{ prereq|escapejs }}');
+    {% endfor %}
+
+    {% for cover in main_exercise.covers %}
+        insertCover('{{ cover|escapejs }}');
+    {% endfor %}
+
+    {% for exercise_video in exercise_videos %}
+        insertVideo('{{ exercise_video.video.key()|escapejs }}', '{{ exercise_video.video.title|escapejs }}');
+    {% endfor %}
+    });
+
+    $(function(){
+        // Configure the search form
+        $('#related-videos-input').placeholder();
+        initAutocomplete("#related-videos-input", false, addVideo, true);
+    });
+
+    </script>
+
+{% endblock bottompagescript %}
+
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/admin94040">Exercises</a>
+        {{ main_exercise.display_name|escape }}
+        {% if saved %}
+            <span style="color:green;" id="saved">...Saved!</span>
+            <script>$(function(){setTimeout(function(){$("#saved").fadeOut("slow");}, 2000);});</script>
+        {% endif %}
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+
+    <style>
+        .exercise-properties td { padding-right: 9px; }
+        #footer { z-index:0 ; }
+    </style>
+
+    <div style="padding: 9px 23px;">
+        <div>
+            <form id="form-exercise" method="POST" action="/updateexercise">
+                <input type="hidden" name="name" value="{{main_exercise.name|escape}}"/>
+
+                <table class="exercise-properties">
+
+                    <tr>
+                        <td style="font-weight:bold;">View</td>
+                        <td style="padding-bottom:9px;">
+                            <a href="{{ main_exercise.relative_url|escape }}" target="_blank">Open {{ main_exercise.display_name|escape }} in new tab</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Status</td>
+                        <td style="padding-bottom:9px;">
+                            <label for="live_yes">Live&nbsp;</label><input type="radio" id="live_yes" name="live" value="1" {% if main_exercise.live %}checked="checked"{% endif %}/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="live_no">Developers only&nbsp;</label><input type="radio" id="live_no" name="live" value="0" {% if not main_exercise.live %}checked="checked"{% endif %}/>
+                            <br/>
+                            <em>Non-live exercises are completely hidden from normal users.</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Short name</td>
+                        <td style="padding-bottom:9px;">
+                            <input type="text" name="short_display_name" value="{{main_exercise.short_display_name|escape}}" maxlength="11"/><br/>
+                            <em>Short name is used in some UI elements that are too small to display the full exercise name (11 chars max).</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Horizontal position</td>
+                        <td style="padding-bottom:9px;">
+                            <input type="text" name="v_position" value="{{main_exercise.v_position}}"/></br>
+                            <em>Bigger numbers move this exercise to the right on the knowledge map.</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Vertical position</td>
+                        <td style="padding-bottom:9px;">
+                            <input type="text" name="h_position" value="{{main_exercise.h_position}}"/></br>
+                            <em>Bigger numbers move this exercise down the knowledge map.</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Prerequisites</td>
+                        <td style="padding-bottom:9px;">
+                            <div id="prereqs-container"></div>
+
+                            <select id="add-prereq" onchange="addPrereq();" style="width:200px;">
+                                <option value=""> - Add prerequisite exercise - </option>
+                                {% for exercise in exercises %}
+                                    <option value="{{ exercise.name|escape }}">{{ exercise.display_name|escape }}</option>
+                                {% endfor %}
+                            </select><br/>
+
+                            <em>This exercise will be suggested once these prereqs are completed.</em><br/>
+                            {% if main_exercise.summative %}
+                            <em><strong>Summative exercises</strong> will generate problems from all prereqs.</em></br>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Covered exercises</td>
+                        <td style="padding-bottom:9px;">
+                            <div id="covers-container"></div>
+
+                            <select id="add-cover" onchange="addCover();" style="width:200px;">
+                                <option value=""> - Add covered exercise - </option>
+                                {% for exercise in exercises %}
+                                    <option value="{{ exercise.name|escape }}">{{ exercise.display_name|escape }}</option>
+                                {% endfor %}
+                            </select><br/>
+
+                            <em>Achieving proficiency in this exercise will give proficiency in all covered exercises.</em>
+                        </td>
+                    </tr>
+
+                    {% if not main_exercise.summative %}
+                    <tr>
+                        <td style="font-weight:bold;">Related Videos</td>
+                        <td style="padding-bottom:9px;">
+                            <div id="videos-container"></div>
+
+                            <input id="related-videos-input" style="width:200px;" type="text" placeholder="- Add related video -" value='' class="placeholder" />
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                </table>
+
+                <br/>
+                <input class="button" type="submit" value="Update {{ main_exercise.display_name|escape }}"/>
+
+                {% if App.is_dev_server %}
+                ...or <a href="#" onclick="showLiveInstructions();return false;">deploy these updates to the live production datastore.</a>
+
+                    <div id="live-instructions" style="display:none;padding:18px;margin:18px;background:#CCC;">
+                        <strong style="color:red;">Warning</strong>: submitting will send these updates to the live www.khanacademy.org datastore, and this exercise will immediately become available according to its above status.<br/>
+                        <input id="submit-live-button" class="button" onclick="submitLive();return false;" type="button" value="Send {{ main_exercise.display_name|escape }} updates to live www.khanacademy.org datastore"/><br/>
+                        <em>Submits in new window. If you are not logged in as an admin to www.khanacademy.org, you'll need to login and click this button again.</em>
+                    </div>
+                {% endif %}
+
+            </form>
+        </div>
+    </div>
+
+{% endblock pagecontent %}

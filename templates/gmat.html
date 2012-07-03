@@ -1,0 +1,126 @@
+<HEAD>
+<TITLE>Khan Academy</TITLE>
+
+		<style type="text/css">
+		
+			body {font-family:Arial,Helvetica,sans-serif;}
+body {font-size:0.8em;}
+BODY {margin: 0} 
+
+table {border:0px;padding:0px;margin:0px;}
+h1{font-size:1.4em;}
+h2{font-size:1.6em;}
+h3{font-size:12px; line-height:18px;}
+td{font-size:12px;}
+td.large{font-size:18px;}
+
+#playlist a:visited{ text-decoration: none; color : #581C90; }
+
+.mainmenu		{ font-size : 12px; color : #000000 }
+a.mainmenu		{ text-decoration: none; color : #006699;  }
+a.mainmenu:hover{ text-decoration: underline; color : #DD6900; }
+
+
+
+img {border-style: none;}
+
+
+div.hdg    {background-color:#E6F8DD; border-top:1px solid #80C65A;}
+tr.hdgr td {background-color:#E6F8DD; border-top:1px solid #80C65A;}
+tr.hdg     {background-color:#E6F8DD;}
+
+td.hdg     {border-top:1px solid #80C65A;}
+.mobile-only { display: none; }
+ul { list-style: none; margin: 0; padding: 0;}
+ol
+		
+		</style>
+
+</HEAD>
+<div id="gmat-body" class="desktop-only">
+<body bgcolor=white>
+<center>
+<table border=0 width=640 align=center>
+<tr>
+<td><A href="/" border=0><img src="/images/khan.GIF"></a></td>
+<td align=right valign=bottom width=100%>
+<A href="http://youtube.com/khanacademy" target="newwin"><b>YouTube Channel</b></A> |  <A href="/"><b>Video Library</b></A> |  <A href="/exercisedashboard">Login</A></td>
+
+</td>
+</tr>
+<tr><td colspan=2>
+
+<table width=640 border=0>
+<tr><td width=20><img src="images/blank.gif" height=30 width=50></td><td></td><td><img src="images/blank.gif" height=5 width=10></td><td></td></tr>
+<tr><td colspan=4><h2>&nbsp;&nbsp;&nbsp;GMAT Preparation</h2></td></tr>
+<tr><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td ></td>
+<td valign=top></td>
+<TD></td>
+<td>
+<img src="http://ecx.images-amazon.com/images/I/51EWCPF8VNL._SL160_AA115_.jpg" align=right>Sal has done all 404 problem solving and data sufficiency 
+problems in "The Official Guide for GMAT Review" by the Graduate Management Admission Council (which you should buy) in the 100+ videos below.  
+<P>
+We recommend that you buy the book and take try to do as many problems as possible.  Then you should watch the following videos to have them explained. We've gotten
+feedback that it is sometimes helpful to watch the videos for questions you understand just to see how Sal tackles them.
+<P>
+If you have the self-discipline to do the practice problems, review your work and watch the videos, we think you will be as prepared as anyone.  You should
+view these videos as your on-demand personal tutor.  
+<P>
+If you need to review (or learn) underlying mathematical concepts covered on the GMAT, we have over 700 videos on general math topics in our <A href="/">video 
+library</A>. 
+
+<P>
+
+<P>
+
+</div>
+
+<div data-role="page" data-theme="b">
+    <div data-role="header" class="mobile-only"><h1>GMAT Preparation</h1></div>
+    <div data-role="content">
+        <ul data-role="listview">
+            <li>
+                <h3>Data Sufficiency</h3>
+                <ol data-filter="true" data-inset="true">
+                    {%for playlist_video in data_sufficiency%}
+                		<li><A href="/video/{{playlist_video.video.readable_id}}">{{playlist_video.video.title}}</A></li>
+                	{% endfor %}
+                </ol>
+            </li>
+            <li>
+                <h3 id="problem_solving">Problem Solving</h3>
+                <ol>
+                    {%for playlist_video in problem_solving%}
+                		<li><A href="/video/{{playlist_video.video.readable_id}}">{{playlist_video.video.title}}</A></li>
+                	{% endfor %}
+                </ol>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<P>&nbsp;<P>
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+  <tr>
+    <td bgcolor=#3366cc><img width=1 height=1 alt=""></td>
+  </tr>
+
+</table>
+<center>
+<font size=-2>
+<A href="http://youtube.com/khanacademy" target="newwin"><b>YouTube Channel</b></A> 
+</font>
+<p><font size=-2>&copy;2010 Khan Academy</font></p>
+</p>
+</center>
+</td>
+</tr>
+</table>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,21 @@
+{# this is the proficiency progress bar for the dashboard
+  this works (in js/css land) as follows
+    current-rating and current-label both represent the active progress and they layer atop each other
+#}
+<div id="streak-bar-container" class="new">
+{% block streak_bar_block %}
+<div class="streak-bar{% if float_progress >= 1 %} proficient{% elif is_suggested or float_progress > 0 %} suggested{% endif %}"  title="Current progress: {{ progress }}">
+    <div class="current-streak">
+        <ul class="unit-rating" style="width:{{ bar_max_width }}px;">
+            <li class="current-rating" style="width:{{ bar_width }}px;"></li>
+            <li class="streak-icon"></li>
+            {% for level in levels %}
+                <li class="level-label" style="left:{{ level }}px;"></li>
+            {% endfor %}
+            <li class="current-label" style="width:{{ bar_width }}px;"></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+</div>
+

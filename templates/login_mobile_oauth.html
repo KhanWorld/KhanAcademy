@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>Login to Khan Academy</title>
+
+        {{ js_css_packages.css_package("shared") }}
+
+        <style>
+            {% if view == "mobile" %}
+            body { background-image: none; }
+
+            * {
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            }
+            {% endif %}
+
+            #login-page {
+                text-align: center;
+                padding-top: 54px;
+            }
+
+            #login-inner-content {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 475px;
+            }
+
+            #login-page .providers li {
+                margin-right: 0;
+                line-height: 0;
+                padding: 0;
+            }
+
+            #login-page .providers li a {
+                outline: none;
+                border: 0;
+                text-decoration: none;
+                padding: 10px;
+                display: block;
+            }
+            
+            #login-page .providers li.facebook {
+                float: right;
+            }
+        </style>
+
+        {% if view == "mobile" %}
+        <script>document.ontouchmove = function(e){e.preventDefault();}</script>
+        {% endif %}
+    </head>
+    <body>
+        <article id="login-page">
+            <div id="login-inner-content">
+                <img src="/images/logo-no-highlight.png" /><br/><br/>
+
+                <!-- ontouchstart="" is needed to allow the :active pseudoclass to work
+                     See http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari  -->
+                <ul class="providers"> 
+                    <li class="action-gradient" title="Google">
+                        <a ontouchstart="" href="/api/auth/request_token_callback/google/{{ oauth_map_id|escape }}">
+                            <div class="sign-in-text">Login with:</div>
+                            <img width="205" height="70" src="/images/google-logo-large.png" />
+                        </a>
+                    </li>
+                    <li class="action-gradient facebook" title="Facebook">
+                        <a ontouchstart="" href="/api/auth/request_token_callback/facebook/{{ oauth_map_id|escape }}">
+                            <div class="sign-in-text">Login with:</div>
+                            <img width="205" height="70" src="/images/facebook-logo-large.png" />
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="clear">&nbsp;</div>
+
+                {% if not anointed %}
+                    <p>By logging in, you agree to give this application access to your personal Khan Academy usage data.</p>
+                {% endif %}
+            </div>
+        </article>
+    </body>
+</html>

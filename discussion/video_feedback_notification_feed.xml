@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Khan Academy - New Answers</title>
+    <link>http://khanacademy.org/discussion/videofeedbackdiscussionlist</link>
+    <description>New answers to your questions about Khan Academy videos</description>
+
+    {% for answer in answers %}
+    <item>
+        <title>Question: {{ answer.parent.content|truncatewords:5|escape }}</title>
+        <link>http://khanacademy.org/video/{{ answer.video.readable_id }}?playlist={{answer.video.first_playlist.title|urlencode}}&amp;qa_expand_key={{ answer.parent.key }}#q_{{ answer.parent.key}}</link>
+        <guid>{{ answer.key }}</guid>
+        <pubDate>{{ answer.date }}</pubDate>
+        <description>Answer: {{ answer.content|escape }}</description>
+    </item>
+   {% endfor %}
+
+  </channel>
+</rss>
+

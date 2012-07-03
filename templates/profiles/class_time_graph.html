@@ -1,0 +1,104 @@
+{% extends 'profiles/class_graph.html' %}
+
+{% block graph_content %}
+
+{% if is_graph_empty %}
+    <div class="graph-notification">There isn't any class activity for this date.</div>
+{% endif %}
+
+<script>
+    var chart;
+    $(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'highchart',
+                defaultSeriesType: 'column'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                column: {
+                },
+                series: {
+                    showInLegend: false,
+                    stacking: 'normal',
+                    point: {
+                        events: {
+                            click: function() {
+                            }
+                        }
+                    }
+            }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                {% for data in graph_data %}
+                '{{ data["name"]|escapejs }}<br/>(<em>{{ data["total_minutes"]|escapejs }} min. total</em>)'{% if not loop.last %},{% endif %}
+                {% endfor %}
+                ],
+                labels: {
+                    align: 'left',
+                    x: -5,
+                    y: 10,
+                    rotation: 45
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Time Spent (Minutes)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                    return this.point.desc;
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -10,
+                y: 100,
+                borderWidth: 0
+            },
+            series: [
+                    {% for row in classtime_table.rows|reverse %}
+                    { 
+                       data: [
+                        {% for chunk in row.chunks %}
+                        {
+                            x: {{ loop.index0 }}, 
+                            {% if chunk %}
+                                y: {{ chunk.minutes_spent() }},
+                                desc: '{{ chunk.description()|escapejs }}',
+                            {% else %}
+                                y: 0,
+                                desc: '',
+                            {% endif %}
+                            {% if chunk %}
+                            color: {% if chunk.during_schoolday() %}'#ADD8E6'{% else %}'#00008B'{% endif %}
+                            {% endif %}
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                        ]
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                ]
+        });
+    });
+</script>
+
+<div id="highchart-container" class="x-scrollable {% if is_graph_empty %}empty-chart{% endif %}">
+    <div id="highchart" style="min-width:{{ width }}px;"></div>
+</div>
+
+{% endblock graph_content %}

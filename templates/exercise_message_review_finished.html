@@ -1,0 +1,46 @@
+<div class="exercise_message review">
+  <h2 class="pulls">Review Completed!</h2>
+
+  <span id="congrats-message">
+    <span>Congrats, you've wrapped up your review!</span>
+    <span>Congrats, you've mastered what you've learned!</span>
+    <span>Nice job, you've proven your skills!</span>
+    <span>Well done, you know your stuff.</span>
+    <span>You're not afraid of any pop quizzes now! :)</span>
+  </span>
+
+  <span id="move-on-message">
+    <span>
+      <a href="/exercisedashboard" class="simple-button action-gradient green">Choose a new exercise</a>
+      to expand your knowledge frontier!
+    </span>
+    <span>
+      <a href="/exercisedashboard" class="simple-button action-gradient green">You may now proceed</a>
+      in your quest to know everything!
+    </span>
+  </span>
+</div>
+
+<script>
+
+(function() {
+
+function showRandomMessage( elem ) {
+    var messages = $( elem ).children(),
+        savedVar = '_Khan_review_msg_shown_' + ( elem.selector || elem ),
+        msgToShowIndex = typeof window[ savedVar ] === "number" ?
+            window[ savedVar ] : Math.floor( Math.random() * messages.length );
+
+    messages.hide().eq( msgToShowIndex ).show();
+
+    // Don't show a different message if the user hasn't navigated away
+    window[ savedVar ] = msgToShowIndex;
+}
+
+// Randomly select some messages to show
+showRandomMessage( '#congrats-message' );
+showRandomMessage( '#move-on-message' );
+
+})();
+
+</script>

@@ -1,0 +1,74 @@
+{% extends "page_template.html" %}
+
+{% block pagesubmenu %}
+    <span class="breadcrumbs_nav">
+        <a href="/admin94040">Dev Panel</a>
+    </span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+
+    <script>
+        $(function() {
+            $(".remove-coworker").click(function(e) {
+                $.post(
+                    "/api/v1/coworkers/remove",
+                    {
+                        coach_email: $(this).data("coach-email"),
+                        coworker_email: $(this).data("coworker-email"),
+                    }
+                )
+
+                $(this).parents("li").first().remove();
+
+                e.preventDefault();
+            });
+
+            $("#add-coworker").submit(function(e) {
+                $.post(
+                    "/api/v1/coworkers/add", 
+                    {
+                        coach_email: $("#add-coworker-coach-email").val(),
+                        coworker_email: $("#add-coworker-email").val(),
+                    },
+                    function() { window.location.reload(); }
+                );
+
+                $("#add-coworker-submit").replaceWith("...adding...");
+
+                e.preventDefault();
+            });
+        });
+    </script>
+
+   <div id="devpanel" style="padding: 9px 23px;">
+        <div>
+            <h2>Manage coworkers</h2>
+
+            {% if user_data_coach %}
+
+                <ul>
+                {% for user_data_coworker in user_data_coworkers %}
+                <li>{{ user_data_coworker.email }} &ndash; <a href="#" class="remove-coworker" data-coach-email="{{ user_data_coach.email|escape }}" data-coworker-email="{{ user_data_coworker.email|escape }}">remove</a></li>
+                {% endfor %}
+                </ul>
+
+                <form id="add-coworker" style="display: block; margin: 22px 0">
+                    <input id="add-coworker-coach-email" type="hidden" value="{{ user_data_coach.email|escape }}" />
+                    <input id="add-coworker-email" type="text" />
+                    <input id="add-coworker-submit" type="submit" value="Add as coworker" />
+                </form>
+
+            {% else %}
+
+                <form id="specify-coach" method="GET" action="/devadmin/managecoworkers" style="display: block; margin: 22px 0">
+                    Coach id: <input id="coach-email" name="coach_email" type="text" /><br />
+                    <input id="coach-email-submit" type="submit" value="Manage coworkers" />
+                </form>
+
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock pagecontent %}
+

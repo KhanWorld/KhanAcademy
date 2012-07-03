@@ -1,0 +1,37 @@
+{% if badge %}
+    <div class="achievement-badge category-{{badge.badge_category}} {% if user_badge or badge.is_owned %}achievement-badge-owned{% endif %}" title="{{ badge.type_label()|escape }}: {{ extended_description|escape }}">
+        <div id="outline-box">
+        <img src="{{ badge.icon_src() }}" id="badge-icon"/>
+        <div class="achievement-title">{{ badge.description|escape }}{% if frequency %} <span class="frequency">(x{{ frequency }})</span>{% endif %}</div>
+        {% if user_badge and badge.badge_context_type %}
+            <div class="achievement-count">x{{ user_badge.count }}</div>
+        {% endif %}
+        <div class="achievement-desc {% if not user_badge %}achievement-desc-no-count{% endif %}">
+            {% if user_badge %}
+                Last achieved {{ user_badge.date|timesince_ago }}
+                {% if user_badge.count > 1 %}
+                    in 
+                    {% for context_name in user_badge.list_context_names %}
+                        <strong>{{ context_name|escape }}</strong>{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                    {% for context_name in user_badge.list_context_names_hidden %}
+                        {% if loop.first %}
+                        <span class="badge-context-hidden-link"><a href="#" onclick="Badges.showMoreContext(this);return false;">and also in<span class="ellipsis">...</span></a></span>
+                        <span class="badge-context-hidden" style="display:none;">
+                        {% endif %}
+                            <strong>{{ context_name|escape }}</strong>{% if not loop.last %},{% endif %}
+                        {% if loop.last %}</span>{% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% if user_badge.target_context_name %}
+                        in <strong>{{ user_badge.target_context_name|escape }}</strong>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {{ extended_description|escape }}
+            {% endif %}
+        </div>
+        {% if badge.points %}<div class="energy-points-badge">{{ badge.points }}</div>{% endif %}
+        </div>
+    </div>
+{% endif %}

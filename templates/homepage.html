@@ -1,0 +1,302 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/youtube.html' as youtube %}
+{% import 'macros/analytics.html' as analytics %}
+{% import 'macros/mailing_lists.html' as mailing_lists %}
+
+{% block pagecss %}
+<style>
+	#page_sub_nav { display: none; }
+	td { vertical-align: top; }
+	.ui-tooltip, .qtip { max-width: 200px; }
+</style>
+{% endblock pagecss %}
+
+{% block pagetitle %}{% endblock pagetitle %}
+{% block pagecontent %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/nl_NL/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+		
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+  {lang: 'nl'}
+</script>
+<article id="homepage">
+<div>
+	<div id="intronltekst">
+	Welkom op de b&egrave;ta versie van de Nederlandse Khan Academie. 
+	Je vindt hier oefeningen en uitlegvideo's over rekenen en wiskunde, gebaseerd op de originele Amerikaanse Khan Academy. 
+	Gebruik is gratis. 
+	Naast reken- en wiskundeopgaven, komen hier ook taaloefeningen.
+	</div>
+
+	<div>
+		<div style="position:relative; margin:5px 0 0 50px; display: inline">
+			<!--<iframe width="560" height="315" src="http://www.youtube.com/embed/CDPHrSGMFb0" frameborder="0" allowfullscreen></iframe>-->
+			<iframe width="560" height="315" src="http://www.youtube.com/embed/tC80BNOKJtk" frameborder="0" allowfullscreen></iframe>
+		</div>
+	
+		<div style="position:absolute; display: inline; margin: 0 50px 0 20px; width:40%;">
+			<div class="bl">
+				<a href="/exercisedashboard">
+					<div class="buttonnl">
+					<div></br></div>
+						<div id="buttontekstnl">Ik wil leren rekenen!</div>
+					</div>
+				</a>
+			</div>
+			<hr>
+			<div style="margin: 80px 0 0 0" class="bl">
+				<a href="/nl-content/gettingstarted.html#teachers">
+					<div class="buttonnl"><div></br></div>
+						<div id="buttontekstnl">Ik wil dat mijn kind/leerling leert rekenen!</div>
+					</div>
+				</a>
+			</div>
+			<hr>
+			<div style="margin: 80px 0 0 0" class="bl">
+				<a href="/nl-content/gettingstarted.html#schools">
+					<div id="buttonnl" class="buttonnl"><div></br></div>
+						<div id="buttontekst2nl">Ik wil dit op mijn school gebruiken!</div>
+					</div>
+				</a>
+			</div>
+			<hr>
+			<div style="margin: 80px 0 0 0" class="bl">
+				<a href="/nl-content/contribute.html">
+					<div id="buttonnl" class="buttonnl">
+					<div></br></div>
+						<div id="buttontekstnl">Ik wil meehelpen!</div>
+					</div>
+				</a>
+			</div>
+		</div>
+		
+		<div style="padding:0 0 0 0;">
+			<div style="position:relative; margin:0; display: inline"><div class="fb-like-box" data-href="http://www.facebook.com/pages/Khanacademie-NL/123650984422563" data-width="200" data-height="60" data-show-faces="false" data-stream="false" data-header="true"></div></div>
+			<div style="position:relative; margin:0; display: inline"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.khanacademie.nl" data-text="Neem een kijkje op de Khan Academie!" data-lang="nl" data-size="large" data-hashtags="KhanNL">Tweeten</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</div>	
+			<div style="position:relative; margin:0 0 0 5px; display: inline"><g:plusone expandTo="bottom" href="https://plus.google.com/100213809438509670719"></g:plusone></div>
+		</div>
+	</div>
+
+</div>
+</article>
+
+   <!--{% if is_mobile_capable %}
+            {{ youtube.player_embed(marquee_video["youtube_id"], 480, 395) }}
+        {% else %}
+            <a id="main-video-link" href="{{ marquee_video["href"] }}">
+                <div id="main-video-placeholder" style="background-image:url('{{ marquee_video["thumb_urls"]["sd"]|escape }}')">
+                    <div class="youtube-placeholder-title">{{ marquee_video["title"]|escape }}</div>
+                    <img class="youtube-play" src="/images/youtube_play.png" />
+                </div>
+            </a>
+        {% endif %}-->
+ 
+        
+    {% if thumbnail_link_sets %}
+    <div id="thumbnails_container">
+        <table width="100%">
+            <tr>
+                <td width="3%">
+                    <div class="thumbnails_arrow action-gradient" id="arrow-left">
+                        <div class="arrow-left"></div>
+                    </div>
+                </td>
+                <td width="94%">
+                    <div id="thumbnails" class="visited-no-recolor">
+                        {% for thumbnail_link_set in thumbnail_link_sets %}
+                            {% set outerloop = loop %}
+                        <div {% if not loop.first %}style="display:none;"{% endif %}><table style="width:100%">
+							<tr>
+                            {% for thumbnail_link in thumbnail_link_set %}
+                            <td style="width:25%" class="thumbnail_td {{ thumbnail_link["type"] }} {% if thumbnail_link["selected"] %}selected{% endif %}" data-key="{{ thumbnail_link["key"]|escape }}" data-youtube-id="{{ thumbnail_link["youtube_id"]|escape }}">
+
+                                <a href="{{ thumbnail_link["href"]|escape }}" class="thumbnail_link">
+									<div>
+                                        {% if outerloop.first %}
+                                        class="thumb" style="background-image:url('{{ thumbnail_link["thumb_urls"]["hq"]|escape }}')"
+                                        {% else %}
+                                        class="thumb pending" data-src="{{ thumbnail_link["thumb_urls"]["hq"]|escape }}"
+                                        {% endif %}
+                                    </div>
+								</a>
+                                <a href="{{ thumbnail_link["href"]|escape }}" class="thumbnail_link"><div class="thumbnail_label"><div class="thumbnail_desc">{{ thumbnail_link["desc_html"] }}</div><div class="thumbnail_teaser">{{ thumbnail_link["teaser_html"] }}</div></div></a>
+                            </td>
+                            {% endfor %}
+                            </tr></table>
+						</div>
+                        {% endfor %}
+                    </div>
+                </td>
+                <td width="3%">
+                    <div class="thumbnails_arrow action-gradient" id="arrow-right">
+                        <div class="arrow-right"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+
+    <div class="clear"></div>
+
+<div data-role="page" data-theme="b" {% if is_mobile %}id="browse"{% endif %}>
+    <div data-role="content">
+        <div id="mobile-homepage" class="mobile-only">
+            <img data-src="{{ "/images/logo-horizontal-large.png"|static_url }}" id="mobile-logo" />
+            <span id="page_visitors">
+                    <span id="page_num_visitors">
+                        <!-- Content will get populated by javacript at end of page -->
+                    </span>&nbsp;lessons delivered
+            </span>
+        </div>
+        <h2 class="main-headline">Zoek door onze verzameling van meer dan {{approx_vid_count|thousands_separated}} video's...</h2>
+        {% if DVD_list %}
+        <ul class="menu" id="menu">
+            {% for playlist in DVD_list %}
+        	    <li><a href="#{{playlist}}" class="menulink">{{playlist}}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div id="browse-control-anchor"></div>
+        {{ templatetags.playlist_browser("browse") }}
+        <!--{{ templatetags.playlist_browser("browse-fixed") }}-->
+
+        {% endif %}
+        <a href="/mobilefullsite" class="mobile-only" data-role="button" data-ajax="false">Bekijk de standaard site</a>
+    </div>
+</div>
+<div class="clear"></div>
+{{ library_content }}
+
+
+    <!--{% if thumbnail_link_sets %}
+   <div id="thumbnails_container">
+        <table width="100%">
+            <tr>
+                <td width="3%">
+                    <div class="thumbnails_arrow action-gradient" id="arrow-left">
+                        <div class="arrow-left"></div>
+                    </div>
+                </td>
+               <!-- <td width="94%">
+                    <div id="thumbnails" class="visited-no-recolor">
+                        {% for thumbnail_link_set in thumbnail_link_sets %}
+                            {% set outerloop = loop %}
+                            <div {% if not loop.first %}style="display:none;"{% endif %}><table style="width:100%"><tr>
+                            {% for thumbnail_link in thumbnail_link_set %}
+                            <td style="width:25%" class="thumbnail_td {{ thumbnail_link["type"] }} {% if thumbnail_link["selected"] %}selected{% endif %}" data-key="{{ thumbnail_link["key"]|escape }}" data-youtube-id="{{ thumbnail_link["youtube_id"]|escape }}">
+
+                                <a href="{{ thumbnail_link["href"]|escape }}" class="thumbnail_link"><div 
+                                        {% if outerloop.first %}
+                                        class="thumb" style="background-image:url('{{ thumbnail_link["thumb_urls"]["hq"]|escape }}')"
+                                        {% else %}
+                                        class="thumb pending" data-src="{{ thumbnail_link["thumb_urls"]["hq"]|escape }}"
+                                        {% endif %}
+                                        ></div></a>
+
+                                    <a href="{{ thumbnail_link["href"]|escape }}" class="thumbnail_link"><div class="thumbnail_label"><div class="thumbnail_desc">{{ thumbnail_link["desc_html"] }}</div><div class="thumbnail_teaser">{{ thumbnail_link["teaser_html"] }}</div></div></a>
+                                </td>
+                            {% endfor %}
+                            </tr></table></div>
+                        {% endfor %}
+                    </div>
+                </td>
+                <td width="3%">
+                    <div class="thumbnails_arrow action-gradient" id="arrow-right">
+                        <div class="arrow-right"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}-->
+
+    <!--<div class="clear"></div>-->
+
+<!--<div data-role="page" data-theme="b" {% if is_mobile %}id="browse"{% endif %}>
+    <div data-role="content">
+        <div id="mobile-homepage" class="mobile-only">
+            <img data-src="{{ "/images/logo-horizontal-large.png"|static_url }}" id="mobile-logo" />
+            <span id="page_visitors">
+                    <span id="page_num_visitors">-->
+                        <!-- Content will get populated by javacript at end of page -->
+<!--                    </span>&nbsp;lessons delivered
+            </span>
+        </div>
+        <h2 class="main-headline">Browse our library of over {{approx_vid_count|thousands_separated}} educational videos...</h2>
+        {% if DVD_list %}
+        <ul class="menu" id="menu">
+            {% for playlist in DVD_list %}
+        	    <li><a href="#{{playlist}}" class="menulink">{{playlist}}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div id="browse-control-anchor"></div>
+        {{ templatetags.playlist_browser("browse") }}
+        {{ templatetags.playlist_browser("browse-fixed") }}
+
+        {% endif %}
+        <a href="/mobilefullsite" class="mobile-only" data-role="button" data-ajax="false">View standard site</a>
+    </div>
+</div>
+<div class="clear"></div>
+{{ library_content }}
+
+</article>-->
+
+
+<!--<div id="back-to-top">
+    <a class="arrow" href="#">?</a>
+    <a class="text" href="#">Back to Top</a>
+</div>
+
+<div id="back-to-top">
+    <a class="arrow" href="#">?</a>
+    <a class="text" href="#">Back to Top</a>
+</div>-->
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {% if not is_mobile %}
+        {{ js_css_packages.js_package("homepage") }}
+    {% endif %}
+
+    <script type="text/javascript">
+        $(function(){
+            VideoStats.startLoggingProgress("{{ marquee_video["key"]|escapejs }}");
+            Homepage.initPlaceholder("{{ marquee_video["youtube_id"]|escapejs }}");
+        });
+
+        (function(){
+            var twitterWidgets = document.createElement('script');
+            twitterWidgets.type = 'text/javascript';
+            twitterWidgets.async = true;
+            twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+            // Setup a callback to track once the script loads.
+            twitterWidgets.onload = _ga.trackTwitter;
+            document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+        })();
+
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+        _ga.trackFacebook();
+    </script>
+
+    {{ analytics.crazyegg_tracker(False) }}
+
+    {%- if link_heat -%}
+    <script type="text/javascript" src="/javascript/random/linkheat.js?{{App.version}}"></script>
+    {%- endif -%}
+{% endblock bottompagescript %}

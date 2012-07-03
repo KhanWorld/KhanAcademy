@@ -1,0 +1,114 @@
+{% macro graph_control() -%}
+<div id="graph-control-container">
+    <div id="graph-container">
+        <div id="graph-progress-bar"></div>
+        <div id="graph-content">
+        </div>
+    </div>
+</div>
+{%- endmacro %}
+
+{% macro graph_link(user_data, graph_name, graph_type, selected_type) -%}
+<a href="{{ profiles.get_graph_url(graph_type, user_data, None, None) }}" class="graph-link graph-link-header header {% if graph_type == selected_type %}graph-link-selected{% endif %}">{{ graph_name|escape }}</a>
+{%- endmacro %}
+
+{% macro class_graph_link(user_data_coach, graph_name, graph_type, selected_type, list_id) -%}
+<a href="{{ profiles.get_graph_url(graph_type, None, user_data_coach, list_id) }}" class="graph-link graph-link-header header {% if graph_type == selected_type %}graph-link-selected{% endif %}">{{ graph_name|escape }}</a>
+{%- endmacro %}
+
+{% macro api_link(user_data, page_name, api_function, selected_function, beta=false) -%}
+<a href="{{ profiles.get_api_url('user', api_function, user_data, None, None) }}" class="graph-link graph-link-header header {% if api_function == selected_function %}graph-link-selected{% endif %}" {% if beta %}title="Beta Feature: this feauture is new and likely to change as we work to make it awesome."{% endif %}>{{ page_name|escape }}{% if beta %} <span class="feature-beta-tag">(beta)</span>{% endif %}</a>
+{%- endmacro %}
+
+{% macro class_api_link(user_data_coach, page_name, api_function, selected_type, list_id) -%}
+<a href="{{ profiles.get_api_url('user/students', api_function, None, user_data_coach, list_id) }}" class="graph-link graph-link-header header {% if api_function == selected_type %}graph-link-selected{% endif %}">{{ page_name|escape }}</a>
+{%- endmacro %}
+
+
+{% macro graph_calendar_picker(user_data, graph_type) -%}
+<input type="text" id="targetDatepicker" value="Today"/>
+<script>
+    $(function(){$("#targetDatepicker").datepicker().change(function(){Profile.loadGraphStudentListAware("/profile/graph/{{ graph_type|escape }}?coach_email={{ user_data.email|escape }}&dt=" + this.value);});});
+</script>
+{%- endmacro %}
+
+{% macro graph_date_picker(user_data, graph_type) -%}
+<span class="graph-date-picker">
+    <a href="/profile/graph/{{graph_type|escape}}?student_email={{user_data.email|escape}}&dt_start=today" class="graph-link graph-sub-link 0">Vandaag</a> | 
+    <a href="/profile/graph/{{graph_type|escape}}?student_email={{user_data.email|escape}}&dt_start=yesterday" class="graph-link graph-sub-link 0">Gisteren</a> | 
+    <a href="/profile/graph/{{graph_type|escape}}?student_email={{user_data.email|escape}}&dt_start=lastweek&dt_end=today" class="graph-link graph-sub-link 0">Afgelopen 7 dagen</a> | 
+    <a href="/profile/graph/{{graph_type|escape}}?student_email={{user_data.email|escape}}&dt_start=lastmonth&dt_end=today" class="graph-link graph-sub-link 0">Afgelopen 30 dagen</a>
+</span>
+{%- endmacro %}
+
+{% macro recent_activity_entry_badge(user_data_student, recent_activity, view="standard") -%}
+<li class="achievement" >
+    <span class="activity-image" style=""><img src="/images/generic-badge-icon-inset.png" /></span>
+    <div class="ach-text">Behaald <a href="#achievements" onclick="$('#achievement-list ul li#category-{{ recent_activity.badge.badge_category }}').click();" class="badge-link category-{{ recent_activity.badge.badge_category }}">{{ recent_activity.badge.description|escape }}</a>
+    {% if recent_activity.user_badge.target_context_name %}
+        for {{ recent_activity.user_badge.target_context_name|escape }}
+    {% endif %}
+    <br /><span class="time">{{ recent_activity.timestamp()|escape }}</span>
+    {% if view != "mobile" %}
+    {{ social.share_badge_button(recent_activity.badge.description, recent_activity.badge.icon_src, recent_activity.badge.extended_description, recent_activity.user_badge.target_context_name, "Recent-Activity-Share") }}
+    {% endif %}
+    </div>	
+</li>
+{%- endmacro %}
+
+{% macro recent_activity_entry_exercise(user_data_student, recent_activity, view="standard") -%}
+<li class="exercise {% if recent_activity.earned_proficiency %}complete{% endif %}">
+    <span class="activity-image"><img src="/images/generic-exercise-icon-inset.png" /></span>
+    <div class="ach-text">Beantwoord <span class="problem-count">{% if view != "mobile" %}<a href="/profile/graph/exerciseproblems?student_email={{ user_data_student.email|escape }}&exercise_name={{ recent_activity.problem_log.exercise }}">{% endif %}{{ recent_activity.c_problems }} problem{{ recent_activity.c_problems|pluralize }}{% if view != "mobile" %}</a>{% endif %}</span> 
+    {% if recent_activity.earned_proficiency %}
+        om vakkundig te zijn in 
+    {% else %}
+        in 
+    {% endif %}
+    {{ recent_activity.exercise_display_name|escape }}
+    <br /><span class="time">{{ recent_activity.timestamp()|escape }}</span>
+	{% if view != "mobile" %}
+    {{ social.share_exercise_button(recent_activity.c_problems, recent_activity.earned_proficiency, recent_activity.exercise_display_name, "Recent-Activity-Share") }}
+	{% endif %}
+	</div>
+</li>
+{%- endmacro %}
+
+{% macro recent_activity_entry_video(user_data_student, recent_activity, view="standard") -%}
+<li class="video">
+<span class="activity-image"><img src="/images/video-camera-icon-inset.png" /></span><div class="ach-text">
+    Watched <span class="video-minutes">{{ recent_activity.time_watched()|escape }}</span> of <a href="/video?v={{recent_activity.video_log.video.youtube_id}}">{{ recent_activity.video_log.video_title|escape }}</a>
+   <br /> <span class="time">{{ recent_activity.timestamp()|escape }}</span>
+	{% if view != "mobile" %}
+    {{ social.share_video_button(recent_activity.video_log.video_title, recent_activity.video_log.video.description, recent_activity.video_log.video.youtube_id, "Recent-Activity-Share") }}
+	{% endif %}
+	</div>
+</li>
+{%- endmacro %}
+
+{% macro exercise_progress_block(exercise_data, exercise) -%}
+<div class="student-module-status exercise-progress-block exercise-color {{exercise_data[exercise.name]["color"]}}{% if exercise_data[exercise.name]["color"] != "transparent" %} action-gradient seethrough{% endif %}" onclick="drillIntoExercise('{{exercise_data[exercise.name]["chart_link"]|escapejs}}');">
+    <span class="exercise-display-name"><nobr>{{exercise_data[exercise.name]["short_name"]}}</nobr></span>
+    <div class="hover-data" style="display: none;">
+        {{exercise_data[exercise.name]["hover"]}}
+    </div>
+</div>
+{%- endmacro %}
+
+{% macro student_highlight_control(user_data_students) -%}
+<ul>
+    {% for user_data_student in user_data_students %}
+    <li>
+    <a href="#" class="highlight-student-series" data-email="{{ user_data_student.email|escape }}">{{ user_data_student.nickname|escape }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro class_profile_meta_data_js(user_data_students, c_points) -%}
+<script>
+    $('#count_students').text('{{ user_data_students.__len__()|thousands_separated|escapejs }}');
+    $('#energy-points .energy-points-badge').text('{{ c_points|thousands_separated|escapejs }}');
+    $('#students-highlight').html('{{ student_highlight_control(user_data_students)|escapejs }}');
+</script>
+{%- endmacro %}

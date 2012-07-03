@@ -1,0 +1,90 @@
+{% macro daily_graph(name, title, y_axis, counts) -%}
+<script>
+    $(document).ready(function() {
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'highchart-{{ name|escape }}',
+                defaultSeriesType: 'scatter'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                scatter: {
+                    cursor: 'pointer',
+                    dashStyle: 'Solid',
+                    lineWidth: 1
+                },
+                series: {
+                    showInLegend: false,
+                    marker: {
+                        radius: 6
+                    }
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    return "<font size='10'>" + Highcharts.dateFormat('%A, %B %e, %Y', this.x) + "</font>" + 
+                        "<br/>" +
+                        "{{ y_axis|escape }}: <b>" + this.y + "</b>" +
+                        "<br/>" +
+                        "Total: <b>" + this.total + "</b>";
+                        ;
+                }
+            },
+            title: {
+                text: "",
+                x: -20 //center
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            xAxis: {
+                title: {
+                    text: 'Date'
+                },
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            yAxis: {
+                title: {
+                    text: '{{ y_axis|escape }}'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            series: [
+                {
+                    name: '{{ name|escape }}',
+                    data: [
+                        {% for count in counts %}
+                        {
+                            x: Date.UTC({{ count.dt_display.year }}, {{ count.js_month }}, {{ count.dt_display.day }}),
+                            y: {{ count.delta }},
+                            total: {{ count.val }}
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }
+            ]
+        });
+    });
+</script>
+
+<br/><h2>{{ title|escape }}</h2>
+<div id="highchart-container">
+    <div id="highchart-{{ name|escape }}"></div>
+</div>
+{%- endmacro %}

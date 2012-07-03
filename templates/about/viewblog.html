@@ -1,0 +1,81 @@
+{% extends "about/about_template.html" %}
+
+{% import 'macros/mailing_lists.html' as mailing_lists %}
+
+{% block aboutcontent %}
+<div id="about-blog">
+    <div id="blog-content">
+        {% block posts %}
+        {% for post in posts %}
+        <h2 class="pulls visited-no-recolor"><a href="{{ post.local_url()|escape }}">{{ post.title|escape }}</a></h2>
+        <p class="pulled" style="color: #999; font-style: italic; font-family: Georgia;">{{ post.dt }}</p>
+        <div id="post-content">
+        {{ post.body }}
+        </div>
+        <p><a class="dsq-comment-count" href="{{ post.local_url()|escape }}#disqus_thread">Comments</a></p>
+        <hr style="margin-top: 36px;">
+        {% endfor %}
+        <div id="page-controls">
+            {% if has_prev %}
+                <a href="/about/blog?offset={{ prev_offset|escape }}" class="simple-button action-gradient">Newer Posts</a>
+            {% endif %}
+        
+            {% if has_next %}
+                <a href="/about/blog?offset={{ next_offset|escape }}" class="simple-button action-gradient">Older Posts</a>
+            {% endif %}
+        </div>
+        <script type="text/javascript">var disqus_url = ""; var disqus_title ="";</script><script type="text/javascript">
+        var disqus_shortname = 'bjk5';
+        (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.src = 'http://disqus.com/forums/bjk5/count.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        </script>
+        {% endblock posts %}
+    </div>
+    <div id="blog-sidebar">
+        <div id="social-links">
+            <h2>Let's get social!</h2>
+            <p>
+                <a href="http://feeds.feedburner.com/KhanAcademy" class="simple-button action-gradient social-button">
+                    <img src="/images/social_rss_box_orange_48.png" width=48 height=48 />
+                    Subscribe to the blog
+                </a>
+                <a href="http://www.facebook.com/khanacademy" class="simple-button action-gradient social-button">
+                    <img src="/images/social_facebook_box_blue_48.png" width=48 height=48 />
+                    Join us on Facebook
+                </a>
+                <a href="http://twitter.com/khanacademy" class="simple-button action-gradient social-button">
+                    <img src="/images/social_twitter_box_blue_48.png" width=48 height=48 />
+                    Follow us on Twitter
+                </a>
+            </p>
+        </div>
+        <div id="mailing-list">
+            <h2>Prefer email?</h2>
+            <p>
+                If you don't need every little detail but 
+                want to hear the big news, then email 
+                updates may be right for you. We will 
+                never (ever) sell your email address to 
+                anyone else for any reason.
+            </p>
+            <p>
+                {{ mailing_lists.signup_form(1, "Sign me up", "Enter your email address") }}
+            </p>
+        </div>
+        <div id="pilot-list">
+            <h2>Want to use Khan Academy in your school?</h2>
+            <p>
+                If you are a teacher or administrator, 
+                sign up to learn more about how Khan Academy
+                can be used in schools.
+            </p>
+            <p>
+                {{ mailing_lists.signup_form(2, "Sign me up", "Enter your email address") }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock aboutcontent %}

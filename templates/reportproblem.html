@@ -1,0 +1,7 @@
+{% extends "reportissue_template.html" %}
+{% block pagetitle %}Report a problem{% endblock pagetitle %}
+{% block have_an_issue %}Found a problem?{% endblock have_an_issue %}
+{% block exercise_warning %}<p><strong style="color:red;">These instructions are for reporting issues with the site in general. If you have encountered an issue with exercises, then please head over to the faulty exercise and click the &ldquo;Report a Problem&rdquo; button at the bottom of that page.</strong></p>{% endblock exercise_warning %}
+{% block submitted_the_issue %}reported the problem{% endblock submitted_the_issue %}
+{% block list_of_issues_link %}<a href="http://code.google.com/p/khanacademy/issues/list?can=2&q=Status:Accepted,Started%20Type:Defect&sort=-stars&colspec=Summary">list of known problems</a>{% endblock list_of_issues_link %}
+{% block new_issue_link %}<a href="http://code.google.com/p/khanacademy/issues/entry?template=Defect%20report%20from%20user&labels=Referer-{{referer|urlencode}},Type-Defect,UserAgent-{{user_agent|urlencode}},{{issue_labels|urlencode}}">new problem form</a>{% endblock new_issue_link %}

@@ -1,0 +1,62 @@
+<html xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<head>
+  <Title>Khan Academy: Moderators</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body spacing="0" bgcolor=white text="#000000" link="#006699" vlink="#5493B4">
+  <center><table border=0 width=800 align=center>
+  	<tr>
+        <td align=left><A href="/" border="0"><img src="{{ "/images/khan.GIF"|static_url }}"></a></td>
+  	</tr>
+  	<tr>
+  		<td align=right><span class="mainmenu"><A href="/">Video Library</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A href="/">Exercises (Requires Login)</A></span></td>
+  	</tr>
+  	<tr>
+  	
+  	<td>
+
+  	<h2>Moderators</h2>
+    <br/>
+    <strong>Moderators can delete and modify discussion content.  All Administrators have moderation powers by default.</strong>
+    <br/><br/>
+
+    {% if mods.count %}
+    <table class="feedback_list">
+        {% for mod in mods %}
+            <tr>
+                <td>
+                    {{ mod.email|escape }}
+                </td>
+                <td width="100%">
+                    <form method="POST" action="/discussion/moderatorlist">
+                        <input type="hidden" name="mod" value="0" />
+                        <input type="hidden" name="user" value="{{mod.email|escape}}" />
+                        <input type="submit" value="Remove"/>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% else %}
+        No moderators.
+    {% endif %}
+
+  	</td>
+  	</tr>
+   </table>
+
+    <br/></br>
+
+    <h3>Add moderators</h3>
+    Enter a user's email address below (e.g. "user@gmail.com") to add them as a moderator.<br/>
+    <form method="POST" action="/discussion/moderatorlist">
+        <input type="hidden" name="mod" value="1" />
+        <input type="text" name="user" value="" />
+        <input type="submit" value="Add Moderator"/>
+    </form>
+
+</center>
+</body>
+</html>
+

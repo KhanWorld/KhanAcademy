@@ -1,0 +1,97 @@
+{% extends "page_template.html" %}
+
+{% block page_title %}Register App{% endblock page_title %}
+
+{% block pagescript %}
+    <style>
+        #page_sub_nav { display: none; }
+        #register { padding: 18px 23px; }
+        #register td { padding: 9px; vertical-align: top; }
+        #register input, #register textarea { width: 300px; }
+        #register textarea { height: 40px; }
+        #register td.input_auto input { width: auto; }
+        #register td.agree { width: 300px; }
+        #register td.error { color: red; }
+    </style>
+{% endblock pagescript %}
+
+{% block pagecontent %}
+<article id="register">
+    <h2>Register an App</h2>
+
+    {% if consumer_key and consumer_secret %}
+
+    <p>...and you're all set! Save your key and secret somewhere safe, because you'll need them when <a href="https://github.com/khan/khan-api/wiki/Khan-Academy-API-Authentication">authenticating against the Khan Academy API</a>.</p>
+
+    <table>
+        <tr>
+            <td>Consumer Key:</td>
+            <td style="font-weight: bold;">{{ consumer_key|escape }}</td>
+        </tr>
+        <tr>
+            <td>Consumer Secret:</td>
+            <td style="font-weight: bold;">{{ consumer_secret|escape }}</td>
+        </tr>
+    </table>
+
+    {% else %}
+
+    <p>
+        Register an app to use with the <a href="https://github.com/khan/khan-api/wiki/Khan-Academy-API">Khan Academy API</a>. The more contact information you provide, the more likely we'll be able to contact you in the event of any technical issues or problems with your usage of the API.
+    </p>
+
+    <p>
+        After registering, you'll receive a consumer key and secret to be used with your app, as described in the <a href="https://github.com/khan/khan-api/wiki/Khan-Academy-API-Authentication">authentication docs</a>.
+    </p>
+
+    <form action="/api-apps/register" method="POST">
+        <table>
+            <tr>
+                <td>You:</td>
+                <td colspan="2"><em>{{ username|escape }}</em></td>
+            </tr>
+            <tr>
+                <td>Your app's name*:</td>
+                <td><input type="text" name="name" value="{{ name|escape }}"/></td>
+                {% if name_error %}
+                <td class="error">{{ name_error|escape }}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Description*:</td>
+                <td><textarea name="description">{{ description|escape }}</textarea></td>
+                {% if description_error %}
+                <td class="error">{{ description_error|escape }}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Website:</td>
+                <td colspan="2"><input type="text" name="website" value="{{ website|escape }}"/></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td colspan="2"><input type="text" name="phone" value="{{ phone|escape }}"/></td>
+            </tr>
+            <tr>
+                <td>Company:</td>
+                <td colspan="2"><input type="text" name="company" value="{{ company|escape }}"/></td>
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td class="agree input_auto" colspan="2"><input type="checkbox" value="1" id="agree" name="agree"/> <label for="agree">I agree to the <a target="_blank" href="http://www.khanacademy.org/about/api-tos">Khan Academy API Terms of Service</a>.</label></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td class="input_auto"><input type="submit" class="simple-button action-gradient" value="Register App"/></td>
+                {% if agree_error %}
+                <td class="error">{{ agree_error|escape }}</td>
+                {% endif %}
+            </tr>
+        </table>
+    </form>
+
+    {% endif %}
+
+</article>
+{% endblock pagecontent %}

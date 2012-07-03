@@ -1,0 +1,11 @@
+<div class="notification-bar" style="display:none;">
+{% if login_notification %}
+	<span class="notification-bar-flair">
+        {{ phantom_users.badge_info(user_data) }}  {{ phantom_users.point_info(user_data) }}
+    </span>
+	<span class="notification-bar-content">{{ login_notification|phantom_login_link(continue) }}</span>
+	<span class="notification-bar-close">(<a href="#">close</a>)</span>
+<script>$(function(){ Notifications.show(); });</script>
+{% endif %}
+</div>
+<div class="notification-bar-spacer"></div>

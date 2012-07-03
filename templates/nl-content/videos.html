@@ -1,0 +1,75 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/analytics.html' as analytics %}
+
+{% block meta_page_title %}Contribute | {% endblock meta_page_title %}
+{% block pagescript %}
+    <style>
+        #page_sub_nav { display: none; }
+        #public #container #form1 #header {display: none; }
+    </style>
+{% endblock pagescript %}
+{% block pagecontent %}
+<article id="contribute">
+        
+	<div class="col1 sixty-forty">
+			<h2>Hoe maak je een instructiefilmpje?</h2>
+			<p>
+				Je hebt er verrassend weinig voor nodig:
+				<ul>
+				<li style="font-size:14px;">een computer met internettoegang</li>
+				<li style="font-size:14px;">een microfoon</li>
+				<li style="font-size:14px;">muis of tekentablet</li>
+				<li style="font-size:14px;">Paint of ander tekenprogramma</li>
+				<li style="font-size:14px;">YouTube account (login kan met Google account, wat je ook nodig hebt voor Khan Academie)</li>
+				</ul>
+			</p>
+			<p>
+			Het is handig om een tekentablet te hebben, zelf gebruik ik een Wacom Bamboo (ongeveer &euro;80,- gekost). Een andere mogelijkheid is om het digitale schoolbord te gebruiken, zorg dan wel voor een goede microfoon. Verder gebruik ik een Logitech headset, geluid is niet super, maar voorlopig goed genoeg.
+			</p>
+			<p>
+			Als recording software gebruik ik <a href="http://screencast-o-matic.com">screencast-o-matic</a>. De gratis versie toont bij de opnames een logo van screencast-o-matic, met een licentie van $12,- per jaar heb je dat niet. Ander voordeel van de Pro-editie is dat je makkelijker opnames naar YouTube kunt sturen, je hoeft niet te wachten tot de upload klaar is om weer een nieuwe opname te maken.
+			</p>
+			<h4>Is het moeilijk?</h4>
+			<p>
+			Nee, het is niet moeilijk, maar de meeste mensen (waaronder ikzelf)  vinden het maken en publiceren van het eerste filmpje erg lastig. Het horen van je eigen stem, angst dat niemand zit te wachten op jouw uitleg, het draagt niet bij aan de laagdrempeligheid van het maken van filmpjes. 
+			Oplossing? Gewoon doen!
+			</p>
+			<h4>Wat ook helpt?</h4> 
+			<p>
+			Het helpt mij om te bedenken dat als iemand een filmpje van mij niet goed vindt, dit voor hem/haar een motivatie kan zijn om zelf filmpjes te gaan maken.
+			</p>
+			<div><iframe width="560" height="315" src="http://www.youtube.com/embed/q1ho0Q10wWA" frameborder="0" allowfullscreen></iframe></div>
+	</div>
+	<div class="clear"></div>
+    <hr>
+
+	<div class="col1 sixty-forty">
+		<h2>Instructie filmpjes insturen</h2>
+		<p>
+			Gebruik het formulier hier onder om de door jou gemaakte filmpjes in te sturen. Wij voegen ze toe aan de playlists en koppelen ze aan de bijbehorende oefening. 
+			<div style="width:500px; height:291px; overflow:hidden;"><iframe src="https://docs.google.com/a/perceptum.nl/spreadsheet/embeddedform?formkey=dFlHWXlaWmlvYzF4OUhGdklzdUFLYmc6MQ" width="760" height="623" frameborder="0" marginheight="0" marginwidth="0">Bezig met laden...</iframe></div>	
+		</p>
+	</div>
+	<div class="clear"></div>
+    <hr>
+	<div class="col1 sixty-forty">
+		<h2>Welke video's kan ik maken?</h2>
+		<p>
+			In dit sheet zie je de oefeningen en bijbehorende video's.</br>
+			Staat er nog geen link naar een Nederlandse video? Dan is deze nog niet gemaakt.
+			<div><iframe width='1200' height='600' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0Aj0XNyxYc8JDdEJrSkhyQmxPSkE3VG50TUNsSWFBa1E&single=true&gid=2&output=html&widget=true'></iframe></div>
+		</p>
+	</div>
+	<div class="clear"></div>
+    <hr>	
+
+    <div style="text-align:center; padding-bottom: 18px;"><p>De Nederlandse Khan Academie zou niet bestaan zonder de hulp, tijd, energie en expertise van de vele vrijwilligers<!--<a href="/contribute/credits">vrijwilligers</a>-->.</p></div>
+</article>
+{% endblock pagecontent %}
+{% block bottompagescript %}
+    {{ analytics.crazyegg_tracker(False) }}
+{% endblock bottompagescript %}
+    <!--<div class="col2 sixty-forty">
+        <iframe id="meetup" src="http://www.meetup.com/everywhere/widget2/khanacademy/?width=275&height=290&usetheme=1" border="0" frameborder="0" height="290" width="100%"></iframe>
+    </div>-->

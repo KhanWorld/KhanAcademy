@@ -1,0 +1,203 @@
+{% if not problem_list %}
+    <div class="graph-notification">{{student_nickname|escape}} needs to do a few more problems in {{exercise_display_name|escape}} before we can start displaying this graph.</div>
+{% endif %}
+
+<script>
+var chart;
+
+function exercise_url(point) {
+    return "{{ exercise.relative_url|escapejs }}?" +
+            "student_email={{ student_email|escapejs }}&" +
+            "problem_number=" + point.problem_number + 
+            (point.exercise_non_summative ? "&exid_non_summative=" + point.exercise_non_summative : "") +
+            (!point.renderable ? "&renderable=0" : ""); 
+}
+
+			$(document).ready(function() {
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'highchart',
+						defaultSeriesType: 'column'
+					},
+                    plotOptions: {
+                        scatter: {
+                            marker: {
+                                states: {
+                                    hover: {
+                                        fillColor: 'transparent',
+                                        lineColor: 'transparent'
+                                    }
+                                }
+                            }
+                        },
+                        column: {
+                            cursor: 'pointer',
+                            minPointLength: 10
+                        },
+                        series: {
+                            point: {
+                                events: {
+                                    click: function() {
+                                          window.location = exercise_url(this);
+                                    }
+                                }
+                            },
+                            events: {
+                                legendItemClick: function() { return false; }
+                            }
+                        }
+					},
+					subtitle: {
+                        text: "{{ exercise_display_name|escapejs }}",
+						x: -20
+					},
+					xAxis: {
+						title: {
+                            text: '{{ x_axis_label|escapejs }}'
+						},
+                        tickInterval: 1,
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					yAxis: {
+						title: {
+							text: 'Time Used (seconds)'
+						},
+                        maxPadding: 0.15,
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					tooltip: {
+                        shared: true,
+                        crosshairs: true,
+                        formatter: function() {
+                            var s = "";
+
+                            for (var ix = 0; ix < this.points.length; ix++)
+                            {
+                                var point = this.points[ix].point;
+
+                                if (point.fVideo) {
+                                    if (point.desc)
+                                    s += '<br/><strong style="font-size: 13px; font-weight: bold;">Watched ' 
+                                    + point.time_watched + 
+                                    ' of related videos<br><b style="font-size: 13px; font-weight: bold;">before answering:</strong><br/>' + point.desc;
+                                }
+                                else if (point.fSummary) {
+                                    s += '<span style="font-size: 15px;">' + 
+                                            'Problem ' + point.x + 
+                                            '</span><b style="font-size: 15px;"> - ' + (point.correct ? "Correct" : "Incorrect") +
+                                            (point.count_hints ? '<span style="color: red; font-style: italic; font-weight:bold">(Hint Used)' : '') +
+                                            '</b><br/>' +
+                                            point.time_used + ' used<br/><br/>' +
+                                            point.timesince +
+                                            (point.exercise_non_summative ? '<br/><br/>From exercise: ' + point.exercise_non_summative_display_name : '') +
+                                            '<br/><br/><em>Click the graph to view this problem</em>.';
+                                }
+                            }
+
+                            return s;
+						}
+					},
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        floating: true,
+                        backgroundColor: 'white',
+                        shadow: true,
+                        x: 0,
+                        y: 5,
+                        symbolWidth: 0,
+                        itemHoverStyle: {
+                            cursor: 'default',
+                            color: '#3E576F'
+                        },
+                        labelFormatter: function() {
+                            return "Last Ten: {{ percent_last_ten_correct|escapejs }}% correct<br/>Progress: {{ progress|escapejs }}<br/>Longest Streak: {{ longest_streak|escapejs }}<br/>";
+                        }
+                    },
+                    series: [
+                            {
+                                data:[
+                                {% for problem in problem_list %}
+                                {
+                                    fSummary: true,
+                                    correct: {% if problem.correct %}true{% else %}false{% endif %},
+                                    count_hints: {% if problem.count_hints %}true{% else %}false{% endif %},
+                                    time_used: '{{ problem.exercise_time()|escapejs }}',
+                                    timesince: '{{ problem.time_done|timesince_ago }}',
+                                    {% if problem.exercise_non_summative %}
+                                        exercise_non_summative_display_name: '{{ problem.exercise_non_summative_display_name|escapejs }}',
+                                        exercise_non_summative: '{{ problem.exercise_non_summative|escapejs }}',
+                                    {% endif %}
+                                    name: '{{ user_exercise.name|escapejs }}',
+                                    problem_number: {{ problem.problem_number|escapejs }},
+                                    x: {{ loop.index }} + {{ x_offset }},
+                                    y: {{ problem.time_taken }},
+                                    renderable: {% if problem.renderable %}true{% else %}false{% endif %},
+                                    color: '{% if problem.correct %}#BAE8FA{% else %}red{% endif %}',
+                                    current: {% if problem.current %}true{% else %}false{% endif %}
+                                }
+                                {% if not loop.last %},{% endif %}
+                                {% endfor %}
+                                ]
+                            },
+                            {
+                                type: 'scatter',
+                                showInLegend: false,
+                                data:[
+                                {% for problem in problem_list %}
+                                {
+                                    fVideo: true,
+                                    x: {{ loop.index }} + {{ x_offset }},
+                                    {% if problem.video_point %}
+                                        y: {{ problem.time_taken }},
+                                        desc: '{{ problem.video_titles_html()|escapejs }}',
+                                        time_watched: '{{ problem.video_time()|escapejs }}',
+                                        marker: { symbol: 'url(/images/camera-small-chart.png)'}
+                                    {% else %}
+                                        y: 0,
+                                        enabled: false
+                                    {% endif %}
+                                }
+                                {% if not loop.last %},{% endif %}
+                                {% endfor %}
+                                ]
+                            },
+                            {
+                                type: 'scatter',
+                                showInLegend: false,
+                                data:[
+                                {% for problem in problem_list %}
+                                {
+                                    fHint: true,
+                                    x: {{ loop.index }} + {{ x_offset }},
+                                    {% if problem.count_hints %}
+                                        y: {{ problem.time_taken }},
+                                        desc: 'Hint used',
+                                        time_watched: '{{ problem.video_time()|escapejs }}',
+                                        marker: { symbol: 'url(/images/hint-small-chart.png)'}
+                                    {% else %}
+                                        y: 0,
+                                        enabled: false
+                                    {% endif %}
+                                }
+                                {% if not loop.last %},{% endif %}
+                                {% endfor %}
+                                ]
+                            }
+                            ]
+				});
+			});
+</script>
+
+<div id="highchart-container" class="{% if not problem_list %}empty-chart{% endif %}">
+    <div id="highchart"></div>
+</div>

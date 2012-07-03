@@ -1,0 +1,97 @@
+{% extends "page_template.html" %}
+{% block meta_page_title %}Beheer Coaches | {% endblock meta_page_title %}
+{% block pagescript %}
+<style>
+#coaches {
+    padding: 18px 23px;
+}
+#coaches p {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+}
+#coaches td {
+    padding: 9px;
+}
+#coaches tr.even_row td {
+    background-color:#FFFFFF;
+}
+#coaches tr.odd_row td {
+    background-color:#EFEFEF;
+}
+#page_sub_nav .breadcrumbs_nav a#manage-coaches.selected:before {left: 59px;}
+#page_sub_nav .breadcrumbs_nav a#manage-coaches.selected:after {left: 60px;}
+</style>
+{% endblock pagescript %}
+
+{% block pagesubmenu %}
+<span class="breadcrumbs_nav">
+    <a href="/coaches" id="manage-coaches" class="selected">Beheer Coaches</a>
+    <a href="/students" id="manage-students">Beheer Leerlingen</a>
+    <a href="/class_profile" id="class-stats">Statistieken van klas</a>
+</span>
+{% endblock pagesubmenu %}
+
+{% block pagecontent %}
+
+<article id="coaches">
+{% if coach_requests %}
+    <h2>Nieuwe coaches wachten op je!</h2>
+
+    <p>Deze coaches willen jou als leerling. <strong>Als je ze accepteert als jouw coach, geef je ze toegang tot jouw data op de Khan Academie</strong>.</p>
+
+    <table>
+    {% for coach_request in coach_requests %}
+            {% if loop.index % 2 == 0 %}
+            <tr class="even_row">
+            {% else %}
+            <tr class="odd_row">
+            {% endif %}
+                <td>{{ coach_request.coach_requesting_data.email|escape }}</td>
+                <td><a href="/acceptcoach?accept=1&coach_email={{ coach_request.coach_requesting_data.email|urlencode|escape }}" class="simple-button action-gradient">Accepteer coach</a></td>
+                <td><a href="/acceptcoach?accept=0&coach_email={{ coach_request.coach_requesting_data.email|urlencode|escape }}" class="simple-button action-gradient">Weiger coach</a></td>
+            </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+
+<h2 {% if coach_requests %}class="section-headline"{% endif %}>Add a coach</h2>
+<p>
+    Je coach geeft zijn coach id aan jou door. Vul het hier in om de coach toegang te geven tot jouw Khan Academie data.
+</p>
+
+<form action="/registercoach" method="post">
+<input type="text" name="coach" class="blur-on-esc">
+<input type="submit" value="Add coach" class="simple-button action-gradient">
+</form>
+
+{% if invalid_coach %}
+<p><span style="color:red;font-weight:bold;">Deze coach is niet bekend bij ons.</span></p>
+
+<p style="padding-left:18px;">
+Zorg dat je het volledige id van jouw coach invult, en let op <em>hoofd- en kleine letters</em>. Een coach id ziet er uit als <strong>naam@gmail.com</strong> of <strong>http://facebookid.khanacademy.org/1067499349</strong>.<br/>
+        Als je het coach id goed hebt ingevuld en het werkt toch nog steeds niet, zorg dan dat je coach minimaal 1 keer heeft ingelogd op de Khan Academie.
+</p>
+{% endif %}
+
+{% if coach_emails %}
+
+    <h2 class="section-headline">Jouw coaches</h2>
+
+    <table>
+    {% for coach_email in coach_emails %}
+            {% if loop.index % 2 == 0 %}
+            <tr class="even_row">
+            {% else %}
+            <tr class="odd_row">
+            {% endif %}
+                <td>{{ coach_email|escape }}</td>
+                <td><a href="/unregistercoach?coach={{ coach_email|urlencode|escape }}" class="simple-button action-gradient">Verwijder coach</a></td>
+            </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+
+<h2 class="section-headline">Jouw Student ID</h2>
+<p>Als je coach je vraagt naar je student ID, het is: {{student_id|escape}}</p>
+</article>
+{% endblock pagecontent %}

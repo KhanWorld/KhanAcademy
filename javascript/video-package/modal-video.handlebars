@@ -1,0 +1,47 @@
+<div id="modal-video" class="video modal fade hide">
+    <div class="modal-header">
+        <a href="#" class="close-button close">x</a>
+        <div id="description">
+            <h3>
+                <span class="title">{{video.title}}</span>
+                <span class="long-description">: <span>{{video.description}}</span></span>
+            </h3>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="youtube-video">
+            {{>youtube-player}}
+            <div class="subtitles-warning">
+                &lArr; Use this menu to view and help create subtitles for this video in many different languages.
+                You'll probably want to hide YouTube's captions if using these subtitles.
+               <a href="#" class="subtitles-link">Close subtitles</a>
+            </div>
+        </div>
+        <span class="video_extra_links">
+            <nobr>
+            <div class="extra-link-bar">
+                <a href="#" title="Toggle subtitles and translations" style="z-index:101;" class="simple-button action-gradient with-icon subtitles-link">
+                    <img src="/images/subtitles-icon-small.png" />
+                    Subtitles
+                </a>
+
+                {{#if video.download_urls.mp4}}
+                <a href="{{video.download_urls.mp4}}" title="Download this lesson" style="z-index:101;" class="simple-button action-gradient with-icon download-icon download-link">
+                <img src="/images/download-icon-small.png" />
+                         Download
+                </a>
+                {{/if}}
+            </div>
+            <span style="float:right;" id="points-badge-hover">
+                <div class="video-energy-points" {{#if logged_in}}title="{{points}} Energy Points earned for watching this video"{{else}}title="You're earning points for watching this video. Sign in to keep them"{{/if}} >
+                    <span class="video-energy-points-current">{{points}}</span>
+                    of {{possible_points}}
+                </div>
+            </span>
+            </nobr>
+         </span>
+    </div>
+    <div class="modal-footer">
+        <a href="{{video_url}}" class="simple-button action-gradient green">Watch on video page</a>
+    </div>
+</div>

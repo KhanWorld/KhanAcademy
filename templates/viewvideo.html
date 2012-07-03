@@ -1,0 +1,162 @@
+{% extends "page_template.html" %}
+
+{% import 'macros/user.html' as user %}
+{% import 'macros/youtube.html' as youtube %}
+{% import 'macros/library.html' as library %}
+{% import 'macros/analytics.html' as analytics %}
+{% import 'macros/discussion.html' as discussion %}
+
+{% block meta_page_title %}{{video.title|escape}} | {{playlist.title|escape}} | {% endblock %}
+{% block meta_keywords %}{{video.keywords}}{% endblock %}
+{% block meta_description %}{{video.description}}{% endblock %}
+
+{% block pagecss %}
+    {{ js_css_packages.css_package("video") }}
+{% endblock pagecss %}
+
+{% block pagesubmenu %}
+<span class="breadcrumbs_nav video-nav">
+        <a href="/#browse">All videos</a>
+        <span class="breadcrumb-separator">&#187;</span>
+        <a href="/?video={{video.readable_id|urlencode}}#{{playlist.title|slugify|urlencode}}">{{playlist.title|escape}}</a>
+        <span class="breadcrumb-separator">&#187;</span>
+    <span id="video_dropdown" style="display:none;" class="selected">
+        <a href="/video/{{video.readable_id}}?playlist={{playlist.title|urlencode}}">{{video.title|escape}}</a>
+        <div id="video_menu">
+            <ol>
+                {% for v in videos %}
+                <li data-selected='{{v.selected|default("")}}'><a href="/video/{{v.readable_id}}?playlist={{playlist.title|urlencode}}">{{ library.video_name_and_progress(v) }}</a></li>
+                {% endfor %}
+            </ol>
+        </div>
+    </span>
+</span>
+{% endblock pagesubmenu %}
+{% block pagecontent %}
+<article id="video-page">
+<div class="video" data-role="page" data-theme="b">
+    <div data-role="header" class="mobile-only">
+        <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+        <h2>{{video.title|escape}}</h2>
+        <a href="/" data-icon="home" data-iconpos="notext" data-direction="reverse"></a>
+    </div>
+    <div data-role="content">
+        <div id="description">
+            {%- if button_top_exercise %}
+            <a href="{{button_top_exercise.url}}" class="practice simple-button action-gradient green" title="Test your understanding with an exercise">Practice this concept</a>
+            {%- endif %}
+            <h3>
+                <span class="title desktop-only">{{video.title|escape}}</span>
+            {% if video.description %}
+                <span class="long-description"><span class="desktop-only">: </span>{{video.description|escape}}</span>
+            {% endif %}
+            </h3>
+
+            {%- if related_exercises %}
+            <div class="related-content visited-no-recolor">
+                <span class="related-content-title">Related exercises:</span>
+                <ul class="related-exercise-list">
+                    {%- for exercise in related_exercises %}
+                    <li>
+                        <a href="{{exercise.url}}" title="{{exercise.name}}">{{exercise.name}}</a>
+                        {%- if not loop.last -%}
+                        <span class="separator">, </span>
+                        {%- endif -%}
+                    </li>
+                    {%- endfor %}
+                </ul>
+            </div>
+            {%- endif %}
+        </div>
+    <div style="margin-top: -5px;">
+        <nav class="prev_next_nav desktop-only">
+            {% if previous_video %}
+            <label id="prev_video">
+                <a rel=prev href="/video/{{previous_video.readable_id}}?playlist={{playlist.title|urlencode}}"><b>Previous Video:</b>{{ library.video_name_and_progress(previous_video) }}</a>
+            </label>
+                {% endif %}
+                {% if next_video %}
+            <label id="next_video">
+                <a rel=next href="/video/{{next_video.readable_id}}?playlist={{playlist.title|urlencode}}"><b>Next Video:</b> {{ library.video_name_and_progress(next_video) }}</a>
+            </label>
+                {% endif %}
+            <div class="clear"></div>
+        </nav>
+
+        <div id="youtube_blocked" class="desktop-only">
+            {{ youtube.flv_player_embed(video_path) }}
+        </div>
+        <div class="youtube-video">
+            {{ youtube.player_embed(video.youtube_id) }}
+            <div class="subtitles-warning">
+                &lArr; Use this menu to view and help create subtitles for this video in many different languages.
+                You'll probably want to hide YouTube's captions if using these subtitles.
+               <a href="#" class="subtitles-link">Close subtitles</a>
+            </div>
+        </div>
+
+        <span class="video_extra_links desktop-only">
+            <nobr>
+
+            <div class="extra-link-bar">
+
+                <a href="#" title="Toggle subtitles and translations" style="z-index:101;" class="simple-button action-gradient with-icon subtitles-link">
+                <img src="/images/subtitles-icon-small.png" />
+                        Subtitles
+                </a>
+
+                {% if video_path %}
+                <a href="{{video_path}}" title="Download this lesson" style="z-index:101;" class="simple-button action-gradient with-icon download-icon download-link">
+                <img src="/images/download-icon-small.png" />
+                         Download
+                </a>
+                {% endif %}
+
+                {{ social.share_video_button(video.title, video.description, video.youtube_id, "Video-Page-Share") }}
+
+            </div>
+            <span style="float:right;" id="points-badge-hover">
+                {{ user.possible_points_badge(awarded_points, video_points_base, logged_in) }}
+            </span>
+            </nobr>
+         </span>
+
+        <div class="desktop-only">
+            {{ discussion.comments(user_data, video, playlist, comments_page) }}
+            {{ discussion.qa(user_data, video, playlist, qa_page, qa_expand_key, sort) }}
+        </div>
+    </div>
+    </div>
+
+</div>
+</article>
+{% endblock pagecontent %}
+
+{% block bottompagescript %}
+    {{ js_css_packages.js_package("video") }}
+    <script>
+      Video.readableId = "{{ video.readable_id|escapejs }}";
+      $(function() {
+        Video.init();
+        VideoStats.startLoggingProgress("{{ video.key()|escapejs }}");
+
+        Discussion.init();
+        Moderation.init();
+        Voting.init();
+        Comments.init();
+        QA.init();
+      });
+
+      // We take the message in the title of the energy points box and place it
+      // in a tooltip, and if it's the message with a link to the login we
+      // replace it with a nicer link (we don't want to have to pass the url to
+      // the templatetag).
+      var $points = $('.video-energy-points');
+      $points.data('title', $points.attr('title').replace(/Sign in/,
+                 '<a href="{{ login_url|escape }}">Sign in</a>'))
+             .removeAttr('title');
+
+      VideoStats.tooltip('#points-badge-hover', $points.data('title'));
+    </script>
+    {{ analytics.crazyegg_tracker(False) }}
+{% endblock bottompagescript %}

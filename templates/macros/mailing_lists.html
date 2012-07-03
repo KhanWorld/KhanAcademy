@@ -1,0 +1,10 @@
+{% macro signup_form(list_id, action, teaser) -%}
+<div class="mailing_list_container" id="mailing_list_container_{{ list_id|escape }}">
+    <form name="mailing_list_form">
+        <input type="email" name="email" class="placeholder email" placeholder="{{ teaser|escape }}" value="" />
+        <input type="submit" value="{{ action|escape }}" class="simple-button action-gradient" />
+    </form>
+    <span style="display:none;" class="error"><p>Invalid email address.</p></span>
+</div>
+<script>MailingList.init("{{ list_id|escapejs }}");</script>
+{%- endmacro %}

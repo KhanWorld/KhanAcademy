@@ -1,0 +1,41 @@
+.progress-bar-back, .progress-play-back, .progress-load-back {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.grid-control {
+  overflow: hidden;
+}
+
+.grid-item-page {
+  overflow: hidden;
+}
+.grid-item-row {
+  overflow: auto;
+}
+.grid-item-div {
+  float: left;
+  overflow: auto;
+}
+.grid-item-text-holder {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.grid-item {
+}
+
+.carousel-control {
+  width: 1000000px;
+}
+
+.carousel-item-text-holder {
+}
+
+.carousel-item {
+  float: left;
+}
+
+.carousel-item-div {
+  float: left;
+}

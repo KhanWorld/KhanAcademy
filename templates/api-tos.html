@@ -1,0 +1,210 @@
+{% extends "page_template.html" %}
+{% block pagescript %}
+<style>
+    #api-tos { font-size: 15px; line-height: 1.5em; }
+    #api-tos a:visited { color: #069; }
+    #api-tos-details { margin: 1.5em 0; }
+    #api-tos-details li { margin-bottom: 1.5em; }
+    #api-tos-details li ol { margin-top: 1.5em; margin-left: 1.5em; }
+
+    /*#page_sub_nav { display: none; }
+    #public #container #form1 #header {display: none; }*/
+        
+</style>
+<script type="text/javascript">
+$(function(){
+    $('#api-tos-details > li').append("<p class='back-to-top'><a href='#table-of-contents'>Back to Top</a></p>")
+});
+</script>
+{% endblock pagescript %}
+{% block pagetitle %}API Terms of Service{% endblock pagetitle %}
+{% block pagecontent %}
+<article id="api-tos"> 
+    <h1 class="main-headline">Khan Academy API Terms of Service</h1>
+    <p>Last Updated: December 12, 2011</p>
+    <h2>Introduction</h2>
+    <p>Welcome, and thank you for your interest in Khan Academy, Inc., a 501(c)(3) organization (“Khan Academy”), which operates the web site and online services located at http://www.khanacademy.org (the “Khan Academy Platform”).  
+    </p>
+    <p>BY CLICKING “I AGREE” OR DOWNLOADING, IMPLEMENTING, OR OTHERWISE USING THE APPLICATION PROGRAMMING INTERFACE FOR THE KHAN ACADEMY PLATFORM (THE “KHAN ACADEMY API”), YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTAND AND AGREE TO BE BOUND BY THESE KHAN ACADEMY API TERMS OF SERVICE (THE “API TERMS”), INCLUDING ANY FUTURE MODIFICATIONS. FOR KHAN ACADEMY’S POLICY ON MODIFICATION OF THESE API TERMS AND OTHER TERMS ON THE KHAN ACADEMY PLATFORM, PLEASE SEE OUR <a href="/about/tos"> TERMS OF SERVICE </a> </p>
+    <p>
+    YOU HEREBY REPRESENT AND WARRANT THAT YOU HAVE ALL AUTHORITY NECESSARY TO BIND YOURSELF TO THESE API TERMS. IF, AT ANY TIME, YOU DO NOT AGREE TO THESE API TERMS, THEN YOU ARE NO LONGER GRANTED A LICENSE TO USE THE KHAN ACADEMY API, AND MUST DISCONTINUE ALL USES OF THE KHAN ACADEMY API. 
+    </p>
+
+
+    <h2 id="table-of-contents">Table of Contents: </h2>
+    <ol>
+        <li>1. <a href="#1">Eligibility</a></li>
+        <li>2. <a href="#2">Conditions of Use</a></li> 
+        <li>3. <a href="#3">API Use</a></li> 
+        <li>4. <a href="#4">Representations and Warranties</a></li> 
+        <li>5. <a href="#5">Further Restrictions</a></li> 
+        <li>6. <a href="#6">Ownership</a></li> 
+        <li>7. <a href="#7">Attribution</a></li> 
+    	<li>8. <a href="#8">Termination</a></li> 
+        <li>9. <a href="#9">Support</a></li> 
+        <li>10. <a href="#10">Fees; Taxes</a></li>
+        <li>11. <a href="#11">Release and waiver</a></li> 
+        <li>12. <a href="#12">Indemnification</a></li> 
+        <li>13. <a href="#13">Disclaimer; Limitation of Liability</a></li> 
+        <li>14. <a href="#14">Notice</a></li> 
+        <li>15. <a href="#15">Waiver</a></li> 
+        <li>16. <a href="#16">Severability</a></li>
+        <li>17. <a href="#17">Survival</a></li>
+    	<li>18. <a href="#18">Headings</a></li>
+    	<li>19. <a href="#19">Claims</a></li>
+
+    </ol>
+
+    <ol id="api-tos-details">
+        <li id="1">1. Eligibility. You hereby represent and warrant that you have all authority necessary to bind yourself to these API Terms.
+
+    	<p> IF YOU ARE USING THE KHAN ACADEMY API ON BEHALF OF A COMPANY, ENTITY, OR ORGANIZATION (COLLECTIVELY, A "SUBSCRIBING ORGANIZATION") THEN YOU REPRESENT AND WARRANT THAT YOU: (I) ARE AN AUTHORIZED REPRESENTATIVE OF THAT SUBSCRIBING ORGANIZATION WITH THE AUTHORITY TO BIND SUCH ORGANIZATION TO THESE API TERMS; (II) HAVE READ THE FOREGOING TERMS; (III) UNDERSTAND THESE API TERMS, AND (IV) AGREE TO THESE API TERMS ON BEHALF OF SUCH SUBSCRIBING ORGANIZATION. 
+    	</p>
+    	</li>
+
+        <li id="2">2. Conditions of use
+
+    	<p> These API Terms are incorporated into and are subject to the <a href="/about/tos"> Khan Academy Terms of Service </a>. Your use of the Khan Academy API and the Khan Academy Platform is subject at all times to these API Terms and the <a href="/about/tos"> Khan Academy Terms of Service </a>. For information regarding how Khan Academy collects, uses and discloses your personal information, please see the <a href="/about/privacy-policy"> Khan Academy Privacy Policy </a>.
+    	</p>
+    	</li>
+
+        <li id="3">3. API Use 
+
+    	<p> The Khan Academy API allows you to create certain compatibility between an application, service or product created by you (“Your Application”) and the Khan Academy Platform.
+    	</p>
+    	<p> Subject to the terms and conditions of these API Terms and during the term of these API Terms, you are hereby granted a limited, nonexclusive, non-sublicensable, freely revocable license to use the Khan Academy API solely for the purpose of creating compatibility between the Khan Academy Platform and Your Application. All rights not expressly granted to you herein are reserved by Khan Academy. 
+    	</p>
+    	<p>
+    	Khan Academy may at any time change the specifications of or restrict or limit access to the Khan Academy API, in Khan Academy’s sole discretion. You acknowledge and agree that Khan Academy may use any technological means to enforce these API Terms. Notwithstanding anything to the contrary, you hereby grant Khan Academy the right to crawl, test or otherwise monitor Your Applications for the purpose of verifying your compliance with these API Terms, and that you will not seek to block or otherwise interfere with such crawling or monitoring.
+    	</p>	
+    	</li>
+
+        <li id="4">4. Representations and Warranties
+    	<p>You hereby represent and warrant that:</p>
+    	
+    	<ol> 
+    	<li> a.	you will at all times comply with these API Terms as well as the <a href="/about/tos"> Khan Academy Terms of Service </a> and the <a href="/about/privacy-policy"> Khan Academy Privacy Policy </a> and all other terms governing your use of the Khan Academy Platform or Khan Academy API; </li>
+    	<li> b.	you will not obtain access to the Khan Academy Platform without authorization; </li> 
+    	<li> c.	Your Application shall be compliant with the Digital Millenium Copyright Act (DMCA) and other laws and regulations. Khan Academy offers the following link to DMCA resources for informational purposes only: <a href="http://www.chillingeffects.org/dmca512/faq.cgi"> http://www.chillingeffects.org/dmca512/faq.cgi</a>. THE FOREGOING LINK AND OTHER INFORMATION CONTAINED IN THESE API TERMS ARE FOR YOUR GENERAL INFORMATION ONLY.  THE FOREGOING LINK AND INFORMATION CONTAINED IN THESE API TERMS IS NOT LEGAL ADVICE OF ANY KIND.</li> 
+    	<li> d.	Your Application and your use of the Khan Academy Platform and the Khan Academy API will not: 	
+    		<ol>
+    			<li> i.	infringe, violate or misappropriate any third party's intellectual property rights or other proprietary rights or be misleading, deceptive or fraudulent </li> 
+    			<li> ii. violate any laws, treaties, regulations or other governmental order </li> 
+    		</ol>
+    	</li> 
+    	<li> e.	Your Applications shall not be designed for the purpose of facilitating the access, storage, distribution or other exploitation of copyrighted or proprietary content without the authorization of the content owner. Additionally, you shall make best efforts (including design considerations) to prevent the use of Your Application for the purpose of facilitating the access, storage, distribution or other exploitation of copyrighted or proprietary content without the authorization of the content owner. If you become aware of such use, you will promptly notify Khan Academy;</li> 
+    	<li> f.	you shall implement and observe standards of privacy and confidentiality for the collection, use and sharing of any data related to any user of the Khan Academy Platform that are at least as stringent and user-favorable as the standards set forth in the <a href="/about/privacy-policy"> Khan Academy Privacy Policy </a>; </li> 
+    	<li> g.	you shall not sell, resell, lease, redistribute, license, sublicense or transfer all or any portion of the Khan Academy Platform, Khan Academy API or the rights granted herein; </li> 
+    	<li> h.	Your Applications shall not be designed or implemented in a way that, as determined by Khan Academy in its sole discretion, might mislead a user into believing that: 
+        	<ol>
+        		<li> (i) he or she is interacting directly with the Khan Academy Platform when interacting with Your Applications, or </li> 
+        		<li>(ii) any of Your Applications were created by or are endorsed by Khan Academy; </li> 
+        	</ol>
+    	</li> 		
+    	<li> i.	you will not encourage or endorse users to post or upload material that infringes the copyright, proprietary or other rights of any third parties; </li> 
+    	<li> j.	you will not encourage or endorse users to access or download any content through the Khan Academy API and distribute, publicly display or perform, transmit, publish or otherwise make available such content in a manner that violates the terms of the license under which Khan Academy made such content available for access or download. </li> 
+    	</li> 
+    	</ol>
+
+    	<li id="5">5. Further restrictions.
+            <p>You agree that you WILL:</p>
+            <ol>
+    			<li> a.	require all users of Your Application to affirmatively agree to be bound by the <a href="/about/tos"> Khan Academy Terms of Service </a> and the <a href="/about/privacy-policy"> Khan Academy Privacy Policy </a>; </li>
+    			<li> b.	notify Khan Academy if any users of Your Application are “repeat infringers” as that term is defined in the <a href="/about/tos"> Khan Academy Terms of Service </a>; </li>
+    			<li> c.	notify Khan Academy if you receive any complaint (including a copyright or other right holder) based on any content that is hosted by Khan Academy; </li>
+    			<li>  d. in connection with your use of the Khan Academy API and the Khan Academy Platform, comply with all applicable local, state, national, and international laws and regulations, including, without limitation, copyright and other laws protecting proprietary rights (including the DMCA) and all applicable export control laws and regulations and country-specific economic sanctions implemented by the United States Office of Foreign Assets Control. For clarity, the foregoing does not limit your representations in Section 4, above; </li>
+    			<li> e.	provide any information and/or other materials related to Your Applications reasonably requested by Khan Academy from time to time to verify your compliance with these API Terms. </li>
+
+    		</ol>
+    		<p>You agree that you WILL NOT:</p>
+    		<ol> 
+    			<li> a.	cache or store passwords of Khan Academy users using your application; </li>
+    			<li> b.	infringe, violate or misappropriate any third party's intellectual property rights or other proprietary rights either through your own conduct or through the conduct of your users (i) of which you are aware or reasonably should be aware; and (ii) do not take reasonable steps to prevent; </li>
+    			<li> c.	engage in any activity that is fraudulent or otherwise illegal or promotes illegal activities, including without limitation engaging in phishing or otherwise obtaining financial or other personal information in a misleading manner or for misleading purposes; </li>
+    			<li> d.	engage in any activity that is malicious or harmful to any person or entity, including in an activity that may be libelous or defamatory, or discriminatory based on race, color, sex, religion, nationality, ethnic or national origin, marital status, disability, sexual orientation or age; </li>
+    			<li> e.	engage in spamming or other advertising or marketing activities that violate any applicable laws, regulations or generally-accepted advertising industry guidelines; </li>
+    			<li> f.	request, collect, solicit or otherwise obtain access to usernames, passwords or other authentication credentials from any users of the Khan Academy Platform, or to proxy authentication credentials for any users of the Khan Academy Platform for the purposes of automating logins to the Khan Academy Platform; </li>
+    			<li> g.	interfere or attempt to interfere in any manner with the functionality or proper working of the Khan Academy API or the Khan Academy Platform, or, in each case, any portion or feature thereof; </li>
+    			<li> h.	impose or purport to impose any obligation on any person, or grant or purport to grant any right, power or authority to yourself or any other person, that would be inconsistent with these API Terms, and you agree that any such obligation, right, power or authority purportedly imposed or granted shall be null and void; </li>
+    			<li> i.	remove, obscure, or alter any notice of patent, copyright, trademark or other proprietary right appearing on the Licensed Educational Material (as that term is defined in the <a href="/about/tos"> Khan Academy Terms of Service </a>); </li>
+    			<li> j.	copy, distribute, reproduce, sell, use or allow access to the Khan Academy API except as explicitly permitted under these API Terms and the <a href="/about/tos"> Khan Academy Terms of Service </a>; </li>
+    			<li> k.	modify, translate, adapt, or prepare derivative works from the Khan Academy API except as explicitly permitted under these API Terms or under applicable law; </li>
+    			<li> l.	reverse engineer or attempt to reverse engineer the Khan Academy API except as explicitly permitted under applicable law; </li>
+    			<li> m.	attempt to conceal your identity or Your Application's identity when requesting authorization to use Khan Academy API; </li>
+    			<li> n.	use an unreasonable amount of bandwidth, storage or processing power as determined by Khan Academy in its sole discretion; </li>
+    			<li> o.	use Khan Academy API for any application that constitutes, promotes or is used in connection with spyware, adware, other malicious programs or code; </li>
+    			<li> p.	use Khan Academy API in a manner that adversely impacts the stability of Khan Academy’s servers or the Khan Academy Platform or adversely impacts the behavior of other applications using the Khan Academy API, in Khan Academy’s sole determination; or </li>
+    			<li> q.	Use the Khan Academy API for the purpose of collecting personally identifiable information of any end user without such end user’s permission. </li>
+            </ol>
+        </li>
+
+        <li id="6">6. Ownership
+    	<p> Khan Academy owns all right, title and interest in the Khan Academy API. The Khan Academy API is protected by United States copyright laws and international treaty provisions. All rights not expressly granted hereunder are reserved by Khan Academy.  Except for the limited licenses expressly granted herein, these API Terms grant you no right, title, or interest in any intellectual property owned or licensed by Khan Academy, including (but not limited to) the Khan Academy API and Khan Academy trademarks.  Any rights granted hereunder are granted solely to you and not, by implication or otherwise, to any parent, subsidiary, or affiliate of you. </p>
+
+    	<p> As between you and Khan Academy, you own Your Applications (subject to Khan Academy’s underlying rights in the Khan Academy Platform and the Khan Academy API). </p>
+    	</li>
+
+    	<li id="7">7. Attribution
+
+    	<p> You shall place the following notice prominently on Your Application: "This product uses the Khan Academy API but is not endorsed or certified by Khan Academy (www.khanacademy.org)." Apart from providing attribution as expressly described in this Section 8, you shall not use the name “Khan Academy” in any way, including, but not limited to, in the hostname of your application (i.e. KhanAcademy.domain.com). You shall not use the Khan Academy logo or Khan Academy marks without prior express written permission from Khan Academy, and then, only under the terms and conditions under which Khan Academy provided such prior express written permission. </p>
+    	</li>
+
+        <li id="8">8. Termination
+    	<p> Your license to the Khan Academy API under these API Terms continues until terminated by yourself or Khan Academy. You may terminate the license by discontinuing use of the Khan Academy API. Khan Academy may terminate the license to the Khan Academy API without liability at any time for any reason, with or without notice. Additionally, your rights to use the Khan Academy API will terminate immediately if you violate any of the terms and conditions herein. Upon expiration or termination of the license granted herein, you will discontinue any and all use of the Khan Academy API. 
+    	</p>
+        </li>
+
+        <li id="9">9. Support
+    		<p> Khan Academy may elect to provide you with support or modifications for the Khan Academy API (collectively, "Support"), in its sole discretion, and may terminate such Support at any time without notice to you. Khan Academy may change, suspend, or discontinue any aspect of the Khan Academy API at any time, including the availability of any Khan Academy API. Khan Academy may also impose limits on certain features and services or restrict your access to parts or all of the Khan Academy API or the Khan Academy Platform without notice or liability. 
+    		</p>
+        </li>
+
+        <li id="10">10.	Fees; Taxes
+    	<p> Khan Academy reserves the right to charge a fee for using the Khan Academy API or Khan Academy Platform without notice in its sole discretion. You do not have an obligation to continue using the Khan Academy API or Khan Academy Platform should Khan Academy exercise its right to charge a fee. All fees are exclusive of applicable taxes (e.g. sales, use, or value-added tax), unless otherwise stated, and you are solely responsible for the payment of any such taxes that may be imposed on your use of Khan Academy API or Khan Academy Platform. 
+    	</p>
+        </li>
+
+        <li id="11">11.	Release and waiver
+    	<p> You hereby release, waive and covenant not to sue or pursue any claim against Khan Academy (and Khan Academy's officers, directors, agents, subsidiaries, joint ventures and employees) from all claims, demands and damages (actual and consequential) of every kind and nature, known and unknown, arising out of or in any way connected to: (i) Your Application or any intellectual property you develop that is based on, uses, or relates to the Khan Academy Platform or Khan Academy API; and (ii) which otherwise may arise in connection with your use of, reliance on, or reference to Khan Academy Platform or Khan Academy API. If you are a California resident, you waive California Civil Code §1542, which says: "A general release does not extend to claims which the creditor does not know or suspect to exist in his or her favor at the time of executing the release, which if known by him or her must have materially affected his or her settlement with the debtor." You understand that any fact relating to any matter covered by this release may be found to be other than now believed to be true and you accept and assume the risk of such possible differences in fact. In addition, you expressly waive and relinquish any and all rights and benefits which you may have under any other state or federal statute or common law principle of similar effect, to the fullest extent permitted by law.
+    	</p>
+    	</li>
+
+    	<li id="12">12.	Indemnification
+    	<p> In addition to the indemnification provisions in <a href="/about/tos"> Khan Academy Terms of Service </a>, you hereby agree to indemnify and hold harmless Khan Academy, its customers and users, all third-party advertisers, technology providers and service providers, and each of their respective employees, directors and representatives, from any liability, loss or claim arising out of or relating to: (i) these API Terms; (ii) your use of or interaction with the Khan Academy API, (iii) Your Application, (iv) your violation of any law, treaty, regulation or other governmental order, or (v) your violation of the proprietary or other rights of third parties. Khan Academy reserves the right, at your expense, to assume the exclusive defense and control of any matter for which You are required to indemnify Khan Academy, and you agree to cooperate with Khan Academy's defense of these claims. Khan Academy will use reasonable efforts to notify you of any such claim, action, or proceeding upon becoming aware of it.
+    	</p> 
+    	</li>
+
+        <li id="13">13.	Disclaimer; Limitation of Liability
+    	<p>The following terms are in addition to the disclaimer and limitation of liability in the <a href="/about/tos"> Khan Academy Terms of Service </a>. </p>
+
+    	<p>Khan Academy does not warrant that the data, User Content or any other information offered on or through the Khan Academy Platform or Khan Academy API will be uninterrupted, or free of errors, viruses or other harmful components and does not warrant that any of the foregoing shall be corrected. Khan Academy is not responsible for the conduct of any user of the Khan Academy Platform or Khan Academy API.</p> 
+
+    	<p>THE KHAN ACADEMY PLATFORM AND KHAN ACADEMY API ARE PROVIDED ON AN "AS IS" BASIS AND WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMISSIBLE PURSUANT TO APPLICABLE LAW, KHAN ACADEMY, AND ITS AFFILIATES, PARTNERS, AND SUPPLIERS DISCLAIM ALL WARRANTIES, STATUTORY, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT OF PROPRIETARY RIGHTS. NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU FROM KHAN ACADEMY OR THROUGH THE KHAN ACADEMY PLATFORM WILL CREATE ANY WARRANTY NOT EXPRESSLY STATED HEREIN. </p> 
+
+    	<p>UNDER NO CIRCUMSTANCES WILL KHAN ACADEMY BE LIABLE TO YOU FOR ANY PUNITIVE, INCIDENTAL, INDIRECT, SPECIAL, RELIANCE OR CONSEQUENTIAL DAMAGES, INCLUDING LOST BUSINESS, REVENUE, OR ANTICIPATED PROFITS, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND WHETHER OR NOT KHAN ACADEMY WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  IN NO EVENT WILL KHAN ACADEMY’S LIABILITY EXCEED THE FEES PAYABLE BY YOU TO KHAN ACADEMY UNDER THESE API TERMS DURING THE TWELVE MONTHS IMMEDIATELY PRECEDING THE DAY THE ACT OR OMISSION OCCURRED THAT GAVE RISE TO THE CLAIM. </p> 
+
+    	<p>CERTAIN JURISDICTIONS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES OR THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES. IF YOU RESIDE IS SUCH A JURISDICTION, SOME OR ALL OF THE ABOVE DISCLAIMERS, EXCLUSIONS, OR LIMITATIONS MAY NOT APPLY TO YOU AND YOU MAY HAVE ADDITIONAL RIGHTS. THE LIMITATIONS OR EXCLUSIONS OF WARRANTIES, REMEDIES OR LIABILITY CONTAINED IN THESE API TERMS APPLY TO YOU TO THE FULLEST EXTENT SUCH LIMITATIONS OR EXCLUSIONS ARE PERMITTED UNDER THE LAWS OF THE JURISDICTION WHERE YOU ARE LOCATED. </p> 
+
+    	<p>YOU EXPRESSLY ACKNOWLEGE THAT AS USED IN THIS SECTION 14, THE TERM KHAN ACADEMY INCLUDES KHAN ACADEMY'S OFFICERS, DIRECTORS, EMPLOYEES, SHAREHOLDERS, AGENTS, LICENSORS AND SUBCONTRACTORS. </p> 
+        </li> 
+
+        <li id="14">14.	Notice.  
+    	<p> Khan Academy may provide you with notices, including those regarding changes to these API Terms, by email, regular mail or postings on the Khan Academy Website.  Notice will be deemed given twenty-four hours after email is sent, unless Khan Academy is notified that the email address is invalid.  Alternatively, we may give you legal notice by mail to a postal address, if provided by you through the Khan Academy Platform.  In such case, notice will be deemed given three days after the date of mailing.  Notice posted on the Khan Academy Website is deemed given 30 days following the initial posting. </p>
+
+
+    	<li id="15">15.	Waiver.  
+    	<p> The failure of Khan Academy to exercise or enforce any right or provision of these API Terms will not constitute a waiver of such right or provision. Any waiver of any provision of the API Terms will be effective only if in writing and signed by Khan Academy. </p>
+        </li>
+
+        <li id="16">16.	Severability. 
+    	<p> If any provision of the API Terms is held to be unlawful, void, or for any reason unenforceable, then that provision will be limited or eliminated from the API Terms to the minimum extent necessary and will not affect the validity and enforceability of any remaining provisions. </p>
+        </li>
+
+        <li id="17">17.	Survival.  
+    	<p> Upon termination of the API Terms, any provision which, by its nature or express terms should survive, will survive such termination or expiration, including, but not limited to, Sections 2, 4 through 8, and 11 through 20.
+    	</p>
+        </li>
+    </ol>
+    </article>
+{% endblock pagecontent %}
+ 

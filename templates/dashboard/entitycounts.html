@@ -1,0 +1,53 @@
+{% extends "page_template_mini.html" %}
+
+{% block pagecontent %}
+
+<style type="text/css">
+
+table {
+    margin-top: 6px;
+    border-spacing: 0;
+    font-size: 12px;
+}
+
+table tr:nth-child(odd) {
+    background-color: #FFF;
+}
+
+table tr:nth-child(even) {
+    background-color: #F7F7F7;
+}
+
+th {
+    font-size: 12px;
+    background-color: #F7F7F7;
+    font-weight: bold;
+}
+
+th, td {
+    padding-right: 18px;
+    vertical-align: top;
+}
+
+.left, th { text-align: left; }
+.right { text-align:right; }
+
+</style>
+<h1>Entity Counts</h1>
+<table>
+<tr>
+    <th>Kind</th>
+    <th>Count</th>
+    <th>Timestamp</th>
+</tr>
+
+{% for stats in counts %}
+<tr>
+    <td class="left">{{stats.kind}}</td>
+    <td class="right">{{stats.count}}</td>
+    <td class="right">{{stats.timestamp}}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock pagecontent %}
